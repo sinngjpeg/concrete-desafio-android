@@ -1,7 +1,8 @@
-package com.sinngjpeg.github
+package com.sinngjpeg.github.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.sinngjpeg.github.R
 
 class PullRequestActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".PullRequestActivity">
+    tools:context=".activities.PullRequestActivity">
 
 
     <androidx.appcompat.widget.Toolbar
@@ -19,7 +19,7 @@
         app:title="@string/title_pullrequest" />
 
     <view
-        android:id='@+id/recycle_view_repository'
+        android:id='@+id/recycle_view_pullrequest'
         class="androidx.appcompat.app.AlertController$RecycleListView"
         android:layout_width="405dp"
         android:layout_height="654dp"

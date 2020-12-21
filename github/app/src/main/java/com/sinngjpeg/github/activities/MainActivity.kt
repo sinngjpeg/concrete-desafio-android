@@ -1,8 +1,8 @@
-package com.sinngjpeg.github
+package com.sinngjpeg.github.activities
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.RecyclerView
+import com.sinngjpeg.github.R
 
 class MainActivity : AppCompatActivity() {
 
