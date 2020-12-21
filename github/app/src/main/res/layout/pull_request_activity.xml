@@ -9,12 +9,30 @@
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar_pullrequest"
-        app:navigationIcon="@drawable/ic_back"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="?attr/colorPrimary"
         android:elevation="4dp"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+        app:navigationIcon="@drawable/ic_back"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:title="@string/title_pullrequest" />
+
+    <view
+        android:id='@+id/recycle_view_repository'
+        class="androidx.appcompat.app.AlertController$RecycleListView"
+        android:layout_width="405dp"
+        android:layout_height="654dp"
+        android:layout_marginTop="77dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/toolbar_pullrequest"
+        app:layout_constraintVertical_bias="0.0"
+        tools:listitem="@layout/item_pullrequest">
+
+    </view>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
