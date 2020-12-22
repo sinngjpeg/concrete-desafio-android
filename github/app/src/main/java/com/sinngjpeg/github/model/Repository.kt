@@ -4,12 +4,10 @@ data class Repository(
         val nomeRepository: String,
         val descricaoRepository: String,
         val imgFork: String?,
-        val numeroDeForks: Double,
+        val numeroDeForks: Int,
         val imgStar: String?,
-        val numeroDeStars: Double,
+        val numeroDeStars: Int,
         val imgPorfile: String?,
         val userName: String,
         val fullName: String
-
-
 )

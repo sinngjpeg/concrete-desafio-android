@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools">
+    android:layout_height="match_parent">
 
 
     <androidx.appcompat.widget.Toolbar
@@ -20,19 +20,18 @@
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
         app:title="@string/title_repository" />
 
-    <view
-        android:id='@+id/recycle_view_repository'
-        class="androidx.appcompat.app.AlertController$RecycleListView"
-        android:layout_width="405dp"
-        android:layout_height="654dp"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id='@+id/recycle_view_repository_list'
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar_repository"
-        app:layout_constraintVertical_bias="0.0"
         tools:listitem="@layout/item_repository">
 
-    </view>
+    </androidx.recyclerview.widget.RecyclerView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

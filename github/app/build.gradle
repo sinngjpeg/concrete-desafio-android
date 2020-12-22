@@ -7,11 +7,12 @@ android {
     compileSdkVersion 30
     buildToolsVersion "30.0.2"
 
-    buildFeatures {
-        viewBinding true
+    viewBinding {
+        enabled = true
     }
 
-    defaultConfig {
+
+defaultConfig {
         applicationId "com.sinngjpeg.github"
         minSdkVersion 23
         targetSdkVersion 30
