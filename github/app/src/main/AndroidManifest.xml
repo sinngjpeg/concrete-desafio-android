@@ -11,7 +11,7 @@
         android:theme="@style/Theme.Github">
 
         <activity
-            android:name=".activities.MainActivity"
+            android:name=".activities.RepositoryActivity"
             android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,7 +22,7 @@
 
         <activity
             android:name=".activities.PullRequestActivity"
-            android:parentActivityName=".activities.MainActivity" />
+            android:parentActivityName=".activities.RepositoryActivity" />
 
     </application>
 

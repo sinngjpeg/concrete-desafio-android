@@ -7,7 +7,7 @@ import com.sinngjpeg.github.R
 import com.sinngjpeg.github.adapter.RepositoryAdapter
 import com.sinngjpeg.github.model.Repository
 
-class MainActivity : AppCompatActivity() {
+class RepositoryActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,10 +22,14 @@ class MainActivity : AppCompatActivity() {
             "Repositorio2", "descricao2", "", 123, "", 323,
             "", "username2", "Nome Completo2"
         )
-        val list = listOf<Repository>(
+
+
+        val listRepository = listOf<Repository>(
             item1, item2
         )
-        val adapter = RepositoryAdapter(list)
+
+        // onde vai receber as informacoes da API
+        val adapter = RepositoryAdapter(listRepository)
         recyclerView.adapter = adapter
 
     }

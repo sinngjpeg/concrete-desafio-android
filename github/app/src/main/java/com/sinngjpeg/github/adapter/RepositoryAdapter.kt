@@ -7,6 +7,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import com.sinngjpeg.github.R
+import com.sinngjpeg.github.model.PullRequest
 import com.sinngjpeg.github.model.Repository
 
 
@@ -23,6 +24,11 @@ class RepositoryAdapter(private val repositoryList: List<Repository>) :
         val currentItem = repositoryList[position]
         holder.nomeRepository.text = currentItem.nomeRepository
         holder.descricaoRepository.text = currentItem.descricaoRepository
+        holder.numeroDeForks.text = currentItem.numeroDeForks.toString()
+        holder.numeroDeStars.text = currentItem.numeroDeStars.toString()
+        holder.userName.text = currentItem.userName
+        holder.fullName.text = currentItem.fullName
+
     }
 
     override fun getItemCount() = repositoryList.size
@@ -31,5 +37,11 @@ class RepositoryAdapter(private val repositoryList: List<Repository>) :
     class RepositoryViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val nomeRepository: TextView = itemView.findViewById(R.id.txt_nome_repository)
         val descricaoRepository: TextView = itemView.findViewById(R.id.txt_descricao_repository)
+        val numeroDeForks: TextView = itemView.findViewById(R.id.txt_numero_forks)
+        val numeroDeStars: TextView = itemView.findViewById(R.id.txt_numero_stars)
+        val userName: TextView = itemView.findViewById(R.id.txt_username)
+        val fullName: TextView = itemView.findViewById(R.id.txt_nome_completo)
+
+
     }
 }

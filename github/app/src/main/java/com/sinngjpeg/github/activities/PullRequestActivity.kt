@@ -2,7 +2,11 @@ package com.sinngjpeg.github.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.recyclerview.widget.RecyclerView
 import com.sinngjpeg.github.R
+import com.sinngjpeg.github.adapter.PullRequestAdapter
+import com.sinngjpeg.github.adapter.RepositoryAdapter
+import com.sinngjpeg.github.model.PullRequest
 
 class PullRequestActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -12,10 +16,17 @@ class PullRequestActivity : AppCompatActivity() {
         setSupportActionBar(findViewById(R.id.toolbar_pullrequest))
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
+        val recyclerView = findViewById<RecyclerView>(R.id.recycle_view_pullrequest_list)
+
+        val item1 =
+            PullRequest("Repositorio1", "descricao1", "", "sinng", "ingrid")
 
 
+        val listPullRequest = listOf<PullRequest>(
+            item1
+        )
 
-
-
+        val adapter = PullRequestAdapter(listPullRequest)
+        recyclerView.adapter = adapter
     }
 }
