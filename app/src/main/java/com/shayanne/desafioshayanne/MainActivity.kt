@@ -1,17 +1,15 @@
 package com.shayanne.desafioshayanne
 
-import android.content.ClipData
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.ListAdapter
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
 
 
-class MainActivity() : AppCompatActivity(), UsaOnClickListener{
+class MainActivity() : AppCompatActivity(){
 
 
 
@@ -21,8 +19,7 @@ class MainActivity() : AppCompatActivity(), UsaOnClickListener{
 
 
         val  pegaLista = geraLista(500)
-        // precisa da linha 22?
-       // val darClick = MeuAdapter(pegaLista,this)
+
 
 
         //  pega o id do recycleview que esta no activity_main e coloca numa variavel para poder usar
@@ -30,7 +27,7 @@ class MainActivity() : AppCompatActivity(), UsaOnClickListener{
 
         // a linha 31 cria uma lista linear para scrolar
         // linha 30 foi acrescentado this pro click
-        idDoMeuRecycleView.adapter = MeuAdapter(pegaLista,this)
+        idDoMeuRecycleView.adapter = MeuAdapter(pegaLista)
         idDoMeuRecycleView.layoutManager = LinearLayoutManager(this)
         idDoMeuRecycleView.setHasFixedSize(true)
 
@@ -72,10 +69,6 @@ class MainActivity() : AppCompatActivity(), UsaOnClickListener{
             lista += item
         }
         return lista
-    }
-
-    override fun ItemClicked(position: Int) {
-        Toast.makeText(this, geraLista(position).size  "Clicked" , Toast.LENGTH_LONG).show()
     }
 
 }

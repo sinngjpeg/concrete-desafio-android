@@ -8,7 +8,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
 class MeuAdapter (
-        private val minhalista : List<ItensLista>, private val usaOnClickListener: UsaOnClickListener): RecyclerView.Adapter<MeuAdapter.List1ViewHolder>() {
+        private val minhalista : List<ItensLista>): RecyclerView.Adapter<MeuAdapter.List1ViewHolder>() {
 
     // cria a view que precisa ser repetida
     // linha 17:cria um objeto do item e nele infla os ids para mostrar na tela,
