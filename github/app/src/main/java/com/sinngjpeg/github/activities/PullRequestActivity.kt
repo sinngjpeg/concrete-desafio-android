@@ -1,5 +1,6 @@
 package com.sinngjpeg.github.activities
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.RecyclerView
@@ -14,7 +15,10 @@ class PullRequestActivity : AppCompatActivity() {
         setContentView(R.layout.pull_request_activity)
 
         setSupportActionBar(findViewById(R.id.toolbar_pullrequest))
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+
+        val intencao = Intent(this, RepositoryActivity::class.java)
+        startActivity(intencao)
 
         val recyclerView = findViewById<RecyclerView>(R.id.recycle_view_pullrequest_list)
 

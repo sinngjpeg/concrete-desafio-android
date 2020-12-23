@@ -8,46 +8,50 @@
 
     <TextView
         android:id="@+id/txt__titulo_pull"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="76dp"
+        android:layout_marginTop="16dp"
         android:text="Titulo do pull request"
         android:textColor="#2196F3"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.079"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/txt_descricao_pull"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="12dp"
         android:text="descricao"
         android:textAlignment="textStart"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.05"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txt__titulo_pull" />
 
     <ImageView
         android:id="@+id/img_profile_pull"
-        android:layout_width="63dp"
-        android:layout_height="68dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
+        android:layout_width="58dp"
+        android:layout_height="56dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txt_descricao_pull"
         app:srcCompat="@drawable/ic_photo" />
 
     <TextView
         android:id="@+id/txt_username_pull"
-        android:layout_width="95dp"
-        android:layout_height="24dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="28dp"
         android:text="username"
         android:textColor="#2196F3"
+        android:textSize="12sp"
         android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/img_profile_pull"
         app:layout_constraintTop_toBottomOf="@+id/txt_descricao_pull" />
@@ -56,9 +60,10 @@
         android:id="@+id/txt_nome_sobrenome_pull"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="8dp"
         android:text="Nome Sobrenome"
+        android:textSize="12sp"
         app:layout_constraintStart_toEndOf="@+id/img_profile_pull"
         app:layout_constraintTop_toBottomOf="@+id/txt_username_pull" />
 </androidx.constraintlayout.widget.ConstraintLayout>

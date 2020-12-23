@@ -31,9 +31,6 @@ class PullRequestAdapter(private val pullrequestList: List<PullRequest>) :
     override fun getItemCount() = pullrequestList.size
 
     class PullRequestViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-
-        //clicklistener
-
         val nomeRepository: TextView = itemView.findViewById(R.id.txt__titulo_pull)
         val descricaoRepository: TextView = itemView.findViewById(R.id.txt_descricao_pull)
         val userName: TextView = itemView.findViewById(R.id.txt_username_pull)
