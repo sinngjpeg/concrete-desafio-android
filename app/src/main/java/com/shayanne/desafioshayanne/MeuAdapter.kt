@@ -8,7 +8,9 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
 class MeuAdapter (
-        private val minhalista : List<ItensLista>): RecyclerView.Adapter<MeuAdapter.List1ViewHolder>() {
+        private val minhalista : List<ItensLista>,
+        private val listener: ItemClickListener):
+        RecyclerView.Adapter<MeuAdapter.List1ViewHolder>() {
 
     // cria a view que precisa ser repetida
     // linha 17:cria um objeto do item e nele infla os ids para mostrar na tela,
@@ -44,7 +46,7 @@ class MeuAdapter (
 
     //crie a classe para passar todos os ids da view
     //passe tudo na ordem conforme a linha 26 indica
-    inner class List1ViewHolder (itemView: View) : RecyclerView.ViewHolder(itemView){
+   inner class List1ViewHolder (itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener{
         val textView1: TextView = itemView.findViewById(R.id.nome_repositorio)
         val textView2: TextView = itemView.findViewById(R.id.descricao_rep)
         val imageView1: ImageView = itemView.findViewById(R.id.user_rep)
@@ -55,6 +57,21 @@ class MeuAdapter (
         val imageView3: ImageView = itemView.findViewById(R.id.estrela)
         val textView6: TextView = itemView.findViewById(R.id.n_estrelas)
 
+        init {
+            itemView.setOnClickListener(this)
+        }
+
+        override fun onClick(v: View?) {
+            val position = adapterPosition
+            if( position != RecyclerView.NO_POSITION){
+            listener.ItemClick(position)
+            }
+        }
+
+    }
+
+    interface ItemClickListener{
+        fun ItemClick(position: Int)
     }
 
 

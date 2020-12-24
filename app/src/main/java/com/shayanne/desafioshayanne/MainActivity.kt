@@ -4,12 +4,17 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import androidx.cardview.widget.CardView
+import androidx.core.view.get
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
 
 
-class MainActivity() : AppCompatActivity(){
+class MainActivity() : AppCompatActivity(), MeuAdapter.ItemClickListener{
+
+    private val  pegaLista = geraLista(500)
+    private val adapter = MeuAdapter(pegaLista, this)
 
 
 
@@ -18,23 +23,27 @@ class MainActivity() : AppCompatActivity(){
         setContentView(R.layout.activity_main)
 
 
-        val  pegaLista = geraLista(500)
-
-
-
         //  pega o id do recycleview que esta no activity_main e coloca numa variavel para poder usar
         val idDoMeuRecycleView = findViewById<RecyclerView>(R.id.recyclerview_id)
 
         // a linha 31 cria uma lista linear para scrolar
-        // linha 30 foi acrescentado this pro click
-        idDoMeuRecycleView.adapter = MeuAdapter(pegaLista)
+        idDoMeuRecycleView.adapter = adapter
         idDoMeuRecycleView.layoutManager = LinearLayoutManager(this)
         idDoMeuRecycleView.setHasFixedSize(true)
 
-        // intent usado para testar o return da segunda tela, pra retornar até a primeira, vide manifest tb
+        // intent usado para testar o return da segunda tela, pra retornar até a primeira pagina, vide manifest tb
+        // se colocado aqui a primeira tela que vai aparecer é a Detalherepositorio, se tirar, é a MainActivity
+        //passei pra fun  ItemClick
+        //val intencao = Intent(this, DetalheRepositorio::class.java)
+       // startActivity(intencao)
+
+
+    }
+
+    override fun ItemClick(position: Int) {
+        //passa o Intent pra chamar o DetalheRepositorio, e o startActivity pra mostra-la na tela
         val intencao = Intent(this, DetalheRepositorio::class.java)
         startActivity(intencao)
-
 
     }
 
