@@ -2,6 +2,7 @@ package com.sinngjpeg.github.activities
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.RecyclerView
 import com.sinngjpeg.github.R
 import com.sinngjpeg.github.adapter.RepositoryAdapter
@@ -23,9 +24,12 @@ class RepositoryActivity : AppCompatActivity() {
             "", "username2", "Nome Completo2"
         )
 
-
+        val item3 = Repository(
+                "Repositorio2", "descricao2", "", 123, "", 323,
+                "", "username2", "Nome Completo2"
+        )
         val listRepository = listOf<Repository>(
-            item1, item2
+            item1, item2, item3
         )
 
         // onde vai receber as informacoes da API
