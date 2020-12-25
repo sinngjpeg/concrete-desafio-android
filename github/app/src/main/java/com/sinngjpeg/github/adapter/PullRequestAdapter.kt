@@ -32,7 +32,6 @@ class PullRequestAdapter(private val pullrequestList: List<PullRequest>) :
         private val userName: TextView = itemView.findViewById(R.id.txt_username_pull)
         private val fullName: TextView = itemView.findViewById(R.id.txt_nome_sobrenome_pull)
 
-
         fun bindView(pullrequest: PullRequest) {
             nomeRepository.text = pullrequest.nomeRepository
             descricaoRepository.text = pullrequest.descricaoRepository
