@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
+
 import com.shayanne.desafioshayanne.R
 import com.shayanne.desafioshayanne.modelo.DonoRep
 import com.shayanne.desafioshayanne.modelo.ItensLista
@@ -36,8 +36,10 @@ class MeuAdapter (
         val posicaoItem = minhalista[position]
         holder.nome_repositorio.text = posicaoItem.nome_repositorio
         holder.descricao_rep.text = posicaoItem.descricao_rep
-        //holder.user_rep.setImageResource(posicaoItem.donoRep.user_rep)
 
+        Picasso.get()
+            .load(posicaoItem.donoRep.user_rep)
+            .into(holder.user_rep)
 
         holder.username_rep.text = posicaoItem.donoRep.username_rep
         holder.nome_completo_rep.text = posicaoItem.nome_completo_rep

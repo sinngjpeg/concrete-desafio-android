@@ -61,18 +61,17 @@ class MainActivity() : AppCompatActivity(), MeuAdapter.ItemClickListener{
         //val intencao = Intent(this, DetalheRepositorio::class.java)
         // startActivity(intencao)
 
-        //
-       // callGit.getGit().enqueue(())
+
         callGit.getGit().enqueue(object : Callback<Items> {
             override fun onResponse(
                 call: Call<Items>,
                 response: Response<Items>
             ) {
                 if (response.isSuccessful) {
-        /*            response.body()?.let {
+                    response.body()?.let {
                         binding.recyclerviewId.adapter =
-                            MeuAdapter(it.item,this@MainActivity)
-                    }*/
+                            MeuAdapter(it.items,this@MainActivity)
+                    }
                 }
             }
             override fun onFailure(call: Call<Items>, t: Throwable) {

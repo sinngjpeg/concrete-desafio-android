@@ -11,6 +11,6 @@ data class ItensLista(
        // val fork: Int,
         @SerializedName("forks_count") var n_conexoes: Int,
         //val  estrela: Int,
-        @SerializedName("stars_count") var n_estrelas: Int
+        @SerializedName("stargazers_count") var n_estrelas: Int
 )
 
