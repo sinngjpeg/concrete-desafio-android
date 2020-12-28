@@ -1,13 +1,22 @@
 package com.sinngjpeg.github.model
 
+import com.google.gson.annotations.SerializedName
+import com.squareup.moshi.JsonClass
+
+
+@JsonClass(generateAdapter = true)
 data class Repository(
-        val nomeRepository: String,
-        val descricaoRepository: String,
-        val imgFork: String?,
-        val numeroDeForks: Int,
-        val imgStar: String?,
-        val numeroDeStars: Int,
-        val imgPorfile: String?,
-        val userName: String,
-        val fullName: String
+
+    @SerializedName("total_count")
+    val totalPaginas: Int,
+    @SerializedName("name")
+    var nomeRepository: String,
+    @SerializedName("description")
+    val descricaoRepository: String,
+    @SerializedName("owner")
+    val proprietario: String,
+    @SerializedName("forks_count")
+    val numeroDeStars: Long,
+    @SerializedName("forks")
+    val numeroDeForks: Long
 )

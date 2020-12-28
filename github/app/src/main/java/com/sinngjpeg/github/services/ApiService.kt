@@ -10,14 +10,15 @@ object ApiService {
 
     val baseUrl = "https://api.github.com/"
 
-    fun initRetrofit(): RepositoryService {
+    fun initRetrofit(): Retrofit {
         return Retrofit.Builder()
             .baseUrl(baseUrl)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
-            .create(RepositoryService::class.java)
+
     }
 
+    val service = initRetrofit().create(RepositoryService::class.java)
 }
 
 

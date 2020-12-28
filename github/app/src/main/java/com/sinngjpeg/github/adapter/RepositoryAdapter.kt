@@ -3,48 +3,49 @@ package com.sinngjpeg.github.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.RecyclerView.Adapter
 import com.sinngjpeg.github.R
 import com.sinngjpeg.github.model.Repository
-import com.sinngjpeg.github.model.RepositoryModel
+import kotlinx.android.synthetic.main.item_repository.view.*
 
 
-class RepositoryAdapter(private val repositoryList: List<RepositoryModel>) :
-        Adapter<RepositoryAdapter.RepositoryViewHolder>() {
+class RepositoryAdapter(
+    val repository: List<Repository>
+) : RecyclerView.Adapter<RepositoryAdapter.RepositoryViewHolder>() {
 
+    //item de layout - infla o layout do item_repository
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RepositoryViewHolder {
-        val itemView = LayoutInflater.from(parent.context).inflate(
-                R.layout.item_repository, parent, false)
+        val itemView =
+            LayoutInflater.from(parent.context).inflate(R.layout.item_repository, parent, false)
         return RepositoryViewHolder(itemView)
     }
 
-    override fun onBindViewHolder(holder: RepositoryViewHolder, position: Int) {
+    //quantidade de item que tem na lista
+    override fun getItemCount() = repository.count()
 
-        holder.bindView(repositoryList[position])
+    //ligacao dos itens da lista com o recycle view
+    override fun onBindViewHolder(viewholder: RepositoryViewHolder, position: Int) {
+        viewholder.bindView(repository[position])
     }
-
-    override fun getItemCount() = repositoryList.size
-
 
     class RepositoryViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        private val nomeRepository: TextView = itemView.findViewById(R.id.txt_nome_repository)
-        private val descricaoRepository: TextView = itemView.findViewById(R.id.txt_descricao_repository)
-        private val numeroDeForks: TextView = itemView.findViewById(R.id.txt_numero_forks)
-        private val numeroDeStars: TextView = itemView.findViewById(R.id.txt_numero_stars)
-        private val userName: TextView = itemView.findViewById(R.id.txt_username)
-        private val fullName: TextView = itemView.findViewById(R.id.txt_nome_completo)
-        // passar o val da photo configurada com o picasso
+        //vincula com o layout
+        private val nomeRepository = itemView.txt_nome_repository
+        private val descricaoRepository = itemView.txt_descricao_repository
+        private val numeroDeForks = itemView.txt_numero_forks
+        private val numeroDeStars = itemView.txt_numero_stars
+        private val userName = itemView.txt_username
 
+
+        //vincula com o repositorymodel
         fun bindView(repository: Repository) {
             nomeRepository.text = repository.nomeRepository
             descricaoRepository.text = repository.descricaoRepository
             numeroDeForks.text = repository.numeroDeForks.toString()
             numeroDeStars.text = repository.numeroDeStars.toString()
-            userName.text = repository.userName
-            fullName.text = repository.fullName
+            userName.text = repository.proprietario.toString()
         }
     }
+
 }

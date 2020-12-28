@@ -1,20 +1,14 @@
 package com.sinngjpeg.github.services
 
-import com.sinngjpeg.github.model.PullRequest
+import com.sinngjpeg.github.model.ItemRepository
 import com.sinngjpeg.github.model.Repository
-import com.sinngjpeg.github.model.RepositoryModel
 import retrofit2.Call
 import retrofit2.http.GET
-import retrofit2.http.Path
-import retrofit2.http.Query
 
-interface RepositoryService : Call<RepositoryModel> {
+interface RepositoryService : Call<Repository> {
 
   @GET("search/repositories?q=language:Java&sort=stars&")
-  fun getRepositories(
-      /////////////////
-  ) : Call<RepositoryModel>
-
+  fun getRepositories() : Call<ItemRepository>
 }
 
 //@GET("/search/repositories")

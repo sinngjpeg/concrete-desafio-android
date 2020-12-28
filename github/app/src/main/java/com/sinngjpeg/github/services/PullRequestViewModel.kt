@@ -3,7 +3,6 @@ package com.sinngjpeg.github.services
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.sinngjpeg.github.model.PullRequest
-import com.sinngjpeg.github.model.Repository
 
 class PullRequestViewModel : ViewModel() {
 
