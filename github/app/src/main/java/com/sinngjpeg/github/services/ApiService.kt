@@ -1,10 +1,7 @@
 package com.sinngjpeg.github.services
 
-import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.converter.moshi.MoshiConverterFactory
-import retrofit2.create
 
 object ApiService {
 
@@ -18,7 +15,7 @@ object ApiService {
 
     }
 
-    val service = initRetrofit().create(RepositoryService::class.java)
+    val service  = initRetrofit().create(RepositoryService::class.java)
 }
 
 

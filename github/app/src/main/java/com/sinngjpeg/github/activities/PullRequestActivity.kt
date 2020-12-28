@@ -1,13 +1,8 @@
 package com.sinngjpeg.github.activities
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
-import androidx.recyclerview.widget.RecyclerView
+import androidx.appcompat.app.AppCompatActivity
 import com.sinngjpeg.github.R
-import com.sinngjpeg.github.adapter.RepositoryAdapter
-import com.sinngjpeg.github.services.PullRequestViewModel
 
 class PullRequestActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

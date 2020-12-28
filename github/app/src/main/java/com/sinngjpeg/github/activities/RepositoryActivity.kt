@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.sinngjpeg.github.R
 import com.sinngjpeg.github.adapter.RepositoryAdapter
-import com.sinngjpeg.github.model.Repository
 import com.sinngjpeg.github.services.RepositoryViewModel
 import kotlinx.android.synthetic.main.pull_request_activity.*
 import kotlinx.android.synthetic.main.repository_activity.*
@@ -32,7 +31,7 @@ class RepositoryActivity : AppCompatActivity() {
                         LinearLayoutManager(this@RepositoryActivity, RecyclerView.VERTICAL, false)
                     //itens da lista tem o tamanho fixo
                     setHasFixedSize(true)
-                    adapter = RepositoryAdapter(Repository)
+                    adapter = RepositoryAdapter(repository)
                 }
             }
         })
