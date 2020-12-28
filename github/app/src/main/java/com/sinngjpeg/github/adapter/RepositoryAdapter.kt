@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.sinngjpeg.github.R
 import com.sinngjpeg.github.model.Repository
 import kotlinx.android.synthetic.main.item_repository.view.*
@@ -44,7 +45,13 @@ class RepositoryAdapter(
             descricaoRepository.text = repository.descricaoRepository
             numeroDeForks.text = repository.numeroDeForks.toString()
             numeroDeStars.text = repository.numeroDeStars.toString()
-            userName.text = repository.proprietario.toString()
+            userName.text = repository.proprietario.userName
+
+            Glide.with(itemView.context)
+                .load(repository.proprietario.urlFoto)
+                .circleCrop()
+                .into(itemView.img_profile_request)
+
         }
     }
 
