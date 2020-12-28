@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:paddingBottom="10dp"
+    android:clickable="true"
+    android:background="?android:attr/selectableItemBackground">
+    >
+
+
+    <LinearLayout
+        android:id="@+id/esquerda"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/titulo_pullrequest"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Título do pull request"
+            android:textColor="@color/teal_700"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/boby_pullrequest"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="descrição"
+            android:textColor="@color/black"
+            android:textSize="11dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:id="@+id/alinhamento"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginTop="8dp">
+
+
+                <ImageView
+                    android:id="@+id/icone_pullrequest"
+                    android:layout_width="39dp"
+                    android:layout_height="35dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginLeft="0dp"
+                    android:layout_marginTop="0dp"
+                    android:layout_marginRight="16dp"
+                    android:src="@drawable/ic_pessoa" />
+
+            </RelativeLayout>
+
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/username_pullrequest"
+            android:layout_width="59dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="45dp"
+            android:layout_marginTop="-31dp"
+            android:layout_marginEnd="300dp"
+            android:text="username"
+            android:textColor="@color/teal_700"
+            android:textSize="10dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/fullname_pullrequest"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="1dp"
+            android:layout_marginStart="45dp"
+            android:layout_marginEnd="254dp"
+            android:text="Nome Sobrenome"
+            android:textSize="10dp" />
+    </LinearLayout>
+
+
+    <View
+        android:layout_marginStart="8dp"
+        android:layout_width="wrap_content"
+        android:layout_height="1dp"
+        android:background="@color/view"
+        android:layout_alignParentTop="true"/>
+
+</RelativeLayout>
+
+
