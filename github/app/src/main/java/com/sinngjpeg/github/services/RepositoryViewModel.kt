@@ -1,4 +1,4 @@
-package com.sinngjpeg.github.activities
+package com.sinngjpeg.github.services
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel

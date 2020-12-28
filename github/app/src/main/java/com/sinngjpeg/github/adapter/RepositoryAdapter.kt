@@ -1,20 +1,17 @@
 package com.sinngjpeg.github.adapter
 
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import com.sinngjpeg.github.R
-import com.sinngjpeg.github.activities.PullRequestActivity
-import com.sinngjpeg.github.model.PullRequest
 import com.sinngjpeg.github.model.Repository
+import com.sinngjpeg.github.model.RepositoryModel
 
 
-class RepositoryAdapter(private val repositoryList: List<Repository>) :
+class RepositoryAdapter(private val repositoryList: List<RepositoryModel>) :
         Adapter<RepositoryAdapter.RepositoryViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RepositoryViewHolder {
@@ -45,7 +42,7 @@ class RepositoryAdapter(private val repositoryList: List<Repository>) :
             nomeRepository.text = repository.nomeRepository
             descricaoRepository.text = repository.descricaoRepository
             numeroDeForks.text = repository.numeroDeForks.toString()
-            numeroDeForks.text = repository.numeroDeStars.toString()
+            numeroDeStars.text = repository.numeroDeStars.toString()
             userName.text = repository.userName
             fullName.text = repository.fullName
         }

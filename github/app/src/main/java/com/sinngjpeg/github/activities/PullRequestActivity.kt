@@ -1,13 +1,13 @@
 package com.sinngjpeg.github.activities
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.RecyclerView
 import com.sinngjpeg.github.R
-import com.sinngjpeg.github.adapter.PullRequestAdapter
 import com.sinngjpeg.github.adapter.RepositoryAdapter
-import com.sinngjpeg.github.model.PullRequest
+import com.sinngjpeg.github.services.PullRequestViewModel
 
 class PullRequestActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -17,20 +17,19 @@ class PullRequestActivity : AppCompatActivity() {
         setSupportActionBar(findViewById(R.id.toolbar_pullrequest))
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
 
-        val intencao = Intent(this, RepositoryActivity::class.java)
-        startActivity(intencao)
+//        val viewModel: PullRequestViewModel =
+//            ViewModelProviders.of(this).get(PullRequestViewModel::class.java)
+//
+//        viewModel.pullRequestLiveData.observe(this, Observer {
+//            it?.let { pullrequest ->
+//                val recyclerView = findViewById<RecyclerView>(R.id.recycle_view_pullrequest_list)
+//                val adapter = RepositoryAdapter(pullrequest)
+//                recyclerView.adapter = adapter
+//            }
+//        })
+//
+//        viewModel.getRepository()
+//
+  }
 
-        val recyclerView = findViewById<RecyclerView>(R.id.recycle_view_pullrequest_list)
-
-        val item1 =
-            PullRequest("Repositorio1", "descricao1", "", "sinng", "ingrid")
-
-
-        val listPullRequest = listOf<PullRequest>(
-            item1
-        )
-
-        val adapter = PullRequestAdapter(listPullRequest)
-        recyclerView.adapter = adapter
-    }
 }
