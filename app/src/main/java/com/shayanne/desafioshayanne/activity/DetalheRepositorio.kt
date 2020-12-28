@@ -1,10 +1,12 @@
-package com.shayanne.desafioshayanne
+package com.shayanne.desafioshayanne.activity
 
 import android.os.Bundle
-
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.shayanne.desafioshayanne.R
+import com.shayanne.desafioshayanne.adapter.SegundoAdapter
+import com.shayanne.desafioshayanne.modelo.ItensLista2
 
 class DetalheRepositorio: AppCompatActivity() {
 
@@ -21,7 +23,8 @@ class DetalheRepositorio: AppCompatActivity() {
         val idDoSegundoRecycleView = findViewById<RecyclerView>(R.id.recyclerview_id2)
 
         // a linha 30 cria uma lista linear para scrolar
-        idDoSegundoRecycleView.adapter = SegundoAdapter(pegaLista2)
+        idDoSegundoRecycleView.adapter =
+            SegundoAdapter(pegaLista2)
         idDoSegundoRecycleView.layoutManager = LinearLayoutManager(this)
         idDoSegundoRecycleView.setHasFixedSize(true)
 
@@ -43,12 +46,12 @@ class DetalheRepositorio: AppCompatActivity() {
 
             // passar na ordem correta vide a classe MeuAdapter
             val item = ItensLista2(
-                    "Titulo do pull request",
-                    "Body do pull request, aqui colocamos a descricao ",
-                    drawable4,
-                    "username",
-                    "Nome Sobrenome"
-                    )
+                "Titulo do pull request",
+                "Body do pull request, aqui colocamos a descricao ",
+                drawable4,
+                "username",
+                "Nome Sobrenome"
+            )
             lista2 += item
         }
         return lista2
