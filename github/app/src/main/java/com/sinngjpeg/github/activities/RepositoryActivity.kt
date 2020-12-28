@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.sinngjpeg.github.R
 import com.sinngjpeg.github.adapter.RepositoryAdapter
-import com.sinngjpeg.github.services.RepositoryViewModel
+import com.sinngjpeg.github.viewModel.RepositoryViewModel
 import kotlinx.android.synthetic.main.pull_request_activity.*
 import kotlinx.android.synthetic.main.repository_activity.*
 

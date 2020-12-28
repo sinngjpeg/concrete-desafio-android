@@ -1,9 +1,12 @@
 package com.sinngjpeg.github.model
 
-data class PullRequest(
-    val nomeRepository: String,
-    val descricaoRepository: String,
-    val imgPorfile: String?,
-    val userName: String,
-    val fullName: String
+import com.google.gson.annotations.SerializedName
+
+class PullRequest(
+
+    @SerializedName("html_url") val html_url: String,
+    @SerializedName("title") val title: String,
+    @SerializedName("created_at") val created_at: String,
+    @SerializedName("body") val body: String,
+    @SerializedName("user") val owner: Owner
 )

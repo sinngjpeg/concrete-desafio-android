@@ -5,8 +5,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.sinngjpeg.github.R
 import com.sinngjpeg.github.model.PullRequest
+import kotlinx.android.synthetic.main.item_pullrequest.view.*
+import kotlinx.android.synthetic.main.item_repository.view.*
 
 class PullRequestAdapter(private val pullrequestList: List<PullRequest>) :
         RecyclerView.Adapter<PullRequestAdapter.PullRequestViewHolder>() {
@@ -27,16 +30,19 @@ class PullRequestAdapter(private val pullrequestList: List<PullRequest>) :
     override fun getItemCount() = pullrequestList.size
 
     class PullRequestViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private val nomeRepository: TextView = itemView.findViewById(R.id.txt__titulo_pull)
-        private val descricaoRepository: TextView = itemView.findViewById(R.id.txt_descricao_pull)
-        private val userName: TextView = itemView.findViewById(R.id.txt_username_pull)
-        private val fullName: TextView = itemView.findViewById(R.id.txt_nome_sobrenome_pull)
+        private val tituloPullRequest = itemView.txt__titulo_pull
+        private val descricaoPullRequest = itemView.txt_descricao_pull
+        private val userName = itemView.txt_username_pull
+//        private val data = itemView???
+
 
         fun bindView(pullrequest: PullRequest) {
-            nomeRepository.text = pullrequest.nomeRepository
-            descricaoRepository.text = pullrequest.descricaoRepository
             userName.text = pullrequest.userName
-            fullName.text = pullrequest.fullName
+
+            Glide.with(itemView.context)
+                .load(pullrequest.proprietario.urlFoto)
+                .circleCrop()
+                .into(itemView.img_profile_request)
         }
     }
 }
