@@ -37,6 +37,8 @@ class MeuAdapter (
         holder.nome_repositorio.text = posicaoItem.nome_repositorio
         holder.descricao_rep.text = posicaoItem.descricao_rep
         //holder.user_rep.setImageResource(posicaoItem.donoRep.user_rep)
+
+
         holder.username_rep.text = posicaoItem.donoRep.username_rep
         holder.nome_completo_rep.text = posicaoItem.nome_completo_rep
         //holder.fork.setImageResource(posicaoItem.fork)
