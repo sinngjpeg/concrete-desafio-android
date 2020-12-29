@@ -8,4 +8,4 @@ data class ItemPullrequest (
     @SerializedName ("owner") val owner: Owner,
     @SerializedName ("name") val name: String,
     @SerializedName ("description") val description: String,
-    @SerializedName ("fullname") val fullname: String)
+    @SerializedName ("full_name") val fullname: String)

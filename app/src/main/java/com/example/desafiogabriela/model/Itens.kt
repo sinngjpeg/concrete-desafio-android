@@ -5,5 +5,4 @@ import com.example.desafiogabriela.ItemPullrequest
 import com.google.gson.annotations.SerializedName
 
 data class Itens (
-    @SerializedName("items") val items : List<ItemMain>
-    )
+    @SerializedName("items") val items : List<ItemMain>)

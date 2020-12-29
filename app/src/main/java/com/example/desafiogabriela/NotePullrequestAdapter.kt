@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.squareup.picasso.Picasso
 
 class NotePullrequestAdapter(
     private val lista: List<ItemPullrequest>,
@@ -26,7 +27,9 @@ class NotePullrequestAdapter(
 
         val item = lista[position]
 
-        holder.icon.setImageResource(item.owner.avatar_url)
+        Picasso.get()
+            .load(item.owner.avatar_url)
+            .into(holder.icon)
         holder.title.text = item.name
         holder.description.text = item.description
         holder.username.text = item.owner.login
@@ -41,9 +44,5 @@ class NotePullrequestAdapter(
         val username: TextView = itemView.findViewById(R.id.username_pullrequest)
         val fullname: TextView = itemView.findViewById(R.id.fullname_pullrequest)
     }
-
-}
-
-private fun ImageView.setImageResource(avatarUrl: String) {
 
 }
