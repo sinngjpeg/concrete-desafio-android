@@ -8,6 +8,6 @@ data class ItemMain (
     @SerializedName ("name")var name: String,
     @SerializedName ("description")var description: String,
     @SerializedName ("forks_count")var forks_count: Int,
-    @SerializedName ("stars_count") var stars_count: Int,
-    @SerializedName ("Owner") val owner: Owner,
-    @SerializedName ("fullname") var fullname: String)
+    @SerializedName ("stargazers_count") var stars_count: Int,
+    @SerializedName ("owner") val owner: Owner,
+    @SerializedName ("full_name") var fullname: String)

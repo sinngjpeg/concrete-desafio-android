@@ -6,19 +6,22 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.squareup.picasso.Picasso
 
 
 class NoteListAdapter(
     private val list: List<ItemMain>,
-    private val listener: OnItemClickListener
-) :
+    private val listener: MainActivity):
+
     RecyclerView.Adapter<NoteListAdapter.ViewHolderclass>() {
 
     override fun onBindViewHolder(holder: ViewHolderclass, position: Int) {
         val item = list[position]
 
+        Picasso.get()
+            .load(item.owner.avatar_url)
+            .into(holder.icon)
 
-        holder.icon.setImageResource(item.owner.avatar_url)
         holder.nomeRepositorio.text = item.name
         holder.descricao.text = item.description
         holder.forks.text = item.forks_count.toString()
@@ -65,6 +68,3 @@ class NoteListAdapter(
     }
 }
 
-private fun ImageView.setImageResource(avatarUrl: String) {
-
-}

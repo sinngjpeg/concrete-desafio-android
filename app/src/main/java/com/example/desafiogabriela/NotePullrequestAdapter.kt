@@ -7,7 +7,10 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class NotePullrequestAdapter(private val lista: List<ItemPullrequest>):
+class NotePullrequestAdapter(
+    private val lista: List<ItemPullrequest>,
+    pullrequestActivity: PullrequestActivity
+):
     RecyclerView.Adapter<NotePullrequestAdapter.ViewHolderClass>(){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderClass {
@@ -23,21 +26,24 @@ class NotePullrequestAdapter(private val lista: List<ItemPullrequest>):
 
         val item = lista[position]
 
-        holder.imagem.setImageResource(item.imagem)
-
-        holder.texto1.text = item.texto1
-        holder.texto2.text = item.texto2
-        holder.texto3.text = item.texto3
-        holder.texto4.text = item.texto4
+        holder.icon.setImageResource(item.owner.avatar_url)
+        holder.title.text = item.name
+        holder.description.text = item.description
+        holder.username.text = item.owner.login
+        holder.fullname.text = item.fullname
 
     }
 
     class ViewHolderClass (itemView: View) : RecyclerView.ViewHolder(itemView){
-        val imagem: ImageView = itemView.findViewById(R.id.icone_pullrequest)
-        val texto1: TextView = itemView.findViewById(R.id.titulo_pullrequest)
-        val texto2: TextView = itemView.findViewById(R.id.boby_pullrequest)
-        val texto3: TextView = itemView.findViewById(R.id.username_pullrequest)
-        val texto4: TextView = itemView.findViewById(R.id.fullname_pullrequest)
+        val icon: ImageView = itemView.findViewById(R.id.icone_pullrequest)
+        val title: TextView = itemView.findViewById(R.id.titulo_pullrequest)
+        val description: TextView = itemView.findViewById(R.id.boby_pullrequest)
+        val username: TextView = itemView.findViewById(R.id.username_pullrequest)
+        val fullname: TextView = itemView.findViewById(R.id.fullname_pullrequest)
     }
+
+}
+
+private fun ImageView.setImageResource(avatarUrl: String) {
 
 }

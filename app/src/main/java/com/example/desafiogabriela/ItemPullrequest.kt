@@ -1,7 +1,11 @@
 package com.example.desafiogabriela
 
-data class ItemPullrequest (val imagem: Int,
-                            val texto1: String,
-                            val texto2: String,
-                            val texto3: String,
-                            val texto4: String)
+import com.google.gson.annotations.SerializedName
+import com.example.desafiogabriela.model.Owner
+
+data class ItemPullrequest (
+
+    @SerializedName ("owner") val owner: Owner,
+    @SerializedName ("name") val name: String,
+    @SerializedName ("description") val description: String,
+    @SerializedName ("fullname") val fullname: String)
