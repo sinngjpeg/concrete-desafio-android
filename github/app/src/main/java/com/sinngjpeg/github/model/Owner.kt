@@ -7,5 +7,5 @@ data class Owner(
     @SerializedName("login")
     var userName: String,
     @SerializedName("avatar_url")
-    var urlFoto: String,
+    var urlFoto: String
 )

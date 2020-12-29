@@ -16,8 +16,9 @@ class RepositoryAdapter(
 
     //item de layout - infla o layout do item_repository
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RepositoryViewHolder {
-        val itemView =
-            LayoutInflater.from(parent.context).inflate(R.layout.item_repository, parent, false)
+        val itemView = LayoutInflater.from(parent.context).inflate(
+            R.layout.item_repository, parent, false
+        )
         return RepositoryViewHolder(itemView)
     }
 

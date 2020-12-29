@@ -23,7 +23,6 @@ class RepositoryViewModel : ViewModel() {
                 response: Response<ItemRepository>
             ) {
                 if (response.isSuccessful) {
-                   // val repositorylist: MutableList<Repository> = mutableListOf()
                     response.body()?.let { itemRepository ->
                         repositoryLiveData.value = itemRepository.items
                     }
