@@ -25,11 +25,8 @@ class RepositoryActivity : AppCompatActivity(),
     RepositoryAdapter.OnItemClickListener {
 
     private val get by lazy { get() }
-
     private val lista = ArrayList<ItemMain>()
-    private val adapter =
-        RepositoryAdapter(lista, this)
-
+    private val adapter = RepositoryAdapter(lista, this)
 
     private lateinit var binding: ActivityRepositoryBinding
     private lateinit var viewAdapter: RecyclerView.Adapter<*>
@@ -89,6 +86,7 @@ class RepositoryActivity : AppCompatActivity(),
         val intencao = Intent(this, PullrequestActivity::class.java)
         intencao.putExtra(Constante.owner, adapter.list[position].owner.login)
         intencao.putExtra(Constante.repositorio,adapter.list[position].name)
+        intencao.putExtra(Constante.foto, adapter.list[position].owner.avatar_url)
         startActivity(intencao)
     }
 }

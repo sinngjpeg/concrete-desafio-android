@@ -34,15 +34,13 @@ class PullrequestAdapter(
 
         val item = lista[position]
 
-//        Picasso.get()
-//            .load(item.owner.avatar_url)
-//            .into(holder.icon)
+
 
         holder.title.text = item.name
         holder.description.text = item.description
-//        holder.username.text = item.owner.login
+        holder.username.text = item.owner.login
         holder.fullname.text = item.fullname
-        //holder.loadProfileImage(item.owner.avatar_url)
+        holder.loadProfileImage(item.owner.avatar_url)
 
     }
 

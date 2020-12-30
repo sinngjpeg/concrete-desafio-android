@@ -23,6 +23,7 @@ class PullrequestActivity : AppCompatActivity() {
 
     var owner = ""
     var repositorio = ""
+    var foto = ""
 
     private lateinit var bindingPull: ActivityPullrequestBinding
     private lateinit var viewAdapterPull: RecyclerView.Adapter<*>
@@ -33,6 +34,7 @@ class PullrequestActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         owner = intent.getStringExtra(Constante.owner).toString()
         repositorio = intent.getStringExtra(Constante.repositorio).toString()
+        foto = intent.getStringExtra(Constante.foto).toString()
 
         super.onCreate(savedInstanceState)
         bindingPull = ActivityPullrequestBinding.inflate(layoutInflater)
@@ -41,10 +43,7 @@ class PullrequestActivity : AppCompatActivity() {
         setSupportActionBar(findViewById(R.id.pull_toolbar))
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        viewAdapterPull =
-            PullrequestAdapter(
-                ArrayList(),
-                this
+        viewAdapterPull = PullrequestAdapter(ArrayList(), this
             )
         viewManagerPull = LinearLayoutManager(this)
 
