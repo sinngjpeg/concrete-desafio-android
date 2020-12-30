@@ -1,6 +1,5 @@
-package com.example.desafiogabriela
+package com.example.desafiogabriela.model
 
-import com.example.desafiogabriela.model.Owner
 import com.google.gson.annotations.SerializedName
 
 data class ItemMain (

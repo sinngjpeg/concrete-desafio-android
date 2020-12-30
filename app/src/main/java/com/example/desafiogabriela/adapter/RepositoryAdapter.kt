@@ -1,4 +1,4 @@
-package com.example.desafiogabriela
+package com.example.desafiogabriela.adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,14 +6,18 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.desafiogabriela.model.ItemMain
+import com.example.desafiogabriela.R
+import com.example.desafiogabriela.activity.RepositoryActivity
 import com.squareup.picasso.Picasso
 
 
-class NoteListAdapter(
-    private val list: List<ItemMain>,
-    private val listener: MainActivity):
+class RepositoryAdapter(
+    var list: List<ItemMain>,
+    private val listener: RepositoryActivity
+):
 
-    RecyclerView.Adapter<NoteListAdapter.ViewHolderclass>() {
+    RecyclerView.Adapter<RepositoryAdapter.ViewHolderclass>() {
 
     override fun onBindViewHolder(holder: ViewHolderclass, position: Int) {
         val item = list[position]
