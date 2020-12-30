@@ -7,9 +7,16 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.shayanne.desafioshayanne.R
-import com.shayanne.desafioshayanne.modelo.ItensLista2
+import com.shayanne.desafioshayanne.activity.PullActivity
+import com.shayanne.desafioshayanne.modelo.PullRequests
+import com.squareup.picasso.Picasso
 
-class SegundoAdapter (private val minhalista2: List<ItensLista2>): RecyclerView.Adapter <SegundoAdapter.List2ViewHolder>() {
+class PullAdapter(
+
+    //  private val listener: RecyclerView.OnScrollListener
+    val minhalistapull: List<PullRequests>,
+    private val listener: PullActivity):
+    RecyclerView.Adapter <PullAdapter.List2ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): List2ViewHolder {
         val itemView2 = LayoutInflater.from(parent.context).inflate(R.layout.conteudo_scroll_pull,
@@ -24,27 +31,49 @@ class SegundoAdapter (private val minhalista2: List<ItensLista2>): RecyclerView.
     // conecta os ids dos itens a posicao que devem ser exibidos
     //por isso passe td na mesma ordem aqui e na classe ItensLista
     override fun onBindViewHolder(holder: List2ViewHolder, position: Int) {
-        val posicaoItem = minhalista2[position]
+        val posicaoItem = minhalistapull[position]
         holder.titulo_pull.text = posicaoItem.titulo_pull
         holder.descricao_pull.text = posicaoItem.descricao_pull
-        holder.user_pull.setImageResource(posicaoItem.user_pull)
-        holder.username_pull.text = posicaoItem.username_pull
+        //holder.user_pull.setImageResource(posicaoItem.user_pull)
+
+        Picasso.get()
+            .load(posicaoItem.donoRep.user_rep)
+            .into(holder.user_pull)
+
+        holder.username_pull.text = posicaoItem.donoRep.username_rep
         holder.nome_completo_pull.text = posicaoItem.nome_completo_pull
     }
 
     //quantos cards devem ser impressos por pagina?
-    override fun getItemCount() = minhalista2.size
+    override fun getItemCount() = minhalistapull.size
 
 
 
 
-    class List2ViewHolder(itemView2: View) : RecyclerView.ViewHolder(itemView2){
+   inner class List2ViewHolder(itemView2: View) : RecyclerView.ViewHolder(itemView2), View.OnClickListener{
+      //  val nome_repositorio2: TextView = itemView.findViewById(R.id.nome_repositorio2)
         val titulo_pull : TextView = itemView2.findViewById(R.id.titulo_pull)
         val descricao_pull : TextView = itemView2.findViewById(R.id.descricao_pull)
         val user_pull: ImageView = itemView2.findViewById(R.id.user_pull)
         val username_pull : TextView = itemView2.findViewById(R.id.username_pull)
         val nome_completo_pull : TextView = itemView2.findViewById(R.id.nome_completo_pull)
+
+       init {
+           itemView.setOnClickListener(this)
+       }
+
+       override fun onClick(v: View?) {
+           val positionpull = adapterPosition
+           if( positionpull != RecyclerView.NO_POSITION){
+               listener.CreateIntentClickPull(positionpull)
+           }
+       }
     }
+
+    interface ItemClickListener{
+        fun CreateIntentClickPull(positionpull: Int)
+    }
+
 
 
 }

@@ -21,7 +21,7 @@
             </intent-filter>
 
         </activity>
-        <activity android:name=".activity.DetalheRepositorio"    android:parentActivityName=".activity.MainActivity">
+        <activity android:name=".activity.PullActivity"    android:parentActivityName=".activity.MainActivity">
 <!--            é o intent filter que seleciona a activity que ele esta dentro para ser exibida primeiro-->
 <!--            <intent-filter>-->
 <!--                <action android:name="android.intent.action.MAIN" />-->

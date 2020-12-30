@@ -1,19 +1,18 @@
 package com.shayanne.desafioshayanne.webservices
 
-import com.shayanne.desafioshayanne.interfaces.InterfaceRetrofit
+import com.shayanne.desafioshayanne.interfaces.WebClientResquestPull
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.create
 
-object InicializadorRetrofit {
+object InicializadorRepositories {
 
-    fun initRep (): InterfaceRetrofit{
+    fun initRep (): WebClientResquestPull{
 
         return  Retrofit.Builder()
                 .baseUrl("https://api.github.com/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
-                .create(InterfaceRetrofit::class.java)
+                .create(WebClientResquestPull::class.java)
 
 
     }

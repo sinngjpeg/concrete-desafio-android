@@ -8,14 +8,14 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
 import com.shayanne.desafioshayanne.R
-import com.shayanne.desafioshayanne.modelo.DonoRep
-import com.shayanne.desafioshayanne.modelo.ItensLista
+import com.shayanne.desafioshayanne.activity.MainActivity
+import com.shayanne.desafioshayanne.modelo.Repository
 import com.squareup.picasso.Picasso
 
-class MeuAdapter (
-        private val minhalista : List<ItensLista>,
-        private val listener: ItemClickListener):
-        RecyclerView.Adapter<MeuAdapter.List1ViewHolder>() {
+class RepositoryAdapter(
+         val minhalista: MutableList<Repository>,
+        private val listener: MainActivity):
+        RecyclerView.Adapter<RepositoryAdapter.List1ViewHolder>() {
 
     // cria a view que precisa ser repetida
     // linha 17:cria um objeto do item e nele infla os ids para mostrar na tela,
@@ -73,14 +73,17 @@ class MeuAdapter (
         override fun onClick(v: View?) {
             val position = adapterPosition
             if( position != RecyclerView.NO_POSITION){
-                listener.ItemClick(position)
+                listener.CreateIntentClick(position)
             }
         }
 
     }
 
     interface ItemClickListener{
-        fun ItemClick(position: Int)
+        fun CreateIntentClick(position: Int)
     }
+
+
+
 }
 
