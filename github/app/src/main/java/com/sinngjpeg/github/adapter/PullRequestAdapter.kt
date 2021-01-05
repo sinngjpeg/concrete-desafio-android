@@ -3,13 +3,11 @@ package com.sinngjpeg.github.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.sinngjpeg.github.R
 import com.sinngjpeg.github.model.PullRequest
 import kotlinx.android.synthetic.main.item_pullrequest.view.*
-import kotlinx.android.synthetic.main.item_repository.view.*
 
 class PullRequestAdapter(
      val pullrequestList: List<PullRequest>
@@ -23,7 +21,7 @@ class PullRequestAdapter(
 
     }
 
-    override fun getItemCount() = pullrequestList.count()
+    override fun getItemCount() = pullrequestList.size
 
     override fun onBindViewHolder(holder: PullRequestViewHolder, position: Int) {
         holder.bindView(pullrequestList[position])
@@ -39,7 +37,8 @@ class PullRequestAdapter(
 
         fun bindView(pullrequest: PullRequest) {
 
-//            descricaoPullRequest.text = pullrequest.descricaoPullRequest
+            tituloPullRequest.text = pullrequest.title
+            descricaoPullRequest.text = pullrequest.descricaoRepository
             userName.text = pullrequest.proprietario.userName
 
 

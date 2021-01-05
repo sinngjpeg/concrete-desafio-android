@@ -35,7 +35,7 @@ class PullRequestActivity : AppCompatActivity() {
             }
         })
 
-       viewModel.pullRequestLiveData
+       viewModel.getPullRequest()
 
     }
 

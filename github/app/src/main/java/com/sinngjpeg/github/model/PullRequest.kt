@@ -7,6 +7,6 @@ data class PullRequest(
     @SerializedName("html_url") val html_url: String,
     @SerializedName("title") val title: String,
     @SerializedName("created_at") val created: String,
-    @SerializedName("body") val body: String,
+    @SerializedName("body") val descricaoRepository: String,
     @SerializedName("user") val proprietario: Owner
 )

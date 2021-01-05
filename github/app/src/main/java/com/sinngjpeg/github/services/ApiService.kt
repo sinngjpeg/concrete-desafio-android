@@ -7,15 +7,23 @@ object ApiService {
 
     val baseUrl = "https://api.github.com/"
 
-    fun initRetrofit(): Retrofit {
+    fun initRepository(): Retrofit {
         return Retrofit.Builder()
             .baseUrl(baseUrl)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
-
     }
 
-    val service  = initRetrofit().create(RepositoryService::class.java)
+    val serviceRepository = initRepository().create(RepositoryService::class.java)
+
+
+    fun initPullRequest(): Retrofit {
+        return Retrofit.Builder()
+            .baseUrl(ApiService.baseUrl)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+    }
+
+    val servicePullRequest = initPullRequest().create(PullRequestService::class.java)
+
 }
-
-

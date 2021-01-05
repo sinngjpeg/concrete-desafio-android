@@ -55,16 +55,5 @@
         app:layout_constraintStart_toEndOf="@+id/img_profile_pull"
         app:layout_constraintTop_toBottomOf="@+id/txt_descricao_pull" />
 
-    <TextView
-        android:id="@+id/txt_nome_sobrenome_pull"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="8dp"
-        android:text="Nome Sobrenome"
-        android:textSize="12sp"
-        app:layout_constraintStart_toEndOf="@+id/img_profile_pull"
-        app:layout_constraintTop_toBottomOf="@+id/txt_username_pull" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

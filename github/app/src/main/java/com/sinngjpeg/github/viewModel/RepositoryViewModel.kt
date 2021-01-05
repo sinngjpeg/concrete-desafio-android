@@ -15,7 +15,7 @@ class RepositoryViewModel : ViewModel() {
     val repositoryLiveData: MutableLiveData<List<Repository>> = MutableLiveData()
 
     fun getRepository() {
-        ApiService.service.getRepositories().enqueue(object : Callback<ItemRepository> {
+        ApiService.serviceRepository.getRepositories().enqueue(object : Callback<ItemRepository> {
 
             //200
             override fun onResponse(

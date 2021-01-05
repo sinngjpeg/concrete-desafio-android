@@ -5,12 +5,12 @@ import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path
 
-interface PullRequestService : Call<PullRequest> {
+interface PullRequestService {
 
-    @GET("repos/{creator}/{repository}/pulls")
+    @GET("repos/{owner}/{repo}/pulls")
     fun getPullRequest(
-        @Path("creator") creator:String,
-        @Path("repository") repositorie:String
+        @Path("owner") creator: String,
+        @Path("repo") repository: String
     ): Call<List<PullRequest>>
 
 
