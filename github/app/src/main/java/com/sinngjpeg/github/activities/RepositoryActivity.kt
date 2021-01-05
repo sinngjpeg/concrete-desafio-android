@@ -31,7 +31,11 @@ class RepositoryActivity : AppCompatActivity() {
                         LinearLayoutManager(this@RepositoryActivity, RecyclerView.VERTICAL, false)
                     //itens da lista tem o tamanho fixo
                     setHasFixedSize(true)
-                    adapter = RepositoryAdapter(repository)
+                    adapter = RepositoryAdapter(repository) { repository ->
+                        val intent = PullRequestActivity.getStartIntent(this@RepositoryActivity, repository.nomeRepository, repository.proprietario.userName)
+                        this@RepositoryActivity.startActivity(intent)
+
+                    }
                 }
             }
         })

@@ -8,10 +8,17 @@ import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
 
-interface RepositoryService {
+interface GitHubService {
 
     @GET("search/repositories?q=language:Java&sort=stars")
     fun getRepositories(@Query("page")page: Int): Call<ItemRepository>
+
+    @GET("repos/{owner}/{repo}/pulls")
+    fun getPullRequest(
+        @Path("owner") creator: String,
+        @Path("repo") repository: String
+    ): Call<List<PullRequest>>
+
 
 }
 

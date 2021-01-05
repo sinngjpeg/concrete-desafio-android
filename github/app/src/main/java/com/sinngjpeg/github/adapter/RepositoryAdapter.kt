@@ -11,15 +11,16 @@ import kotlinx.android.synthetic.main.item_repository.view.*
 
 
 class RepositoryAdapter(
-    val repository: List<Repository>
-) : RecyclerView.Adapter<RepositoryAdapter.RepositoryViewHolder>() {
+    val repository: List<Repository>,
+    val onItemClickListener: ((repository : Repository) -> Unit)
+    ) : RecyclerView.Adapter<RepositoryAdapter.RepositoryViewHolder>() {
 
     //item de layout - infla o layout do item_repository
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RepositoryViewHolder {
         val itemView = LayoutInflater.from(parent.context).inflate(
             R.layout.item_repository, parent, false
         )
-        return RepositoryViewHolder(itemView)
+        return RepositoryViewHolder(itemView, onItemClickListener)
     }
 
     //quantidade de item que tem na lista
@@ -30,7 +31,7 @@ class RepositoryAdapter(
         viewholder.bindView(repository[position])
     }
 
-    class RepositoryViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    class RepositoryViewHolder(itemView: View, private val onItemClickListener: ((repository : Repository) -> Unit)) : RecyclerView.ViewHolder(itemView) {
 
         //vincula com o layout
         private val nomeRepository = itemView.txt_nome_repository
@@ -53,6 +54,9 @@ class RepositoryAdapter(
                 .circleCrop()
                 .into(itemView.img_profile_request)
 
+            itemView.setOnClickListener{
+                onItemClickListener.invoke(repository)
+            }
         }
     }
 

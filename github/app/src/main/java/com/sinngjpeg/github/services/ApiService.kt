@@ -14,16 +14,5 @@ object ApiService {
             .build()
     }
 
-    val serviceRepository = initRepository().create(RepositoryService::class.java)
-
-
-    fun initPullRequest(): Retrofit {
-        return Retrofit.Builder()
-            .baseUrl(ApiService.baseUrl)
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-    }
-
-    val servicePullRequest = initPullRequest().create(PullRequestService::class.java)
-
+    val service = initRepository().create(GitHubService::class.java)
 }
