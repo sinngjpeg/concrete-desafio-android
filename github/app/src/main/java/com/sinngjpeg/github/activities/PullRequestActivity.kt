@@ -19,7 +19,6 @@ class PullRequestActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.pull_request_activity)
-
         setSupportActionBar(findViewById(R.id.toolbar_pullrequest))
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
 
@@ -28,29 +27,24 @@ class PullRequestActivity : AppCompatActivity() {
 
         val viewModel: PullRequestViewModel =
             ViewModelProviders.of(this).get(PullRequestViewModel::class.java)
-        
         viewModel.pullRequestLiveData.observe(this, Observer {
             it?.let { pullRequests ->
                 with(recycle_view_pullrequest_list) {
-                    layoutManager =
-                        LinearLayoutManager(this@PullRequestActivity, RecyclerView.VERTICAL, false)
-                    //itens da lista tem o tamanho fixo
+                    layoutManager = LinearLayoutManager(
+                        this@PullRequestActivity,
+                        RecyclerView.VERTICAL,
+                        false
+                    )
                     setHasFixedSize(true)
                     adapter = PullRequestAdapter(pullRequests)
-
                 }
             }
         })
-
-        if (title != null && proprietario != null) viewModel.getPullRequest(proprietario, title)
-
-
+        if (title != null && proprietario != null) viewModel.getPullRequests(proprietario, title)
     }
 
 
     companion object {
-
-
         private const val EXTRA_TITLE = "EXTRA_TITLE"
         private const val EXTRA_PROPRIETARIO = "EXTRA_PROPRIETARIO"
 
@@ -64,6 +58,5 @@ class PullRequestActivity : AppCompatActivity() {
                 putExtra(EXTRA_PROPRIETARIO, proprietario)
             }
         }
-
     }
 }

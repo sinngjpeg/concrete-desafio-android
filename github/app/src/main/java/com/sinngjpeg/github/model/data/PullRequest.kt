@@ -1,12 +1,11 @@
-package com.sinngjpeg.github.model
+package com.sinngjpeg.github.model.data
 
 import com.google.gson.annotations.SerializedName
 
 data class PullRequest(
-
     @SerializedName("html_url") val html_url: String,
     @SerializedName("title") val title: String,
     @SerializedName("created_at") val created: String,
-    @SerializedName("body") val descricaoRepository: String,
-    @SerializedName("user") val proprietario: Owner
+    @SerializedName("body") val description: String,
+    @SerializedName("user") val owner: Owner
 )

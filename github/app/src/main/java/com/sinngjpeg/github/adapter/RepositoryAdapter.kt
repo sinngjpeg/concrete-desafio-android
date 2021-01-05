@@ -6,14 +6,14 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.sinngjpeg.github.R
-import com.sinngjpeg.github.model.Repository
+import com.sinngjpeg.github.model.data.Repository
 import kotlinx.android.synthetic.main.item_repository.view.*
 
 
 class RepositoryAdapter(
     val repository: List<Repository>,
-    val onItemClickListener: ((repository : Repository) -> Unit)
-    ) : RecyclerView.Adapter<RepositoryAdapter.RepositoryViewHolder>() {
+    val onItemClickListener: ((repository: Repository) -> Unit)
+) : RecyclerView.Adapter<RepositoryAdapter.RepositoryViewHolder>() {
 
     //item de layout - infla o layout do item_repository
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RepositoryViewHolder {
@@ -31,33 +31,33 @@ class RepositoryAdapter(
         viewholder.bindView(repository[position])
     }
 
-    class RepositoryViewHolder(itemView: View, private val onItemClickListener: ((repository : Repository) -> Unit)) : RecyclerView.ViewHolder(itemView) {
-
+    class RepositoryViewHolder(
+        itemView: View,
+        private val onItemClickListener: ((repository: Repository) -> Unit)
+    ) : RecyclerView.ViewHolder(itemView) {
         //vincula com o layout
-        private val nomeRepository = itemView.txt_nome_repository
-        private val descricaoRepository = itemView.txt_descricao_repository
-        private val numeroDeForks = itemView.txt_numero_forks
-        private val numeroDeStars = itemView.txt_numero_stars
-        private val userName = itemView.txt_username
-
+        private val nameRepository = itemView.title_repository
+        private val descriptionRepository = itemView.description_repository
+        private val qntForks = itemView.qnt_forks_repository
+        private val qntStars = itemView.qnt_stars_repository
+        private val userName = itemView.username_repository
 
         //vincula com o repositorymodel
         fun bindView(repository: Repository) {
-            nomeRepository.text = repository.nomeRepository
-            descricaoRepository.text = repository.descricaoRepository
-            numeroDeForks.text = repository.numeroDeForks.toString()
-            numeroDeStars.text = repository.numeroDeStars.toString()
-            userName.text = repository.proprietario.userName
+            nameRepository.text = repository.title
+            descriptionRepository.text = repository.description
+            qntForks.text = repository.qntStars.toString()
+            qntStars.text = repository.qntForks.toString()
+            userName.text = repository.owner.userName
 
             Glide.with(itemView.context)
-                .load(repository.proprietario.urlFoto)
+                .load(repository.owner.userPhoto)
                 .circleCrop()
-                .into(itemView.img_profile_request)
+                .into(itemView.user_photo)
 
-            itemView.setOnClickListener{
+            itemView.setOnClickListener {
                 onItemClickListener.invoke(repository)
             }
         }
     }
-
 }

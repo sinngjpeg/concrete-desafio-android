@@ -1,8 +1,7 @@
 package com.sinngjpeg.github.services
 
-import com.sinngjpeg.github.model.ItemRepository
-import com.sinngjpeg.github.model.PullRequest
-import com.sinngjpeg.github.model.Repository
+import com.sinngjpeg.github.model.data.ItemRepository
+import com.sinngjpeg.github.model.data.PullRequest
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -14,7 +13,7 @@ interface GitHubService {
     fun getRepositories(@Query("page")page: Int): Call<ItemRepository>
 
     @GET("repos/{owner}/{repo}/pulls")
-    fun getPullRequest(
+    fun getPullRequests(
         @Path("owner") creator: String,
         @Path("repo") repository: String
     ): Call<List<PullRequest>>

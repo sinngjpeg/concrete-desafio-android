@@ -13,37 +13,34 @@ import kotlinx.android.synthetic.main.pull_request_activity.*
 import kotlinx.android.synthetic.main.repository_activity.*
 
 class RepositoryActivity : AppCompatActivity() {
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.repository_activity)
 
-
         val viewModel: RepositoryViewModel =
             ViewModelProviders.of(this).get(RepositoryViewModel::class.java)
-
-        //escutando pelo livedata
         viewModel.repositoryLiveData.observe(this, Observer {
             it?.let { repository ->
                 with(recycle_view_repository_list) {
-                    layoutManager =
-                        LinearLayoutManager(this@RepositoryActivity, RecyclerView.VERTICAL, false)
-                    //itens da lista tem o tamanho fixo
+                    layoutManager = LinearLayoutManager(
+                        this@RepositoryActivity,
+                        RecyclerView.VERTICAL,
+                        false
+                    )
                     setHasFixedSize(true)
                     adapter = RepositoryAdapter(repository) { repository ->
-                        val intent = PullRequestActivity.getStartIntent(this@RepositoryActivity, repository.nomeRepository, repository.proprietario.userName)
+                        val intent = PullRequestActivity.getStartIntent(
+                            this@RepositoryActivity,
+                            repository.title,
+                            repository.owner.userName
+                        )
                         this@RepositoryActivity.startActivity(intent)
-
                     }
                 }
             }
         })
-
-        viewModel.getRepository()
+        viewModel.getRepositories()
     }
-
-
 }
 
 
