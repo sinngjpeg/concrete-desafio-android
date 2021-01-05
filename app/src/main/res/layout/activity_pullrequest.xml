@@ -9,6 +9,8 @@
     tools:context=".activity.PullrequestActivity">
 
 
+
+
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/pull_toolbar"
         android:layout_width="match_parent"
@@ -20,33 +22,33 @@
         app:contentInsetStart="0dp"
         tools:ignore="MissingConstraints">
 
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="56dp"
             android:orientation="horizontal">
 
 
-            <RelativeLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="horizontal">
 
                 <TextView
+                    android:id="@+id/nome_repo_toolbar"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentBottom="true"
-                    android:layout_marginEnd="158dp"
-                    android:layout_marginBottom="15dp"
-                    android:text="Nome Repositório"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginStart="15dp"
                     android:textColor="#FFFFFF"
                     android:textSize="22dp" />
 
-            </RelativeLayout>
+            </LinearLayout>
 
 
 
-        </RelativeLayout>
+        </LinearLayout>
     </androidx.appcompat.widget.Toolbar>
 
 

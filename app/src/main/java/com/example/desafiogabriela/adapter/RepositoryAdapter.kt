@@ -14,10 +14,7 @@ import com.squareup.picasso.Picasso
 
 class RepositoryAdapter(
     var list: List<ItemMain>,
-    private val listener: RepositoryActivity
-):
-
-    RecyclerView.Adapter<RepositoryAdapter.ViewHolderclass>() {
+    private val listener: RepositoryActivity): RecyclerView.Adapter<RepositoryAdapter.ViewHolderclass>() {
 
     override fun onBindViewHolder(holder: ViewHolderclass, position: Int) {
         val item = list[position]
@@ -25,7 +22,6 @@ class RepositoryAdapter(
         Picasso.get()
             .load(item.owner.avatar_url)
             .into(holder.icon)
-
         holder.nomeRepositorio.text = item.name
         holder.descricao.text = item.description
         holder.forks.text = item.forks_count.toString()

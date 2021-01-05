@@ -2,6 +2,7 @@ package com.example.desafiogabriela.activity
 
 import android.os.Bundle
 import android.util.Log
+import android.webkit.WebView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -36,6 +37,14 @@ class PullrequestActivity : AppCompatActivity() {
         repositorio = intent.getStringExtra(Constante.repositorio).toString()
         foto = intent.getStringExtra(Constante.foto).toString()
 
+
+
+        // webview
+        val myWebView = WebView(this)
+        setContentView(myWebView)
+
+
+
         super.onCreate(savedInstanceState)
         bindingPull = ActivityPullrequestBinding.inflate(layoutInflater)
         setContentView(bindingPull.root)
@@ -53,6 +62,9 @@ class PullrequestActivity : AppCompatActivity() {
             layoutManager = viewManagerPull
             adapter = viewAdapterPull
         }
+
+
+
 
         getPull.buscaPull(owner, repositorio).enqueue(object : Callback<List<ItemPullrequest>> {
             override fun onResponse(
@@ -72,6 +84,8 @@ class PullrequestActivity : AppCompatActivity() {
                 Toast.makeText(this@PullrequestActivity, "erro", Toast.LENGTH_LONG).show()
             }
         })
+
     }
+
 
 }

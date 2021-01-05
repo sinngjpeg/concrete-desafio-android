@@ -14,17 +14,17 @@ import com.squareup.picasso.Picasso
 
 class PullrequestAdapter(
     var lista: List<ItemPullrequest>,
-    pullrequestActivity: PullrequestActivity
-) :
+    pullrequestActivity: PullrequestActivity ) :
     RecyclerView.Adapter<PullrequestAdapter.ViewHolderClass>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderClass {
         val itemView =
-            ViewHolderClass(LayoutInflater.from(parent.context).inflate(R.layout.item_pullrequest, parent, false))
+            ViewHolderClass(
+                LayoutInflater.from(parent.context)
+                    .inflate(R.layout.item_pullrequest, parent, false)
+            )
+        return itemView
 
-        return (
-            itemView
-        )
     }
 
     override fun getItemCount() = lista.size
@@ -34,15 +34,16 @@ class PullrequestAdapter(
 
         val item = lista[position]
 
-
-
+        Picasso.get()
+            .load(item.owner.avatar_url)
+            .into(holder.icon)
         holder.title.text = item.name
         holder.description.text = item.description
         holder.username.text = item.owner.login
-        holder.fullname.text = item.fullname
-        holder.loadProfileImage(item.owner.avatar_url)
+       // holder.fullname.text = item.fullname
 
     }
+
 
     inner class ViewHolderClass(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
@@ -52,29 +53,6 @@ class PullrequestAdapter(
         val username: TextView = itemView.findViewById(R.id.username_pullrequest)
         val fullname: TextView = itemView.findViewById(R.id.fullname_pullrequest)
 
-
-        fun loadProfileImage(url: String) {
-            if (url.isBlank()) {
-                Picasso.get()
-                    .load(R.drawable.ic_pessoa)
-                    .placeholder(R.drawable.ic_pessoa)
-                    .error(R.drawable.ic_pessoa)
-                    .fit()
-                    .into(icon)
-            } else {
-                Picasso.get()
-                    .load(url)
-                    .placeholder(R.drawable.ic_pessoa)
-                    .error(R.drawable.ic_pessoa)
-                    .fit()
-                    .into(icon)
-            }
-        }
-
-
-//        Picasso.get()
-//        .load(item.owner.avatar_url)
-//        .into(holder.icon)
     }
 
 }
