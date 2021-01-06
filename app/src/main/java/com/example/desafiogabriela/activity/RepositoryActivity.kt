@@ -82,6 +82,10 @@ class RepositoryActivity : AppCompatActivity(),
     }
 
 
+
+
+
+
     override fun onItemClick(position: Int) {
         val intencao = Intent(this, PullrequestActivity::class.java)
         intencao.putExtra(Constante.owner, adapter.list[position].owner.login)
@@ -90,5 +94,5 @@ class RepositoryActivity : AppCompatActivity(),
         startActivity(intencao)
     }
 }
-
+//log url retrofit
 
