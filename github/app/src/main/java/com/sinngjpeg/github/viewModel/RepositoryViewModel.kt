@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.sinngjpeg.github.model.data.ItemRepository
 import com.sinngjpeg.github.model.data.Repository
-import com.sinngjpeg.github.services.RetrofitService
+import com.sinngjpeg.github.webservices.RetrofitService
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

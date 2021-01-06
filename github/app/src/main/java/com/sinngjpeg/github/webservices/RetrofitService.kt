@@ -1,4 +1,4 @@
-package com.sinngjpeg.github.services
+package com.sinngjpeg.github.webservices
 
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -12,5 +12,5 @@ object RetrofitService {
             .build()
     }
 
-    val service = initRepositories().create(GitHubService::class.java)
+    val service = initRepositories().create(GitHubInterface::class.java)
 }
