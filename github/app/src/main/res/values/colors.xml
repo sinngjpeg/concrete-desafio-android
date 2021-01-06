@@ -10,4 +10,5 @@
     <color name="colorPrimary">#424242</color>
     <color name="colorPrimaryVariant">#595461</color>
     <color name="colorYellow">#FFC107</color>
+    <color name="colorGray">#e0e0e0</color>
 </resources>
