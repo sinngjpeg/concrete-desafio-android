@@ -24,17 +24,15 @@ import retrofit2.Response
 
 class PullrequestActivity : AppCompatActivity(), PullrequestAdapter.ClickListener {
 
-
     private val getPull by lazy { getPull() }
-
-    private val listaPull = ArrayList<ItemPullrequest>()
-    private val adapter = PullrequestAdapter(listaPull,this)
-
-    private lateinit var bindingPull : ActivityPullrequestBinding
 
     var owner = ""
     var repositorio = ""
     var foto = ""
+
+    private val lista = ArrayList<ItemPullrequest>()
+    private val adapter = PullrequestAdapter(lista,this)
+    private lateinit var bindingPull : ActivityPullrequestBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -42,27 +40,21 @@ class PullrequestActivity : AppCompatActivity(), PullrequestAdapter.ClickListene
         repositorio = intent.getStringExtra(Constante.repositorio).toString()
         foto = intent.getStringExtra(Constante.foto).toString()
 
+        super.onCreate(savedInstanceState)
         bindingPull = ActivityPullrequestBinding.inflate(layoutInflater)
         setContentView(bindingPull.root)
 
-
-
-        super.onCreate(savedInstanceState)
         setSupportActionBar(bindingPull.pullToolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-
-        //bindingPull.pullToolbar.title = repositorio
 
         bindingPull.pullrequest.adapter = adapter
         bindingPull.pullrequest.layoutManager = LinearLayoutManager(this)
         bindingPull.pullrequest.setHasFixedSize(true)
 
 
-
-        getPullRequest(owner,repositorio)
+        getPullrequest(owner,repositorio)
     }
-
-    fun getPullRequest (owner: String,repositories: String){
+    fun getPullrequest (owner: String,repositorio: String){
 
 
         getPull.buscaPull(owner, repositorio).enqueue(object : Callback<List<ItemPullrequest>> {
@@ -74,8 +66,8 @@ class PullrequestActivity : AppCompatActivity(), PullrequestAdapter.ClickListene
             override fun onResponse(call: Call<List<ItemPullrequest>>, response: Response<List<ItemPullrequest>>) {
                 if (response.isSuccessful){
                     response.body()?.let {
-                        bindingPull.pullrequest.adapter = PullrequestAdapter(listaPull,this@PullrequestActivity)
-                        listaPull.addAll(it)
+                        bindingPull.pullrequest.adapter = PullrequestAdapter(lista,this@PullrequestActivity)
+                        lista.addAll(it)
                     }
                 }
             }
@@ -83,9 +75,8 @@ class PullrequestActivity : AppCompatActivity(), PullrequestAdapter.ClickListene
         })
     }
 
-    override fun onClickListener(position: Int) {
-        val urlPull = listaPull[position].html
-        val intentPull= Intent(Intent.ACTION_VIEW, Uri.parse(urlPull))
+    override fun setOnClickListener(position: Int) {
+        val intentPull= Intent(Intent.ACTION_VIEW, Uri.parse(lista[position].html))
         startActivity(intentPull)
     }
 

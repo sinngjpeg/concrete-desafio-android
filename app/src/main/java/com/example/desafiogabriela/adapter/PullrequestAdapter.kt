@@ -45,7 +45,7 @@ class PullrequestAdapter(
         holder.username.text = item.owner.login
         holder.createdat.text = item.createdAt
         holder.itemView.setOnClickListener{
-            repositoryListener.onClickListener(position)
+            repositoryListener.setOnClickListener(position)
         }
 
     }
@@ -62,7 +62,7 @@ class PullrequestAdapter(
     }
 
     interface ClickListener{
-        fun onClickListener(position: Int)
+        fun setOnClickListener(position: Int)
 
     }
 
