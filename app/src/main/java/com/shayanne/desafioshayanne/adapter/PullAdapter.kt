@@ -15,7 +15,9 @@ class PullAdapter(
 
     //  private val listener: RecyclerView.OnScrollListener
     val minhalistapull: List<PullRequests>,
-    private val listener: PullActivity):
+    //private val listener :PullActivity,
+    private val callUrl: ItemClickListener
+):
     RecyclerView.Adapter <PullAdapter.List2ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): List2ViewHolder {
@@ -42,6 +44,10 @@ class PullAdapter(
 
         holder.username_pull.text = posicaoItem.donoRep.username_rep
         holder.nome_completo_pull.text = posicaoItem.nome_completo_pull
+
+        holder.itemView.setOnClickListener{callUrl.CreateIntentClickPullUrl(position)}
+
+       
     }
 
     //quantos cards devem ser impressos por pagina?
@@ -50,29 +56,19 @@ class PullAdapter(
 
 
 
-   inner class List2ViewHolder(itemView2: View) : RecyclerView.ViewHolder(itemView2), View.OnClickListener{
-      //  val nome_repositorio2: TextView = itemView.findViewById(R.id.nome_repositorio2)
+   inner class List2ViewHolder(itemView2: View) : RecyclerView.ViewHolder(itemView2) {
         val titulo_pull : TextView = itemView2.findViewById(R.id.titulo_pull)
         val descricao_pull : TextView = itemView2.findViewById(R.id.descricao_pull)
         val user_pull: ImageView = itemView2.findViewById(R.id.user_pull)
         val username_pull : TextView = itemView2.findViewById(R.id.username_pull)
         val nome_completo_pull : TextView = itemView2.findViewById(R.id.nome_completo_pull)
 
-       init {
-           itemView.setOnClickListener(this)
-       }
-
-       override fun onClick(v: View?) {
-           val positionpull = adapterPosition
-           if( positionpull != RecyclerView.NO_POSITION){
-               listener.CreateIntentClickPull(positionpull)
-           }
-       }
     }
 
     interface ItemClickListener{
-        fun CreateIntentClickPull(positionpull: Int)
+        fun CreateIntentClickPullUrl(position: Int)
     }
+
 
 
 
