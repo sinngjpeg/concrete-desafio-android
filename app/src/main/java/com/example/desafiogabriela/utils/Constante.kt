@@ -1,4 +1,4 @@
-package com.example.desafiogabriela
+package com.example.desafiogabriela.utils
 
 object Constante {
     const val owner = "owner"

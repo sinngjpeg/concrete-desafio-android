@@ -3,19 +3,13 @@ package com.example.desafiogabriela.activity
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.provider.SyncStateContract
 import android.util.Log
-import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.example.desafiogabriela.Constante
-import com.example.desafiogabriela.Constante.owner
-import com.example.desafiogabriela.Constante.repositorio
+import com.example.desafiogabriela.utils.Constante
 import com.example.desafiogabriela.model.ItemPullrequest
 import com.example.desafiogabriela.adapter.PullrequestAdapter
-import com.example.desafiogabriela.R
 import com.example.desafiogabriela.webservice.InicializadorDeRetrofitPull.getPull
 import com.example.desafiogabriela.databinding.ActivityPullrequestBinding
 import retrofit2.Call
@@ -31,7 +25,7 @@ class PullrequestActivity : AppCompatActivity(), PullrequestAdapter.ClickListene
     var foto = ""
 
     private val lista = ArrayList<ItemPullrequest>()
-    private val adapter = PullrequestAdapter(lista,this)
+    private val pullAdapter = PullrequestAdapter(lista,this)
     private lateinit var bindingPull : ActivityPullrequestBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -47,14 +41,14 @@ class PullrequestActivity : AppCompatActivity(), PullrequestAdapter.ClickListene
         setSupportActionBar(bindingPull.pullToolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        bindingPull.pullrequest.adapter = adapter
+        bindingPull.pullrequest.adapter = pullAdapter
         bindingPull.pullrequest.layoutManager = LinearLayoutManager(this)
         bindingPull.pullrequest.setHasFixedSize(true)
 
-
-        getPullrequest(owner,repositorio)
+            //Funcao
+        getPull(owner,repositorio)
     }
-    fun getPullrequest (owner: String,repositorio: String){
+    fun getPull (owner: String,repositorio: String){
 
 
         getPull.buscaPull(owner, repositorio).enqueue(object : Callback<List<ItemPullrequest>> {
