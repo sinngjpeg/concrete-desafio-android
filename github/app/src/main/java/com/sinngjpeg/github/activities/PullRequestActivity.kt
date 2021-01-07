@@ -2,6 +2,7 @@ package com.sinngjpeg.github.activities
 
 import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
@@ -10,16 +11,18 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.sinngjpeg.github.R
 import com.sinngjpeg.github.adapter.PullRequestAdapter
+import com.sinngjpeg.github.model.data.PullRequest
 import com.sinngjpeg.github.viewModel.PullRequestViewModel
 import kotlinx.android.synthetic.main.item_pullrequest.*
 import kotlinx.android.synthetic.main.pull_request_activity.*
 import kotlinx.android.synthetic.main.repository_activity.*
+import java.text.FieldPosition
 
 class PullRequestActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.pull_request_activity)
-        setSupportActionBar(findViewById(R.id.toolbar_pullrequest) )
+        setSupportActionBar(findViewById(R.id.toolbar_pullrequest))
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
 
         val title = intent.getStringExtra(EXTRA_TITLE)
@@ -43,7 +46,6 @@ class PullRequestActivity : AppCompatActivity() {
         if (title != null && proprietario != null) viewModel.getPullRequests(proprietario, title)
     }
 
-
     companion object {
         private const val EXTRA_TITLE = "EXTRA_TITLE"
         private const val EXTRA_PROPRIETARIO = "EXTRA_PROPRIETARIO"
@@ -59,4 +61,10 @@ class PullRequestActivity : AppCompatActivity() {
             }
         }
     }
+
+//    override fun onPullClickListener(position: Int) {
+//        val url =
+//        val intentPull = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+//        startActivity(intentPull)
+//    }
 }

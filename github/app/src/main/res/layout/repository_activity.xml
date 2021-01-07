@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar_repository"
         android:layout_width="match_parent"
@@ -28,7 +27,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar_repository">
 
-
         <androidx.recyclerview.widget.RecyclerView
             android:id='@+id/recycle_view_repository_list'
             android:layout_width="match_parent"
@@ -38,7 +36,5 @@
             tools:listitem="@layout/item_repository">
 
         </androidx.recyclerview.widget.RecyclerView>
-
     </ScrollView>
-
 </androidx.constraintlayout.widget.ConstraintLayout>

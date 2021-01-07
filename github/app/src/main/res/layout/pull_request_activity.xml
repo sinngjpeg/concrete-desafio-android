@@ -7,7 +7,6 @@
     tools:context=".activities.PullRequestActivity"
     tools:viewBindingIgnore="true">
 
-
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar_pullrequest"
         android:layout_width="match_parent"
@@ -22,7 +21,6 @@
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
         app:title="@string/title_pullrequest" />
 
-
     <androidx.recyclerview.widget.RecyclerView
         android:id='@+id/recycle_view_pullrequest_list'
         android:layout_width="match_parent"
@@ -36,7 +34,6 @@
         app:spanCount="3"
         tools:itemCount="10"
         tools:listitem="@layout/item_pullrequest">
-
     </androidx.recyclerview.widget.RecyclerView>
 
     <androidx.appcompat.widget.Toolbar
@@ -87,6 +84,4 @@
         android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/textView2"
         app:layout_constraintTop_toTopOf="@+id/toolbar_opend_closed" />
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>
