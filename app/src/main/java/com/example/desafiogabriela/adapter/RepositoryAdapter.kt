@@ -32,7 +32,7 @@ class RepositoryAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderclass {
         val itemView =
-            LayoutInflater.from(parent.context).inflate(R.layout.item_main, parent, false)
+            LayoutInflater.from(parent.context).inflate(R.layout.item_repository, parent, false)
 
         return ViewHolderclass(itemView)
     }

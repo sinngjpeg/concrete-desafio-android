@@ -47,34 +47,6 @@ class RepositoryActivity : AppCompatActivity(),
 
         binding.repositorio.setHasFixedSize(true)
 
-
-//
-//        get.busca(page).enqueue(object : Callback<Items> {
-//            override fun onResponse(
-//                call: Call<Items>, response: Response<Items>
-//            ) {
-//
-//                if (response.isSuccessful) {
-//                    response.body()?.let {
-//                        binding.repositorio.adapter =
-//                            RepositoryAdapter(
-//                                it.items as MutableList<ItemRepository>, this@RepositoryActivity
-//                            )
-//                        numberList.addAll(it.items)
-//
-//                    }
-//
-//
-//                }
-//            }
-//
-//
-//            override fun onFailure(call: Call<Items>, t: Throwable) {
-//                Log.d("erro inesperado", t.message.toString())
-//                Toast.makeText(this@RepositoryActivity, "erro", Toast.LENGTH_LONG).show()
-//            }
-//        })
-
         getPage(page)
 
         binding.repositorio.addOnScrollListener(object : RecyclerView.OnScrollListener() {
@@ -111,10 +83,6 @@ class RepositoryActivity : AppCompatActivity(),
 
                 if (response.isSuccessful) {
                     response.body()?.let {
-//                        binding.repositorio.adapter =
-//                            (it.items as MutableList()
-//                                 this@RepositoryActivity
-//                            )
                         adapter.list.addAll(it.items)
                         adapter.notifyDataSetChanged()
                         numberList.addAll(it.items)
@@ -131,19 +99,6 @@ class RepositoryActivity : AppCompatActivity(),
                 Toast.makeText(this@RepositoryActivity, "erro", Toast.LENGTH_LONG).show()
             }
         })
-
-
-//        for (i in numberList) {
-//            if (i !in adapter.list) {
-//                adapter.list.addAll(numberList)
-//                adapter.notifyDataSetChanged()
-//                this.page += 1
-//            }
-//            isLoading = true
-//            binding.progressBar.visibility = View.GONE
-//
-//
-//        }
     }
 
 
