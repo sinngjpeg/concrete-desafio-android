@@ -5,7 +5,6 @@ import com.google.gson.annotations.SerializedName
 
 data class ItemPullrequest (
 
-    @SerializedName ("name")var repo: Repo,
     @SerializedName ("user") val owner: Owner,
     @SerializedName ("title") val name: String,
     @SerializedName ("body") val description: String,

@@ -2,7 +2,7 @@ package com.example.desafiogabriela.model
 
 import com.google.gson.annotations.SerializedName
 
-data class ItemMain (
+data class ItemRepository (
 
     @SerializedName ("name")var name: String,
     @SerializedName ("description")var description: String,

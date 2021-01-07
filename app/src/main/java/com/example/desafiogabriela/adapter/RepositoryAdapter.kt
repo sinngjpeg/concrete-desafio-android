@@ -6,14 +6,14 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.desafiogabriela.model.ItemMain
+import com.example.desafiogabriela.model.ItemRepository
 import com.example.desafiogabriela.R
 import com.example.desafiogabriela.activity.RepositoryActivity
 import com.squareup.picasso.Picasso
 
 
 class RepositoryAdapter(
-    var list: List<ItemMain>,
+    var list: MutableList<ItemRepository>,
     private val listener: RepositoryActivity): RecyclerView.Adapter<RepositoryAdapter.ViewHolderclass>() {
 
     override fun onBindViewHolder(holder: ViewHolderclass, position: Int) {

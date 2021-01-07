@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.desafiogabriela.utils.Constante
 import com.example.desafiogabriela.model.ItemPullrequest
 import com.example.desafiogabriela.adapter.PullrequestAdapter
-import com.example.desafiogabriela.webservice.InicializadorDeRetrofitPull.getPull
+import com.example.desafiogabriela.webservice.InicializadorDeRetrofit.get
 import com.example.desafiogabriela.databinding.ActivityPullrequestBinding
 import retrofit2.Call
 import retrofit2.Callback
@@ -18,7 +18,7 @@ import retrofit2.Response
 
 class PullrequestActivity : AppCompatActivity(), PullrequestAdapter.ClickListener {
 
-    private val getPull by lazy { getPull() }
+    private val getPull by lazy { get() }
 
     var owner = ""
     var repositorio = ""
@@ -45,7 +45,7 @@ class PullrequestActivity : AppCompatActivity(), PullrequestAdapter.ClickListene
         bindingPull.pullrequest.layoutManager = LinearLayoutManager(this)
         bindingPull.pullrequest.setHasFixedSize(true)
 
-            //Funcao
+
         getPull(owner,repositorio)
     }
     fun getPull (owner: String,repositorio: String){
