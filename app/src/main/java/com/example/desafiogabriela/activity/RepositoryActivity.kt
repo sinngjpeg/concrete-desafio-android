@@ -27,10 +27,10 @@ class RepositoryActivity : AppCompatActivity(),
     var page = 1
     var lastPosition = 0
     var isLoading = false
-    val numberList = ArrayList<ItemRepository>()
+    val list = ArrayList<ItemRepository>()
 
     private val get by lazy { get() }
-    private val adapter = RepositoryAdapter(numberList, this)
+    private val adapter = RepositoryAdapter(list, this)
     private lateinit var binding: ActivityRepositoryBinding
     lateinit var layoutManager: LinearLayoutManager
 
@@ -40,7 +40,7 @@ class RepositoryActivity : AppCompatActivity(),
         binding = ActivityRepositoryBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        //scroll
+
         layoutManager = LinearLayoutManager(this)
         binding.repositorio.layoutManager = layoutManager
         binding.repositorio.adapter = adapter
@@ -53,11 +53,8 @@ class RepositoryActivity : AppCompatActivity(),
             override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
                 super.onScrollStateChanged(recyclerView, newState)
 
-                val layoutManager =
-                    recyclerView.layoutManager as LinearLayoutManager
+                val layoutManager = recyclerView.layoutManager as LinearLayoutManager
                 val lastCompleteItem = layoutManager.findLastVisibleItemPosition()
-
-
 
 
                 if (!isLoading) {
@@ -85,17 +82,11 @@ class RepositoryActivity : AppCompatActivity(),
                     response.body()?.let {
                         adapter.list.addAll(it.items)
                         adapter.notifyDataSetChanged()
-                        numberList.addAll(it.items)
+                        list.addAll(it.items)
                         isLoading = false
                     }
-
-
                 }
             }
-
-
-
-
             override fun onFailure(call: Call<Items>, t: Throwable) {
                 Log.d("erro inesperado", t.message.toString())
                 Toast.makeText(this@RepositoryActivity, "erro", Toast.LENGTH_LONG).show()
@@ -105,11 +96,11 @@ class RepositoryActivity : AppCompatActivity(),
 
 
     override fun onItemClick(position: Int) {
-        val intencao = Intent(this, PullrequestActivity::class.java)
-        intencao.putExtra(Constante.owner, adapter.list[position].owner.login)
-        intencao.putExtra(Constante.repositorio, adapter.list[position].name)
-        intencao.putExtra(Constante.foto, adapter.list[position].owner.avatar_url)
-        startActivity(intencao)
+        val intent = Intent(this, PullrequestActivity::class.java)
+        intent.putExtra(Constante.owner, adapter.list[position].owner.username)
+        intent.putExtra(Constante.repositorio, adapter.list[position].nameRepository)
+        intent.putExtra(Constante.foto, adapter.list[position].owner.image)
+        startActivity(intent)
     }
 
 }

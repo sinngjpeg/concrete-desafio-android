@@ -20,13 +20,13 @@ class RepositoryAdapter(
         val item = list[position]
 
         Picasso.get()
-            .load(item.owner.avatar_url)
+            .load(item.owner.image)
             .into(holder.icon)
-        holder.nomeRepositorio.text = item.name
-        holder.descricao.text = item.description
+        holder.nameRepository.text = item.nameRepository
+        holder.description.text = item.description
         holder.forks.text = item.forks_count.toString()
         holder.stars.text = item.stars_count.toString()
-        holder.username.text = item.owner.login
+        holder.username.text = item.owner.username
         holder.fullname.text = item.fullname
     }
 
@@ -43,8 +43,8 @@ class RepositoryAdapter(
     inner class ViewHolderclass(itemView: View) : RecyclerView.ViewHolder(itemView),
         View.OnClickListener {
         val icon: ImageView = itemView.findViewById(R.id.icone)
-        val nomeRepositorio: TextView = itemView.findViewById(R.id.nome_repositorio)
-        val descricao: TextView = itemView.findViewById(R.id.descricao)
+        val nameRepository: TextView = itemView.findViewById(R.id.nome_repositorio)
+        val description: TextView = itemView.findViewById(R.id.descricao)
         val forks: TextView = itemView.findViewById(R.id.forks)
         val stars: TextView = itemView.findViewById(R.id.star)
         val username: TextView = itemView.findViewById(R.id.username)

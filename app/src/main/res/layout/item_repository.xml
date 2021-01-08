@@ -6,7 +6,6 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:clickable="true"
     android:paddingLeft="16dp"
     android:paddingRight="16dp"
     android:paddingBottom="10dp"
@@ -21,7 +20,6 @@
         android:id="@+id/esquerda"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
         android:orientation="vertical"
         app:layout_constraintStart_toStartOf="@id/constrain"
         app:layout_constraintBottom_toBottomOf = "@+id/constrain"
@@ -31,15 +29,15 @@
             android:id="@+id/nome_repositorio"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Nome Repositorio"
+            android:text="@string/nome_repositorio"
             android:textColor="@color/teal_700"
             android:textStyle="bold" />
 
         <TextView
             android:id="@+id/descricao"
-            android:layout_width="150dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="descrição"
+            android:text="@string/descricao"
             android:textSize="11dp"
             android:textColor="@color/black"/>
 
@@ -54,13 +52,13 @@
                 android:layout_width="16dp"
                 android:layout_height="16dp"
                 android:layout_marginTop="2dp"
-                android:src="@drawable/ic_star" />
+                android:src="@drawable/ic_fork" />
 
             <TextView
                 android:id="@+id/forks"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="num"
+                android:text="@string/example_fork_stars"
                 android:textColor="@color/text_yellow"
                 android:textSize="16dp" />
 
@@ -70,7 +68,7 @@
                 android:id="@+id/star_ic"
                 android:layout_width="16dp"
                 android:layout_height="16dp"
-                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
                 android:layout_marginTop="2dp"
                 android:src="@drawable/ic_star" />
 
@@ -78,7 +76,7 @@
                 android:id="@+id/star"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="num"
+                android:text="@string/example_fork_stars"
                 android:textColor="@color/text_yellow"
                 android:textSize="16dp" />
 
@@ -96,7 +94,7 @@
         android:layout_toEndOf="@+id/esquerda"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="@+id/constrain"
-        app:layout_constraintBottom_toBottomOf="@+id/constrain">
+        app:layout_constraintTop_toTopOf="@+id/constrain">
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -113,12 +111,11 @@
 
             <TextView
                 android:id="@+id/username"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/icone"
                 android:layout_marginStart="14dp"
                 android:layout_marginTop="4dp"
-                android:text="username"
+                android:text="@string/username"
                 android:textColor="@color/teal_700"
                 android:textSize="14dp"
                 android:textStyle="bold" />
@@ -127,13 +124,10 @@
                 android:id="@+id/fullname"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_below="@+id/username"
-                android:layout_alignParentEnd="true"
                 android:layout_marginStart="6dp"
                 android:layout_marginTop="4dp"
-                android:text="Nome Sobrenome"
+                android:text="@string/nome_sobrenome"
                 android:textAlignment="center"
-
                 android:textSize="10dp" />
         </LinearLayout>
 

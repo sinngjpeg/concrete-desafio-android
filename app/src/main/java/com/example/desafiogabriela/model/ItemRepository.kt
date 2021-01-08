@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName
 
 data class ItemRepository (
 
-    @SerializedName ("name")var name: String,
+    @SerializedName ("name")var nameRepository: String,
     @SerializedName ("description")var description: String,
     @SerializedName ("forks_count")var forks_count: Int,
     @SerializedName ("stargazers_count") var stars_count: Int,

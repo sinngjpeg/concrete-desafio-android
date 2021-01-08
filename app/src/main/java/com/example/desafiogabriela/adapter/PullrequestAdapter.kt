@@ -13,38 +13,35 @@ import com.squareup.picasso.Picasso
 
 
 class PullrequestAdapter(
-    var lista: MutableList<ItemPullrequest>,
+    private var list: MutableList<ItemPullrequest>,
     private val repositoryListener: ClickListener
 ) :
     RecyclerView.Adapter<PullrequestAdapter.ViewHolderClass>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderClass {
-        val itemView =
-            ViewHolderClass(
-                LayoutInflater.from(parent.context)
-                    .inflate(R.layout.item_pullrequest, parent, false)
-            )
-        return itemView
+        return ViewHolderClass(
+            LayoutInflater.from(parent.context).inflate(R.layout.item_pullrequest, parent, false)
+        )
 
     }
 
-    override fun getItemCount() : Int{
-        return lista.size
+    override fun getItemCount(): Int {
+        return list.size
     }
 
 
     override fun onBindViewHolder(holder: ViewHolderClass, position: Int) {
 
-        val item = lista[position]
+        val item = list[position]
 
         Picasso.get()
-            .load(item.owner.avatar_url)
+            .load(item.owner.image)
             .into(holder.icon)
         holder.title.text = item.name
         holder.description.text = item.description
-        holder.username.text = item.owner.login
+        holder.username.text = item.owner.username
         holder.createdat.text = item.createdAt
-        holder.itemView.setOnClickListener{
+        holder.itemView.setOnClickListener {
             repositoryListener.setOnClickListener(position)
         }
 
@@ -61,7 +58,7 @@ class PullrequestAdapter(
 
     }
 
-    interface ClickListener{
+    interface ClickListener {
         fun setOnClickListener(position: Int)
 
     }

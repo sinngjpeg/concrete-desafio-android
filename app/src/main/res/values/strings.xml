@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">DesafioGabriela</string>
+    <string name="nome_repositorio">Nome Repositorio</string>
+    <string name="descricao">descrição</string>
+    <string name="example_fork_stars">num</string>
+    <string name="username">username</string>
+    <string name="nome_sobrenome">Nome Sobrenome</string>
+    <string name="titulo_do_pull_request">Título do pull request</string>
+    <string name="username_pull">username</string>
+    <string name="nome_sobrenome_pull">Nome Sobrenome</string>
+    <string name="title_home">Gihub JavaPop</string>
 </resources>
