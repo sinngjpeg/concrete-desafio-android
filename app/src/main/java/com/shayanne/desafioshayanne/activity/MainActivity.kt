@@ -7,6 +7,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.shayanne.desafioshayanne.EndlessRecyclerViewScrollListener
 import com.shayanne.desafioshayanne.R
 import com.shayanne.desafioshayanne.adapter.PullAdapter
 import com.shayanne.desafioshayanne.adapter.RepositoryAdapter
@@ -23,6 +24,8 @@ class MainActivity() : AppCompatActivity(), RepositoryAdapter.ItemClickListener{
 
 
 
+    var isLoading:Boolean = true
+    var page = 1
 
     private val callGit by lazy { initRep() }
     private lateinit var binding: ActivityMainBinding
@@ -57,17 +60,22 @@ class MainActivity() : AppCompatActivity(), RepositoryAdapter.ItemClickListener{
 
 
 
+          idDoRecycleViewRequest.addOnScrollListener(object : EndlessRecyclerViewScrollListener(
+              viewManager as LinearLayoutManager){
+              override fun onLoadMore(page: Int, totalItemsCount: Int, view: RecyclerView?) {
+                  loadPage()
+              }
 
+          })
 
-        // intent usado para testar o return da segunda tela, pra retornar até a primeira pagina, vide manifest tb
-        // se colocado aqui a primeira tela que vai aparecer é a Detalherepositorio, se tirar, é a MainActivity
-        //passei pra fun  ItemClick
+        loadPage()
+    }
 
-
+    private fun loadPage() {
         callGit.getRepositories().enqueue(object : Callback<ItemsRepositories> {
             override fun onResponse(
-                    call: Call<ItemsRepositories>,
-                    response: Response<ItemsRepositories>
+                call: Call<ItemsRepositories>,
+                response: Response<ItemsRepositories>
             ) {
                 if (response.isSuccessful) {
                     response.body()?.let {
@@ -84,7 +92,6 @@ class MainActivity() : AppCompatActivity(), RepositoryAdapter.ItemClickListener{
             }
         })
     }
-
 
 
     override fun CreateIntentClick(position: Int) {
