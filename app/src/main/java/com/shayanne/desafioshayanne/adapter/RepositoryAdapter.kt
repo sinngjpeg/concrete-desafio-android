@@ -52,6 +52,10 @@ class RepositoryAdapter(
     //quantos cards devem ser impressos por pagina?
     override fun getItemCount() = minhalista.size
 
+    fun addRepositories(items: List<Repository>) {
+        minhalista.addAll(items)
+        notifyDataSetChanged()
+    }
 
     //crie a classe para passar todos os ids da view
     //passe tudo na ordem conforme a linha 26 indica

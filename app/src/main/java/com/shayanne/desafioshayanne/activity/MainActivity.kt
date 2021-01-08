@@ -22,8 +22,6 @@ import retrofit2.Response
 
 class MainActivity() : AppCompatActivity(), RepositoryAdapter.ItemClickListener{
 
-
-
     var isLoading:Boolean = true
     var page = 1
 
@@ -31,7 +29,6 @@ class MainActivity() : AppCompatActivity(), RepositoryAdapter.ItemClickListener{
     private lateinit var binding: ActivityMainBinding
 
     private lateinit var idDoRecycleViewRequest: RecyclerView
-   // private lateinit var viewAdapter: RecyclerView.Adapter<*>
     private lateinit var viewManager: RecyclerView.LayoutManager
     private val repositoryAdapter = RepositoryAdapter(ArrayList(),this)
    //private val pullAdapter = PullAdapter(ArrayList(),PullActivity())
@@ -54,7 +51,7 @@ class MainActivity() : AppCompatActivity(), RepositoryAdapter.ItemClickListener{
             layoutManager = viewManager
 
             // specify an viewAdapter (see also next example)
-          //  adapter = viewAdapter
+            adapter = repositoryAdapter
         }
 
 
@@ -65,13 +62,13 @@ class MainActivity() : AppCompatActivity(), RepositoryAdapter.ItemClickListener{
               override fun onLoadMore(page: Int, totalItemsCount: Int, view: RecyclerView?) {
                   loadPage()
               }
-
           })
 
         loadPage()
     }
 
     private fun loadPage() {
+        Log.d("MainActivity", "loading page $page")
         callGit.getRepositories().enqueue(object : Callback<ItemsRepositories> {
             override fun onResponse(
                 call: Call<ItemsRepositories>,
@@ -79,10 +76,7 @@ class MainActivity() : AppCompatActivity(), RepositoryAdapter.ItemClickListener{
             ) {
                 if (response.isSuccessful) {
                     response.body()?.let {
-                        binding.recyclerviewId.adapter =
-                            RepositoryAdapter(it.items as MutableList<Repository>,this@MainActivity)
-                        repositoryAdapter.minhalista.addAll(it.items)
-
+                        repositoryAdapter.addRepositories(it.items)
                     }
                 }
             }
