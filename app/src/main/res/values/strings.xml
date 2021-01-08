@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">desafioShayanne</string>
+    <string name="error_network_request_failed">Ocorreu um erro ao processar sua requisição. Tentar novamente?</string>
 </resources>

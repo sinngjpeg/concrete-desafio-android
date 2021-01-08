@@ -3,8 +3,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="150dp"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
     android:layout_margin="4dp"
     android:id="@+id/cardview1">
 
@@ -13,134 +13,167 @@
         android:layout_height="match_parent"
         android:padding="8dp">
 
-        <TextView
-            android:id="@+id/nome_repositorio"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginStart="22dp"
-            android:layout_marginTop="26dp"
-            android:text="Nome Repositorio"
-            android:textAppearance="@style/TextAppearance.AppCompat.Light.SearchResult.Title"
-            android:textColor="@color/blue_1"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/descricao_rep"
-            android:layout_width="200dp"
-            android:layout_height="40dp"
-            android:layout_below="@+id/nome_repositorio"
-            android:layout_alignParentStart="true"
-            android:layout_marginStart="23dp"
-            android:layout_marginTop="8dp"
-            android:text="Descrever o conteúdo do repositorio aqui, este .. "
-            android:textAppearance="@style/TextAppearance.AppCompat.Light.SearchResult.Subtitle"
-            android:textColor="@color/black"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/nome_repositorio" />
+            <LinearLayout
+                android:layout_width="258dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
-        <ImageView
-            android:id="@+id/user_rep"
-            android:layout_width="58dp"
-            android:layout_height="52dp"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="44dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_user" />
+                <TextView
+                    android:id="@+id/nome_repositorio"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginStart="22dp"
+                    android:layout_marginTop="26dp"
+                    android:text="Nome Repositorio"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Light.SearchResult.Title"
+                    android:textColor="@color/blue_1"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/username_rep"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/user_rep"
-            android:layout_alignParentEnd="true"
-            android:layout_marginTop="11dp"
-            android:layout_marginEnd="39dp"
-            android:text="username"
-            android:textColor="@color/blue_1"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/user_rep" />
+                <TextView
+                    android:id="@+id/descricao_rep"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/nome_repositorio"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginStart="22dp"
+                    android:layout_marginTop="8dp"
+                    android:text="Descrever o conteúdo do repositorio aqui, este .. "
+                    android:textAppearance="@style/TextAppearance.AppCompat.Light.SearchResult.Subtitle"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/nome_repositorio" />
 
-        <TextView
-            android:id="@+id/nome_completo_rep"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/username_rep"
-            android:layout_alignParentEnd="true"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="16dp"
-            android:text="Nome Sobrenome"
-            android:textAppearance="@style/TextAppearance.AppCompat.Small"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/username_rep" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
 
-        <ImageView
-            android:id="@+id/fork"
-            android:layout_width="25dp"
-            android:layout_height="23dp"
-            android:layout_below="@+id/descricao_rep"
-            android:layout_alignParentStart="true"
-            android:layout_marginStart="39dp"
-            android:layout_marginTop="13dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/descricao_rep"
-            app:srcCompat="@drawable/ic_fork" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/n_conexoes"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/descricao_rep"
-            android:layout_alignEnd="@+id/fork"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="11dp"
-            android:layout_marginEnd="-41dp"
-            android:text="640"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            android:textColor="@color/yellow_1"
-            android:textStyle="bold"
-            app:layout_constraintStart_toEndOf="@+id/fork"
-            tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteY="155dp" />
+                        <ImageView
+                            android:id="@+id/fork"
+                            android:layout_width="25dp"
+                            android:layout_height="23dp"
+                            android:layout_below="@+id/descricao_rep"
+                            android:layout_alignParentStart="true"
+                            android:layout_marginStart="22dp"
+                            android:layout_marginTop="8dp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:srcCompat="@drawable/ic_fork" />
 
-        <ImageView
-            android:id="@+id/estrela"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/descricao_rep"
-            android:layout_alignEnd="@+id/n_conexoes"
-            android:layout_marginStart="28dp"
-            android:layout_marginTop="13dp"
-            android:layout_marginEnd="-53dp"
-            app:layout_constraintStart_toEndOf="@+id/n_conexoes"
-            app:srcCompat="@drawable/ic_estrela"
-            tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteY="155dp" />
+                        <TextView
+                            android:id="@+id/n_conexoes"
+                            android:layout_width="wrap_content"
+                            android:layout_height="32dp"
+                            android:layout_alignEnd="@+id/fork"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginEnd="-41dp"
+                            android:text="640"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                            android:textColor="@color/yellow_1"
+                            android:textStyle="bold"
+                            app:layout_constraintStart_toEndOf="@+id/fork"
+                            tools:ignore="MissingConstraints"
+                            tools:layout_editor_absoluteY="155dp" />
 
-        <TextView
-            android:id="@+id/n_estrelas"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/descricao_rep"
-            android:layout_alignParentStart="true"
-            android:layout_marginStart="165dp"
-            android:layout_marginTop="12dp"
-            android:text="98"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            android:textColor="@color/yellow_1"
-            android:textStyle="bold"
-            app:layout_constraintStart_toEndOf="@+id/estrela"
-            tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteY="155dp" />
+                        <ImageView
+                            android:id="@+id/estrela"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="70dp"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginEnd="-53dp"
+                            app:layout_constraintStart_toEndOf="@+id/n_conexoes"
+                            app:srcCompat="@drawable/ic_estrela"
+                            tools:ignore="MissingConstraints"
+                            tools:layout_editor_absoluteY="155dp" />
 
+                        <TextView
+                            android:id="@+id/n_estrelas"
+                            android:layout_width="wrap_content"
+                            android:layout_height="21dp"
+                            android:layout_marginStart="70dp"
+                            android:layout_marginTop="8dp"
+                            android:text="98"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                            android:textColor="@color/yellow_1"
+                            android:textStyle="bold"
+                            app:layout_constraintStart_toEndOf="@+id/estrela"
+                            tools:ignore="MissingConstraints"
+                            tools:layout_editor_absoluteY="155dp" />
+
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="128dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/user_rep"
+                    android:layout_width="58dp"
+                    android:layout_height="52dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="25dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/ic_user" />
+
+                <TextView
+                    android:id="@+id/username_rep"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/user_rep"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="11dp"
+                    android:text="username"
+                    android:textColor="@color/blue_1"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/user_rep" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/nome_completo_rep"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="2dp"
+                        android:layout_marginStart="10dp"
+                        android:text="Nome Sobrenome"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/username_rep" />
+                </LinearLayout>
+
+
+            </LinearLayout>
+        </LinearLayout>
 
 
     </RelativeLayout>
