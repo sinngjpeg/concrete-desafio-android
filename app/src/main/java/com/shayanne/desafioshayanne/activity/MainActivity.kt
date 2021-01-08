@@ -1,9 +1,13 @@
 package com.shayanne.desafioshayanne.activity
 
+import android.app.Dialog
+import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -68,19 +72,35 @@ class MainActivity() : AppCompatActivity(), RepositoryAdapter.ItemClickListener{
     }
 
     private fun loadPage(page:Int) {
-        Log.d("MainActivity", "loading page $page")
+        Log.d("MainActivity-loadMore", "loading page $page")
+
+        fun tryAgain(){
+            AlertDialog.Builder(this@MainActivity)
+                .setMessage(R.string.error_network_request_failed)
+                .setPositiveButton(android.R.string.ok ){ _, _ ->
+                    loadPage(page)
+                }
+                .show()
+        }
+
         callGit.getRepositories(page).enqueue(object : Callback<ItemsRepositories> {
             override fun onResponse(
                 call: Call<ItemsRepositories>,
                 response: Response<ItemsRepositories>
             ) {
                 if (response.isSuccessful) {
+                    Log.d("MainActivity-loadMore", "isSucessfull")
                     response.body()?.let {
                         repositoryAdapter.addRepositories(it.items)
                     }
+                }else{
+                    Log.d("MainActivity-loadMore", "is NOT sucessful - ${response.code()} + ${response.errorBody()?.string()}")
+                    tryAgain()
                 }
             }
             override fun onFailure(call: Call<ItemsRepositories>, t: Throwable) {
+                tryAgain()
+                Log.d("MainActivity-loadMore", "error")
                 Log.d("Erro", t.message.toString())
                 Toast.makeText(this@MainActivity, t.message, Toast.LENGTH_LONG).show()
             }

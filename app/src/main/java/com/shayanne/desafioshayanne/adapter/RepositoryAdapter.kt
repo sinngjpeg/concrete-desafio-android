@@ -53,8 +53,9 @@ class RepositoryAdapter(
     override fun getItemCount() = minhalista.size
 
     fun addRepositories(items: List<Repository>) {
+        val previousCount = itemCount
         minhalista.addAll(items)
-        notifyDataSetChanged()
+        notifyItemRangeInserted(previousCount,items.size )
     }
 
     //crie a classe para passar todos os ids da view
