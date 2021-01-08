@@ -94,6 +94,8 @@ class RepositoryActivity : AppCompatActivity(),
             }
 
 
+
+
             override fun onFailure(call: Call<Items>, t: Throwable) {
                 Log.d("erro inesperado", t.message.toString())
                 Toast.makeText(this@RepositoryActivity, "erro", Toast.LENGTH_LONG).show()

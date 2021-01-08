@@ -55,8 +55,8 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id='@+id/pullrequest'
         class="androidx.appcompat.app.AlertController$RecycleListView"
-        android:layout_width="404dp"
-        android:layout_height="657dp"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
         android:layout_marginTop="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
