@@ -18,7 +18,6 @@ class PullRequestViewModel : ViewModel() {
         with(RetrofitService) {
             service.getPullRequests(owner, repository).enqueue(
                 object : Callback<List<PullRequest>> {
-
                     override fun onResponse(
                         call: Call<List<PullRequest>>,
                         response: Response<List<PullRequest>>
@@ -29,7 +28,6 @@ class PullRequestViewModel : ViewModel() {
                             }
                         }
                     }
-
                     override fun onFailure(call: Call<List<PullRequest>>, t: Throwable) {
                         Log.d("Erro de Chamada", t.message.toString())
                     }

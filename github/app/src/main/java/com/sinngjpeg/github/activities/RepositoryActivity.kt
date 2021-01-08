@@ -28,6 +28,7 @@ class RepositoryActivity : AppCompatActivity() {
                         false
                     )
                     setHasFixedSize(true)
+
                     adapter = RepositoryAdapter(repository) { repository ->
                         val intent = PullRequestActivity.getStartIntent(
                             this@RepositoryActivity,

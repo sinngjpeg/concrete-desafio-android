@@ -12,7 +12,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Github">
 
-
         <activity
             android:name=".activities.RepositoryActivity"
             android:launchMode="singleTop">
@@ -27,8 +26,11 @@
             android:name=".activities.PullRequestActivity"
             android:parentActivityName=".activities.RepositoryActivity" />
 
-    </application>
+        <activity
+            android:name=".activities.UrlPullRequest"
+            android:parentActivityName=".activities.PullRequestActivity" />
 
+    </application>
 </manifest>
 
 
