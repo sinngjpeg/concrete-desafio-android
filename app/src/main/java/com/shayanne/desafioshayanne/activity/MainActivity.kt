@@ -60,16 +60,16 @@ class MainActivity() : AppCompatActivity(), RepositoryAdapter.ItemClickListener{
           idDoRecycleViewRequest.addOnScrollListener(object : EndlessRecyclerViewScrollListener(
               viewManager as LinearLayoutManager){
               override fun onLoadMore(page: Int, totalItemsCount: Int, view: RecyclerView?) {
-                  loadPage()
+                  loadPage(page)
               }
           })
 
-        loadPage()
+        loadPage(1)
     }
 
-    private fun loadPage() {
+    private fun loadPage(page:Int) {
         Log.d("MainActivity", "loading page $page")
-        callGit.getRepositories().enqueue(object : Callback<ItemsRepositories> {
+        callGit.getRepositories(page).enqueue(object : Callback<ItemsRepositories> {
             override fun onResponse(
                 call: Call<ItemsRepositories>,
                 response: Response<ItemsRepositories>
