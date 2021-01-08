@@ -14,10 +14,6 @@ object InicializadorRepositories {
                 .build()
                 .create(WebClientResquestPull::class.java)
 
-
     }
 
-
-
-   // val service: RepositorioService = retrofit.create<RepositorioService>(RepositorioService::class.java)
 }

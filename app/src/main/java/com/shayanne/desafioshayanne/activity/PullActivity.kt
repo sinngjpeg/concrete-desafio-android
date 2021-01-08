@@ -16,7 +16,7 @@ import com.shayanne.desafioshayanne.webservices.InicializadorRepositories
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-//import com.shayanne.desafioshayanne.databinding.ActivityPullBinding
+
 
 class PullActivity : AppCompatActivity(),PullAdapter.ItemClickListener {
 
@@ -31,31 +31,23 @@ class PullActivity : AppCompatActivity(),PullAdapter.ItemClickListener {
     private lateinit var bindingpull: ToolbarDetRepositorioBinding
     private lateinit var idDoRecycleViewPull: RecyclerView
     private lateinit var viewManager: RecyclerView.LayoutManager
-    private val pullAdapter = PullAdapter(listurl, this)
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-       // bindingpull.recyclerviewIdPull.adapter = pullAdapter
 
         bindingpull = ToolbarDetRepositorioBinding.inflate(layoutInflater)
         setContentView(bindingpull.root)
 
         viewManager = LinearLayoutManager(this)
 
-
         idDoRecycleViewPull = findViewById<RecyclerView>(R.id.recyclerview_id_pull).apply {
             // use this setting to improve performance if you know that changes
             // in content do not change the layout size of the RecyclerView
             setHasFixedSize(true)
-
-            // use a linear layout manager
             layoutManager = viewManager
-
-
         }
-
 
 
         repositorio = intent.getStringExtra(PullActivity.repositorio).toString()
@@ -66,7 +58,7 @@ class PullActivity : AppCompatActivity(),PullAdapter.ItemClickListener {
 
 
 
-        //BOTAO DE RETORNAR, VIDE LINHA 24  DO MANIFEST TB
+        //BOTAO DE RETORNAR
         setSupportActionBar(findViewById(R.id.toolbar2))
         supportActionBar!!.title = repositorio
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
@@ -96,26 +88,19 @@ class PullActivity : AppCompatActivity(),PullAdapter.ItemClickListener {
     }
 
 
-
-
     companion object {
         const val repositorio = "repositorio"
         const val owner = "owner"
         const val nome = "nome"
         const val picture = "picture"
-
-
     }
 
 
 
     override fun CreateIntentClickPullUrl(position: Int) {
-
-
         val url = listurl[position].urlpull
         val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
         startActivity(intent)
-
     }
 
 }
