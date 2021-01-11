@@ -2,5 +2,10 @@
     <string name="app_name">Github JavaPop</string>
     <string name="title_repository">Github JavaPop</string>
     <string name="title_pullrequest">Pull Requests</string>
-
+    <string name="user_name">User Name</string>
+    <string name="qnt_forks_text">18</string>
+    <string name="qnt_stars_text">42</string>
+    <string name="titulo_do_pull_request">Titulo do pull request</string>
+    <string name="descricao">Descricao</string>
+    <string name="username">username</string>
 </resources>

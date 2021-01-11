@@ -14,8 +14,8 @@ class RepositoryViewModel : ViewModel() {
 
     val repositoryLiveData: MutableLiveData<List<Repository>> = MutableLiveData()
 
-    fun getRepositories() {
-        RetrofitService.service.getRepositories(2).enqueue(
+    fun getRepositories(page: Int) {
+        RetrofitService.service.getRepositories(page).enqueue(
             object : Callback<ItemRepository> {
 
                 override fun onResponse(

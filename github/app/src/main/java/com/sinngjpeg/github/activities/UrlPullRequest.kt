@@ -25,7 +25,6 @@ class UrlPullRequest : AppCompatActivity() {
             }
         }
         webView.loadUrl(url.toString())
-
     }
 
     companion object {

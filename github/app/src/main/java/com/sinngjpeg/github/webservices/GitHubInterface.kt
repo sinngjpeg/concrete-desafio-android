@@ -17,7 +17,5 @@ interface GitHubInterface {
         @Path("owner") creator: String,
         @Path("repo") repository: String
     ): Call<List<PullRequest>>
-
-
 }
 

@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.sinngjpeg.github.R
 import com.sinngjpeg.github.adapter.RepositoryAdapter
+import com.sinngjpeg.github.model.data.Repository
 import com.sinngjpeg.github.viewModel.RepositoryViewModel
 import kotlinx.android.synthetic.main.pull_request_activity.*
 import kotlinx.android.synthetic.main.repository_activity.*
@@ -16,6 +17,12 @@ class RepositoryActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.repository_activity)
+
+        val adapterRepositoy = RepositoryAdapter(List(Repository), this)
+        var page = 1
+        val isLoading = false
+        var limit = 10
+
 
         val viewModel: RepositoryViewModel =
             ViewModelProviders.of(this).get(RepositoryViewModel::class.java)
@@ -28,7 +35,6 @@ class RepositoryActivity : AppCompatActivity() {
                         false
                     )
                     setHasFixedSize(true)
-
                     adapter = RepositoryAdapter(repository) { repository ->
                         val intent = PullRequestActivity.getStartIntent(
                             this@RepositoryActivity,
@@ -40,9 +46,33 @@ class RepositoryActivity : AppCompatActivity() {
                 }
             }
         })
-        viewModel.getRepositories()
+        viewModel.getRepositories(page)
+
+
+
+
+        fun onScrollListener(){
+            recycle_view_repository_list.addOnScrollListener(
+                object : RecyclerView.OnScrollListener(){
+                    override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+                        super.onScrollStateChanged(recyclerView, newState)
+                        val layoutManager = recyclerView.layoutManager as LinearLayoutManager
+                        val lastItem = layoutManager.findLastVisibleItemPosition()
+                        if (!isLoading){
+                            if(lastItem==adapterRepositoy.repository.size-1){
+                                limit = adapterRepositoy.repository.size+1
+                                page+=1
+                                viewModel.getRepositories(page)
+                            }
+                        }
+                    }
+                }
+            )
+        }
     }
 }
+
+
 
 
 
