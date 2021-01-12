@@ -2,6 +2,7 @@
 
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="?android:attr/selectableItemBackground"
@@ -32,7 +33,8 @@
             android:layout_height="match_parent"
             android:text="@string/descricao"
             android:textColor="@color/black"
-            android:textSize="11dp" />
+            android:textSize="12sp"
+             />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -71,7 +73,7 @@
 
             android:text="@string/username_pull"
             android:textColor="@color/teal_700"
-            android:textSize="10dp"
+            android:textSize="12sp"
             android:textStyle="bold" />
 
         <TextView
@@ -80,9 +82,8 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="45dp"
             android:layout_marginTop="1dp"
-
             android:text="@string/nome_sobrenome_pull"
-            android:textSize="10dp" />
+            android:textSize="12sp" />
     </LinearLayout>
 
 

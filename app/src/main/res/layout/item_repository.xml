@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <androidx.constraintlayout.widget.ConstraintLayout
-    android:id="@+id/constrain"
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/constrain"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:paddingLeft="16dp"
     android:paddingRight="16dp"
     android:paddingBottom="10dp"
@@ -17,7 +17,7 @@
 
 
     <LinearLayout
-        android:id="@+id/esquerda"
+        android:id="@+id/left_items"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -38,7 +38,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/descricao"
-            android:textSize="11dp"
+            android:textSize="12sp"
             android:textColor="@color/black"/>
 
         <LinearLayout
@@ -52,7 +52,8 @@
                 android:layout_width="16dp"
                 android:layout_height="16dp"
                 android:layout_marginTop="2dp"
-                android:src="@drawable/ic_fork" />
+                android:src="@drawable/ic_fork"
+                android:contentDescription="@string/content_description_no" />
 
             <TextView
                 android:id="@+id/forks"
@@ -60,7 +61,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/example_fork_stars"
                 android:textColor="@color/text_yellow"
-                android:textSize="16dp" />
+                android:textSize="16sp" />
 
 
 
@@ -70,7 +71,8 @@
                 android:layout_height="16dp"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="2dp"
-                android:src="@drawable/ic_star" />
+                android:src="@drawable/ic_star"
+                android:contentDescription="@string/content_description_no" />
 
             <TextView
                 android:id="@+id/star"
@@ -78,7 +80,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/example_fork_stars"
                 android:textColor="@color/text_yellow"
-                android:textSize="16dp" />
+                android:textSize="16sp" />
 
 
 
@@ -91,7 +93,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="139dp"
         android:layout_marginTop="8dp"
-        android:layout_toEndOf="@+id/esquerda"
+        android:layout_toEndOf="@+id/left_items"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="@+id/constrain"
         app:layout_constraintTop_toTopOf="@+id/constrain">
@@ -99,39 +101,48 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            >
 
             <ImageView
                 android:id="@+id/icone"
                 android:layout_width="64dp"
                 android:layout_height="64dp"
-                android:layout_marginStart="14dp"
-                android:layout_marginTop="12dp"
+                android:layout_gravity="center"
+                android:contentDescription="@string/content_description_no"
                 android:src="@drawable/ic_pessoa" />
 
             <TextView
                 android:id="@+id/username"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="14dp"
-                android:layout_marginTop="4dp"
                 android:text="@string/username"
                 android:textColor="@color/teal_700"
-                android:textSize="14dp"
+                android:textSize="14sp"
+                android:textAlignment="center"
                 android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/fullname"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginStart="6dp"
-                android:layout_marginTop="4dp"
+                android:layout_width="108dp"
+                android:layout_height="wrap_content"
                 android:text="@string/nome_sobrenome"
                 android:textAlignment="center"
-                android:textSize="10dp" />
+
+                android:textSize="12sp" />
         </LinearLayout>
 
     </LinearLayout>
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="1dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="8dp"
+        android:background="@color/sgilight_grey"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

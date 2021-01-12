@@ -16,9 +16,12 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
+
+
 class PullrequestActivity : AppCompatActivity(), PullrequestAdapter.ClickListener {
 
     private val getPull by lazy { get() }
+
 
     var owner = ""
     var repositorio = ""
@@ -44,7 +47,7 @@ class PullrequestActivity : AppCompatActivity(), PullrequestAdapter.ClickListene
         bindingPull.pullrequest.adapter = pullAdapter
         bindingPull.pullrequest.layoutManager = LinearLayoutManager(this)
         bindingPull.pullrequest.setHasFixedSize(true)
-
+        bindingPull.pullToolbar.title = repositorio
 
         getPull(owner,repositorio)
     }

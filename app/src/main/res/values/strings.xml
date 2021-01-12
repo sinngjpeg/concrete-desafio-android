@@ -9,4 +9,5 @@
     <string name="username_pull">username</string>
     <string name="nome_sobrenome_pull">Nome Sobrenome</string>
     <string name="title_home">Gihub JavaPop</string>
+    <string name="content_description_no">no</string>
 </resources>
