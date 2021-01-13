@@ -1,4 +1,4 @@
-package com.shayanne.desafioshayanne.activity
+package com.shayanne.desafioshayanne.repository
 
 import android.content.Intent
 import android.os.Bundle
@@ -8,31 +8,36 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.shayanne.desafioshayanne.EndlessRecyclerViewScrollListener
 import com.shayanne.desafioshayanne.R
-import com.shayanne.desafioshayanne.adapter.RepositoryAdapter
-import com.shayanne.desafioshayanne.databinding.ActivityMainBinding
-import com.shayanne.desafioshayanne.modelo.ItemsRepositories
-import com.shayanne.desafioshayanne.webservices.InicializadorRepositories.initRep
+import com.shayanne.desafioshayanne.pull.PullActivity
+import com.shayanne.desafioshayanne.api.InicializadorRepositories.initRep
+import com.shayanne.desafioshayanne.databinding.ActivityRepositoryBinding
+import com.shayanne.desafioshayanne.model.ItemsRepositories
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 
-class MainActivity() : AppCompatActivity(), RepositoryAdapter.ItemClickListener{
+
+class RepositoryActivity() : AppCompatActivity(), RepositoryAdapter.ItemClickListener{
 
 
     private val callGit by lazy { initRep() }
-    private lateinit var binding: ActivityMainBinding
-    private lateinit var viewManager: RecyclerView.LayoutManager
-    private val repositoryAdapter = RepositoryAdapter(ArrayList(),this)
+    private lateinit var binding: ActivityRepositoryBinding
+    private val repositoryAdapter =
+        RepositoryAdapter(
+            ArrayList(),
+            this
+        )
 
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
+        binding = ActivityRepositoryBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        lateinit var viewManager: RecyclerView.LayoutManager
 
         viewManager = LinearLayoutManager(this)
 
@@ -60,13 +65,14 @@ class MainActivity() : AppCompatActivity(), RepositoryAdapter.ItemClickListener{
         Log.d("MainActivity-loadMore", "loading page $page")
 
         fun tryAgain(){
-            AlertDialog.Builder(this@MainActivity)
+            AlertDialog.Builder(this@RepositoryActivity)
                 .setMessage(R.string.error_network_request_failed)
                 .setPositiveButton(android.R.string.ok ){ _, _ ->
                     loadPage(page)
                 }
                 .show()
         }
+
 
         callGit.getRepositories(page).enqueue(object : Callback<ItemsRepositories> {
             override fun onResponse(
@@ -85,7 +91,7 @@ class MainActivity() : AppCompatActivity(), RepositoryAdapter.ItemClickListener{
             }
             override fun onFailure(call: Call<ItemsRepositories>, t: Throwable) {
                 tryAgain()
-                Toast.makeText(this@MainActivity, t.message, Toast.LENGTH_LONG).show()
+                Toast.makeText(this@RepositoryActivity, t.message, Toast.LENGTH_LONG).show()
             }
         })
     }
@@ -93,9 +99,9 @@ class MainActivity() : AppCompatActivity(), RepositoryAdapter.ItemClickListener{
 
     override fun CreateIntentClick(position: Int) {
         val intent = Intent(this, PullActivity::class.java)
-        intent.putExtra(PullActivity.owner, repositoryAdapter.minhalista[position].donoRep.username_rep)
-        intent.putExtra(PullActivity.picture, repositoryAdapter.minhalista[position].donoRep.user_rep)
-        intent.putExtra(PullActivity.repositorio, repositoryAdapter.minhalista[position].nome_repositorio)
+        intent.putExtra(PullActivity.OWNER, repositoryAdapter.minhalista[position].owner.username_rep)
+        intent.putExtra(PullActivity.PICTURE, repositoryAdapter.minhalista[position].owner.user_rep)
+        intent.putExtra(PullActivity.REPOSITORY, repositoryAdapter.minhalista[position].nome_repositorio)
         startActivity(intent)
     }
 

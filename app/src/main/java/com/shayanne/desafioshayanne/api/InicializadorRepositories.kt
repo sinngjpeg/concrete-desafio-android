@@ -1,6 +1,5 @@
-package com.shayanne.desafioshayanne.webservices
+package com.shayanne.desafioshayanne.api
 
-import com.shayanne.desafioshayanne.interfaces.WebClientResquestPull
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 

@@ -1,4 +1,4 @@
-package com.shayanne.desafioshayanne.adapter
+package com.shayanne.desafioshayanne.repository
 
 import android.view.LayoutInflater
 import android.view.View
@@ -7,13 +7,13 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.shayanne.desafioshayanne.R
-import com.shayanne.desafioshayanne.activity.MainActivity
-import com.shayanne.desafioshayanne.modelo.Repository
+import com.shayanne.desafioshayanne.model.RepositoryRequests
 import com.squareup.picasso.Picasso
 
 class RepositoryAdapter(
-         val minhalista: MutableList<Repository>,
-        private val listener: MainActivity):
+    val minhalista: MutableList<RepositoryRequests>,
+    private val listener: RepositoryActivity
+):
         RecyclerView.Adapter<RepositoryAdapter.List1ViewHolder>() {
 
     // cria a view que precisa ser repetida
@@ -22,7 +22,7 @@ class RepositoryAdapter(
     //  retorna a view que devemos criar e repetir
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): List1ViewHolder {
 
-        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.conteudo_scroll_rep,
+        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.scroll_rep,
                 parent, false)
 
         return List1ViewHolder(itemView)
@@ -36,9 +36,9 @@ class RepositoryAdapter(
         holder.nome_repositorio.text = posicaoItem.nome_repositorio
         holder.descricao_rep.text = posicaoItem.descricao_rep
         Picasso.get()
-            .load(posicaoItem.donoRep.user_rep)
+            .load(posicaoItem.owner.user_rep)
             .into(holder.user_rep)
-        holder.username_rep.text = posicaoItem.donoRep.username_rep
+        holder.username_rep.text = posicaoItem.owner.username_rep
         holder.nome_completo_rep.text = posicaoItem.nome_completo_rep
         holder.n_conexoes.text = posicaoItem.n_conexoes.toString()
         holder.n_estrelas.text = posicaoItem.n_estrelas.toString()
@@ -47,7 +47,7 @@ class RepositoryAdapter(
 
     override fun getItemCount() = minhalista.size
 
-    fun addRepositories(items: List<Repository>) {
+    fun addRepositories(items: List<RepositoryRequests>) {
         val previousCount = itemCount
         minhalista.addAll(items)
         notifyItemRangeInserted(previousCount,items.size )

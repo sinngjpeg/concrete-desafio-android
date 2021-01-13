@@ -1,4 +1,4 @@
-package com.shayanne.desafioshayanne.activity
+package com.shayanne.desafioshayanne.pull
 
 import android.content.Intent
 import android.net.Uri
@@ -9,26 +9,26 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.shayanne.desafioshayanne.R
-import com.shayanne.desafioshayanne.adapter.PullAdapter
-import com.shayanne.desafioshayanne.databinding.ToolbarDetRepositorioBinding
-import com.shayanne.desafioshayanne.modelo.PullRequests
-import com.shayanne.desafioshayanne.webservices.InicializadorRepositories
+import com.shayanne.desafioshayanne.api.InicializadorRepositories
+import com.shayanne.desafioshayanne.databinding.ActivityPullBinding
+import com.shayanne.desafioshayanne.model.PullRequests
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 
-class PullActivity : AppCompatActivity(),PullAdapter.ItemClickListener {
+class PullActivity : AppCompatActivity(),
+    PullAdapter.ItemClickListener {
 
     var repositorio = ""
     var owner = ""
     var nome = ""
-    var picture = ""
+  //  var picture = ""
     private val listurl = ArrayList<PullRequests>()
 
 
     private val callGit by lazy { InicializadorRepositories.initRep() }
-    private lateinit var bindingpull: ToolbarDetRepositorioBinding
+    private lateinit var bindingpull: ActivityPullBinding
     private lateinit var idDoRecycleViewPull: RecyclerView
     private lateinit var viewManager: RecyclerView.LayoutManager
 
@@ -37,7 +37,7 @@ class PullActivity : AppCompatActivity(),PullAdapter.ItemClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        bindingpull = ToolbarDetRepositorioBinding.inflate(layoutInflater)
+        bindingpull = ActivityPullBinding.inflate(layoutInflater)
         setContentView(bindingpull.root)
 
         viewManager = LinearLayoutManager(this)
@@ -50,10 +50,10 @@ class PullActivity : AppCompatActivity(),PullAdapter.ItemClickListener {
         }
 
 
-        repositorio = intent.getStringExtra(PullActivity.repositorio).toString()
-        owner = intent.getStringExtra(PullActivity.owner).toString()
-        nome = intent.getStringExtra(PullActivity.nome).toString()
-        picture = intent.getStringExtra(PullActivity.picture).toString()
+        repositorio = intent.getStringExtra(Companion.REPOSITORY).toString()
+        owner = intent.getStringExtra(Companion.OWNER).toString()
+        nome = intent.getStringExtra(Companion.NAME).toString()
+        //picture = intent.getStringExtra(Companion.PICTURE).toString()
 
 
 
@@ -79,7 +79,10 @@ class PullActivity : AppCompatActivity(),PullAdapter.ItemClickListener {
                 if (response.isSuccessful) {
                     response.body()?.let {
                         bindingpull.recyclerviewIdPull.adapter =
-                            PullAdapter(listurl, this@PullActivity)
+                            PullAdapter(
+                                listurl,
+                                this@PullActivity
+                            )
                         listurl.addAll(it)
                     }
                 }
@@ -89,10 +92,10 @@ class PullActivity : AppCompatActivity(),PullAdapter.ItemClickListener {
 
 
     companion object {
-        const val repositorio = "repositorio"
-        const val owner = "owner"
-        const val nome = "nome"
-        const val picture = "picture"
+        const val REPOSITORY = "repositorio"
+        const val OWNER = "owner"
+        const val NAME = "nome"
+        const val PICTURE = "picture"
     }
 
 

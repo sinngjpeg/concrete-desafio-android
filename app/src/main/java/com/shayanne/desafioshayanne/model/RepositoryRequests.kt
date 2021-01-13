@@ -1,0 +1,13 @@
+package com.shayanne.desafioshayanne.model
+
+import com.google.gson.annotations.SerializedName
+
+data class RepositoryRequests(
+    @SerializedName("name") val nome_repositorio: String,
+    @SerializedName("description") val descricao_rep: String,
+    @SerializedName("owner") val owner: Owner,
+    @SerializedName("full_name") val nome_completo_rep: String,
+    @SerializedName("forks_count") var n_conexoes: Int,
+    @SerializedName("stargazers_count") var n_estrelas: Int
+)
+

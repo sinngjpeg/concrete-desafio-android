@@ -1,4 +1,4 @@
-package com.shayanne.desafioshayanne;
+package com.shayanne.desafioshayanne.repository;
 
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;

@@ -1,7 +1,7 @@
-package com.shayanne.desafioshayanne.interfaces
+package com.shayanne.desafioshayanne.api
 
-import com.shayanne.desafioshayanne.modelo.ItemsRepositories
-import com.shayanne.desafioshayanne.modelo.PullRequests
+import com.shayanne.desafioshayanne.model.ItemsRepositories
+import com.shayanne.desafioshayanne.model.PullRequests
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path

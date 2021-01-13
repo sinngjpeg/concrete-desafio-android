@@ -1,4 +1,4 @@
-package com.shayanne.desafioshayanne.adapter
+package com.shayanne.desafioshayanne.pull
 
 import android.view.LayoutInflater
 import android.view.View
@@ -7,7 +7,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.shayanne.desafioshayanne.R
-import com.shayanne.desafioshayanne.modelo.PullRequests
+import com.shayanne.desafioshayanne.model.PullRequests
 import com.squareup.picasso.Picasso
 
 class PullAdapter(
@@ -20,7 +20,7 @@ class PullAdapter(
     RecyclerView.Adapter <PullAdapter.List2ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): List2ViewHolder {
-        val itemView2 = LayoutInflater.from(parent.context).inflate(R.layout.conteudo_scroll_pull,
+        val itemView2 = LayoutInflater.from(parent.context).inflate(R.layout.scroll_pull,
                 parent, false)
 
         return List2ViewHolder(itemView2)
@@ -33,9 +33,9 @@ class PullAdapter(
         holder.titulo_pull.text = posicaoItem.titulo_pull
         holder.descricao_pull.text = posicaoItem.descricao_pull
         Picasso.get()
-            .load(posicaoItem.donoRep.user_rep)
+            .load(posicaoItem.owner.user_rep)
             .into(holder.user_pull)
-        holder.username_pull.text = posicaoItem.donoRep.username_rep
+        holder.username_pull.text = posicaoItem.owner.username_rep
         holder.nome_completo_pull.text = posicaoItem.nome_completo_pull
         holder.itemView.setOnClickListener{callUrl.CreateIntentClickPullUrl(position)}
 
