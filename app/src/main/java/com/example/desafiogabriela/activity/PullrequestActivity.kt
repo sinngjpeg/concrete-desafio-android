@@ -76,6 +76,4 @@ class PullrequestActivity : AppCompatActivity(), PullrequestAdapter.ClickListene
         val intentPull= Intent(Intent.ACTION_VIEW, Uri.parse(lista[position].html))
         startActivity(intentPull)
     }
-
-
 }

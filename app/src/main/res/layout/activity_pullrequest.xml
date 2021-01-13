@@ -8,26 +8,16 @@
     android:layout_height="match_parent"
     tools:context=".activity.PullrequestActivity">
 
-
-
-
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/pull_toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#333333"
-        app:contentInsetEnd="0dp"
-        app:contentInsetLeft="0dp"
-        app:contentInsetRight="0dp"
-        app:contentInsetStart="0dp"
-        tools:ignore="MissingConstraints"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:title="Nome Repositório"
-        style="@style/Widget.MaterialComponents.Toolbar.Primary"
-        >
-
-
-    </androidx.appcompat.widget.Toolbar>
-
+        style="@style/Widget.MaterialComponents.Toolbar.Primary"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id='@+id/pullrequest'
@@ -36,12 +26,8 @@
         android:layout_marginTop="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/pull_toolbar"
-        app:layout_constraintVertical_bias="0.0"
         tools:listitem="@layout/item_pullrequest" />
-
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
