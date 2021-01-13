@@ -6,9 +6,9 @@ import androidx.lifecycle.ViewModel
 
 class GitViewModel : ViewModel() {
 
-  /*  private val state = MutableLiveData<LoginViewState>()
+    /*  private val state = MutableLiveData<LoginViewState>()
 
-    fun getViewState(): LiveData<LoginViewState> = state*/
+      fun getViewState(): LiveData<LoginViewState> = state*/
 
     // erro
     // servidor respondeu com erro

@@ -4,11 +4,11 @@ import com.google.gson.annotations.SerializedName
 
 data class PullRequests(
 
-    @SerializedName("title") val titulo_pull: String,
-    @SerializedName("body") val descricao_pull: String,
+    @SerializedName("title") val title: String,
+    @SerializedName("body") val body: String,
     @SerializedName("user") val owner: Owner,
-    @SerializedName("html_url") val urlpull : String,
-    @SerializedName("full_name") val nome_completo_pull: String
+    @SerializedName("html_url") val htmlUrl: String,
+    @SerializedName("full_name") val fullName: String
 
 )
 

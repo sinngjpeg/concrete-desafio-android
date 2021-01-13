@@ -13,8 +13,8 @@ import com.squareup.picasso.Picasso
 class RepositoryAdapter(
     val minhalista: MutableList<RepositoryRequests>,
     private val listener: RepositoryActivity
-):
-        RecyclerView.Adapter<RepositoryAdapter.List1ViewHolder>() {
+) :
+    RecyclerView.Adapter<RepositoryAdapter.List1ViewHolder>() {
 
     // cria a view que precisa ser repetida
     // cria um objeto do item e nele infla os ids para mostrar na tela,
@@ -22,8 +22,10 @@ class RepositoryAdapter(
     //  retorna a view que devemos criar e repetir
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): List1ViewHolder {
 
-        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.scroll_rep,
-                parent, false)
+        val itemView = LayoutInflater.from(parent.context).inflate(
+            R.layout.scroll_rep,
+            parent, false
+        )
 
         return List1ViewHolder(itemView)
     }
@@ -33,15 +35,15 @@ class RepositoryAdapter(
     //por isso passe td na mesma ordem aqui
     override fun onBindViewHolder(holder: List1ViewHolder, position: Int) {
         val posicaoItem = minhalista[position]
-        holder.nome_repositorio.text = posicaoItem.nome_repositorio
-        holder.descricao_rep.text = posicaoItem.descricao_rep
+        holder.nome_repositorio.text = posicaoItem.name
+        holder.descricao_rep.text = posicaoItem.description
         Picasso.get()
-            .load(posicaoItem.owner.user_rep)
+            .load(posicaoItem.owner.avatarUrl)
             .into(holder.user_rep)
-        holder.username_rep.text = posicaoItem.owner.username_rep
-        holder.nome_completo_rep.text = posicaoItem.nome_completo_rep
-        holder.n_conexoes.text = posicaoItem.n_conexoes.toString()
-        holder.n_estrelas.text = posicaoItem.n_estrelas.toString()
+        holder.username_rep.text = posicaoItem.owner.login
+        holder.nome_completo_rep.text = posicaoItem.fullName
+        holder.n_conexoes.text = posicaoItem.forksCount.toString()
+        holder.n_estrelas.text = posicaoItem.stargazersCount.toString()
     }
 
 
@@ -50,11 +52,12 @@ class RepositoryAdapter(
     fun addRepositories(items: List<RepositoryRequests>) {
         val previousCount = itemCount
         minhalista.addAll(items)
-        notifyItemRangeInserted(previousCount,items.size )
+        notifyItemRangeInserted(previousCount, items.size)
     }
 
 
-    inner class List1ViewHolder (itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener{
+    inner class List1ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView),
+        View.OnClickListener {
         val nome_repositorio: TextView = itemView.findViewById(R.id.nome_repositorio)
         val descricao_rep: TextView = itemView.findViewById(R.id.descricao_rep)
         val user_rep: ImageView = itemView.findViewById(R.id.user_rep)
@@ -69,16 +72,15 @@ class RepositoryAdapter(
 
         override fun onClick(v: View?) {
             val position = adapterPosition
-            if( position != RecyclerView.NO_POSITION){
+            if (position != RecyclerView.NO_POSITION) {
                 listener.CreateIntentClick(position)
             }
         }
     }
 
-    interface ItemClickListener{
+    interface ItemClickListener {
         fun CreateIntentClick(position: Int)
     }
-
 
 
 }

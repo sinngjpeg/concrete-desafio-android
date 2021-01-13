@@ -16,12 +16,14 @@ class PullAdapter(
     private val minhalistapull: List<PullRequests>,
 
     private val callUrl: ItemClickListener
-):
-    RecyclerView.Adapter <PullAdapter.List2ViewHolder>() {
+) :
+    RecyclerView.Adapter<PullAdapter.List2ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): List2ViewHolder {
-        val itemView2 = LayoutInflater.from(parent.context).inflate(R.layout.scroll_pull,
-                parent, false)
+        val itemView2 = LayoutInflater.from(parent.context).inflate(
+            R.layout.scroll_pull,
+            parent, false
+        )
 
         return List2ViewHolder(itemView2)
 
@@ -30,37 +32,33 @@ class PullAdapter(
 
     override fun onBindViewHolder(holder: List2ViewHolder, position: Int) {
         val posicaoItem = minhalistapull[position]
-        holder.titulo_pull.text = posicaoItem.titulo_pull
-        holder.descricao_pull.text = posicaoItem.descricao_pull
+        holder.titulo_pull.text = posicaoItem.title
+        holder.descricao_pull.text = posicaoItem.body
         Picasso.get()
-            .load(posicaoItem.owner.user_rep)
+            .load(posicaoItem.owner.avatarUrl)
             .into(holder.user_pull)
-        holder.username_pull.text = posicaoItem.owner.username_rep
-        holder.nome_completo_pull.text = posicaoItem.nome_completo_pull
-        holder.itemView.setOnClickListener{callUrl.CreateIntentClickPullUrl(position)}
+        holder.username_pull.text = posicaoItem.owner.login
+        holder.nome_completo_pull.text = posicaoItem.fullName
+        holder.itemView.setOnClickListener { callUrl.CreateIntentClickPullUrl(posicaoItem/*position*/) }
 
-       
+
     }
 
     override fun getItemCount() = minhalistapull.size
 
 
-
-
-   inner class List2ViewHolder(itemView2: View) : RecyclerView.ViewHolder(itemView2) {
-        val titulo_pull : TextView = itemView2.findViewById(R.id.titulo_pull)
-        val descricao_pull : TextView = itemView2.findViewById(R.id.descricao_pull)
+    inner class List2ViewHolder(itemView2: View) : RecyclerView.ViewHolder(itemView2) {
+        val titulo_pull: TextView = itemView2.findViewById(R.id.titulo_pull)
+        val descricao_pull: TextView = itemView2.findViewById(R.id.descricao_pull)
         val user_pull: ImageView = itemView2.findViewById(R.id.user_pull)
-        val username_pull : TextView = itemView2.findViewById(R.id.username_pull)
-        val nome_completo_pull : TextView = itemView2.findViewById(R.id.nome_completo_pull)
+        val username_pull: TextView = itemView2.findViewById(R.id.username_pull)
+        val nome_completo_pull: TextView = itemView2.findViewById(R.id.nome_completo_pull)
 
     }
 
-    interface ItemClickListener{
-        fun CreateIntentClickPullUrl(position: Int)
+    interface ItemClickListener {
+        fun CreateIntentClickPullUrl(item: PullRequests/*position: Int*/)
     }
-
-
 
 
 }

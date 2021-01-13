@@ -23,15 +23,14 @@ class PullActivity : AppCompatActivity(),
     var repositorio = ""
     var owner = ""
     var nome = ""
-  //  var picture = ""
+
+    //  var picture = ""
     private val listurl = ArrayList<PullRequests>()
 
 
-    private val callGit by lazy { InicializadorRepositories.initRep() }
+    private val callGit by lazy { InicializadorRepositories.webClientGithub/*initRep()*/ }
     private lateinit var bindingpull: ActivityPullBinding
     private lateinit var idDoRecycleViewPull: RecyclerView
-    private lateinit var viewManager: RecyclerView.LayoutManager
-
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,6 +38,8 @@ class PullActivity : AppCompatActivity(),
 
         bindingpull = ActivityPullBinding.inflate(layoutInflater)
         setContentView(bindingpull.root)
+
+        lateinit var viewManager: RecyclerView.LayoutManager
 
         viewManager = LinearLayoutManager(this)
 
@@ -54,8 +55,6 @@ class PullActivity : AppCompatActivity(),
         owner = intent.getStringExtra(Companion.OWNER).toString()
         nome = intent.getStringExtra(Companion.NAME).toString()
         //picture = intent.getStringExtra(Companion.PICTURE).toString()
-
-
 
 
         //BOTAO DE RETORNAR
@@ -99,9 +98,9 @@ class PullActivity : AppCompatActivity(),
     }
 
 
-
-    override fun CreateIntentClickPullUrl(position: Int) {
-        val url = listurl[position].urlpull
+    override fun CreateIntentClickPullUrl(item: PullRequests/*position: Int*/) {
+        val url = item.htmlUrl
+        /*val url = listurl[position].urlpull*/
         val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
         startActivity(intent)
     }

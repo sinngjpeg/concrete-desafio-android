@@ -10,11 +10,14 @@ import retrofit2.http.Query
 interface WebClientResquestPull {
 
     @GET("search/repositories?q=language:Java&sort=stars&")
-    fun getRepositories(@Query("page")page:Int) :Call<ItemsRepositories>
+    fun getRepositories(@Query("page") page: Int): Call<ItemsRepositories>
 
 
     @GET("repos/{owner}/{repositorio}/pulls")
-    fun getPullRequests(@Path("owner") donoRep: String, @Path("repositorio") nome_repositorio: String): Call<List<PullRequests>>
+    fun getPullRequests(
+        @Path("owner") donoRep: String,
+        @Path("repositorio") nome_repositorio: String
+    ): Call<List<PullRequests>>
 
 
 }

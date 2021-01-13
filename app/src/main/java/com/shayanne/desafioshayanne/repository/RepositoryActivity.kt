@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.shayanne.desafioshayanne.R
 import com.shayanne.desafioshayanne.pull.PullActivity
-import com.shayanne.desafioshayanne.api.InicializadorRepositories.initRep
+import com.shayanne.desafioshayanne.api.InicializadorRepositories.webClientGithub
 import com.shayanne.desafioshayanne.databinding.ActivityRepositoryBinding
 import com.shayanne.desafioshayanne.model.ItemsRepositories
 import retrofit2.Call
@@ -18,18 +18,18 @@ import retrofit2.Callback
 import retrofit2.Response
 
 
+class RepositoryActivity() : AppCompatActivity(), RepositoryAdapter.ItemClickListener {
 
-class RepositoryActivity() : AppCompatActivity(), RepositoryAdapter.ItemClickListener{
+
+    private val callGit by lazy { webClientGithub /*initRep()*/ }
 
 
-    private val callGit by lazy { initRep() }
     private lateinit var binding: ActivityRepositoryBinding
     private val repositoryAdapter =
         RepositoryAdapter(
             ArrayList(),
             this
         )
-
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -51,23 +51,24 @@ class RepositoryActivity() : AppCompatActivity(), RepositoryAdapter.ItemClickLis
         }
 
 
-          binding.recyclerviewId.addOnScrollListener(object : EndlessRecyclerViewScrollListener(
-              viewManager as LinearLayoutManager){
-              override fun onLoadMore(page: Int, totalItemsCount: Int, view: RecyclerView?) {
-                  loadPage(page)
-              }
-          })
+        binding.recyclerviewId.addOnScrollListener(object : EndlessRecyclerViewScrollListener(
+            viewManager as LinearLayoutManager
+        ) {
+            override fun onLoadMore(page: Int, totalItemsCount: Int, view: RecyclerView?) {
+                loadPage(page)
+            }
+        })
 
         loadPage(1)
     }
 
-    private fun loadPage(page:Int) {
+    private fun loadPage(page: Int) {
         Log.d("MainActivity-loadMore", "loading page $page")
 
-        fun tryAgain(){
+        fun tryAgain() {
             AlertDialog.Builder(this@RepositoryActivity)
                 .setMessage(R.string.error_network_request_failed)
-                .setPositiveButton(android.R.string.ok ){ _, _ ->
+                .setPositiveButton(android.R.string.ok) { _, _ ->
                     loadPage(page)
                 }
                 .show()
@@ -80,15 +81,19 @@ class RepositoryActivity() : AppCompatActivity(), RepositoryAdapter.ItemClickLis
                 response: Response<ItemsRepositories>
             ) {
                 if (response.isSuccessful) {
-                    Log.d("MainActivity-loadMore", "isSucessfull, page : $page" )
+                    Log.d("MainActivity-loadMore", "isSucessfull, page : $page")
                     response.body()?.let {
                         repositoryAdapter.addRepositories(it.items)
                     }
-                }else{
-                    Log.d("MainActivity-loadMore", "is NOT sucessful - ${response.code()} + ${response.errorBody()?.string()}")
+                } else {
+                    Log.d(
+                        "MainActivity-loadMore",
+                        "is NOT sucessful - ${response.code()} + ${response.errorBody()?.string()}"
+                    )
                     tryAgain()
                 }
             }
+
             override fun onFailure(call: Call<ItemsRepositories>, t: Throwable) {
                 tryAgain()
                 Toast.makeText(this@RepositoryActivity, t.message, Toast.LENGTH_LONG).show()
@@ -96,15 +101,16 @@ class RepositoryActivity() : AppCompatActivity(), RepositoryAdapter.ItemClickLis
         })
     }
 
-
     override fun CreateIntentClick(position: Int) {
         val intent = Intent(this, PullActivity::class.java)
-        intent.putExtra(PullActivity.OWNER, repositoryAdapter.minhalista[position].owner.username_rep)
-        intent.putExtra(PullActivity.PICTURE, repositoryAdapter.minhalista[position].owner.user_rep)
-        intent.putExtra(PullActivity.REPOSITORY, repositoryAdapter.minhalista[position].nome_repositorio)
+        intent.putExtra(PullActivity.OWNER, repositoryAdapter.minhalista[position].owner.login)
+        intent.putExtra(
+            PullActivity.PICTURE,
+            repositoryAdapter.minhalista[position].owner.avatarUrl
+        )
+        intent.putExtra(PullActivity.REPOSITORY, repositoryAdapter.minhalista[position].name)
         startActivity(intent)
     }
-
 
 
 }
