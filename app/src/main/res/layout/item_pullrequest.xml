@@ -1,74 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/esquerda"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="?android:attr/selectableItemBackground"
+    android:orientation="vertical"
     android:paddingLeft="16dp"
-    android:paddingRight="16dp"
-    android:paddingBottom="10dp">
-
-
-    <LinearLayout
-        android:id="@+id/esquerda"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:orientation="vertical">
-
-        <TextView
-            android:id="@+id/titulo_pullrequest"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/titulo_do_pull_request"
-            android:textColor="@color/teal_700"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/boby_pullrequest"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="@string/descricao"
-            android:textColor="@color/black"
-            android:textSize="12sp" />
-
-        <ImageView
-            android:id="@+id/icone_pullrequest"
-            android:layout_width="39dp"
-            android:layout_height="35dp"
-            android:layout_marginTop="10dp"
-            android:src="@drawable/ic_pessoa"
-            android:contentDescription="@string/content_description_no" />
-
-        <TextView
-            android:id="@+id/username_pullrequest"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="45dp"
-            android:layout_marginTop="-31dp"
-            android:text="@string/username_pull"
-            android:textColor="@color/teal_700"
-            android:textSize="12sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/fullname_pullrequest"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="45dp"
-            android:layout_marginTop="1dp"
-            android:text="@string/nome_sobrenome_pull"
-            android:textSize="12sp" />
-
-    </LinearLayout>
-
+    android:paddingRight="16dp">
 
     <View
         android:layout_width="wrap_content"
         android:layout_height="1dp"
         android:layout_alignParentTop="true"
         android:layout_marginStart="8dp"
+        android:layout_marginBottom="16dp"
         android:background="@color/sgilight_grey" />
 
-</RelativeLayout>
+    <TextView
+        android:id="@+id/titulo_pullrequest"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/titulo_do_pull_request"
+        android:textColor="@color/teal_700"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/boby_pullrequest"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="@string/descricao"
+        android:textColor="@color/black"
+        android:textSize="12sp" />
+
+    <ImageView
+        android:id="@+id/icone_pullrequest"
+        android:layout_width="39dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="10dp"
+        android:contentDescription="@string/content_description_no"
+        android:src="@drawable/ic_pessoa" />
+
+    <TextView
+        android:id="@+id/username_pullrequest"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="45dp"
+        android:layout_marginTop="-31dp"
+        android:text="@string/username_pull"
+        android:textColor="@color/teal_700"
+        android:textSize="12sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/fullname_pullrequest"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="45dp"
+        android:layout_marginTop="1dp"
+        android:text="@string/nome_sobrenome_pull"
+        android:textSize="12sp" />
+
+</LinearLayout>

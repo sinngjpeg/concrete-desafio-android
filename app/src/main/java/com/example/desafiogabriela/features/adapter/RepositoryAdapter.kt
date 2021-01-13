@@ -1,4 +1,4 @@
-package com.example.desafiogabriela.adapter
+package com.example.desafiogabriela.features.adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,9 +6,9 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.desafiogabriela.model.ItemRepository
+import com.example.desafiogabriela.features.model.ItemRepository
 import com.example.desafiogabriela.R
-import com.example.desafiogabriela.activity.RepositoryActivity
+import com.example.desafiogabriela.features.activity.RepositoryActivity
 import com.squareup.picasso.Picasso
 
 

@@ -13,18 +13,18 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DesafioGabriela"
         >
-        <activity android:name=".activity.RepositoryActivity">
+        <activity android:name="com.example.desafiogabriela.features.activity.RepositoryActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.desafiogabriela.activity.RepositoryActivity" />
+                android:value="com.example.desafiogabriela.features.activity.RepositoryActivity" />
         </activity>
         <activity
-            android:name=".activity.PullrequestActivity"
-            android:parentActivityName="com.example.desafiogabriela.activity.RepositoryActivity"
+            android:name="com.example.desafiogabriela.features.activity.PullrequestActivity"
+            android:parentActivityName="com.example.desafiogabriela.features.activity.RepositoryActivity"
             />
 
 

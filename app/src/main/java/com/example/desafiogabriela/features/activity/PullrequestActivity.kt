@@ -1,4 +1,4 @@
-package com.example.desafiogabriela.activity
+package com.example.desafiogabriela.features.activity
 
 import android.content.Intent
 import android.net.Uri
@@ -8,9 +8,9 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.desafiogabriela.utils.Constante
-import com.example.desafiogabriela.model.ItemPullrequest
-import com.example.desafiogabriela.adapter.PullrequestAdapter
-import com.example.desafiogabriela.webservice.InicializadorDeRetrofit.get
+import com.example.desafiogabriela.features.model.ItemPullrequest
+import com.example.desafiogabriela.features.adapter.PullrequestAdapter
+import com.example.desafiogabriela.network.webservice.InicializadorDeRetrofit.get
 import com.example.desafiogabriela.databinding.ActivityPullrequestBinding
 import retrofit2.Call
 import retrofit2.Callback

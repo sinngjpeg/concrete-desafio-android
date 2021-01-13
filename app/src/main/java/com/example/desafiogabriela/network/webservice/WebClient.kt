@@ -1,13 +1,11 @@
-package com.example.desafiogabriela.webservice
+package com.example.desafiogabriela.network.webservice
 
-
-import com.example.desafiogabriela.model.ItemPullrequest
-import com.example.desafiogabriela.model.Items
+import com.example.desafiogabriela.features.model.ItemPullrequest
+import com.example.desafiogabriela.features.model.Items
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
-
 
 interface WebClient {
 
@@ -16,7 +14,6 @@ interface WebClient {
 
     @GET("repos/{owner}/{repositorio}/pulls")
     fun buscaPull(@Path("owner") owner: String, @Path("repositorio") repositorio: String): Call<List<ItemPullrequest>>
-
 
 }
 

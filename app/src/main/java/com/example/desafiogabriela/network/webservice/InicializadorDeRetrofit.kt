@@ -1,4 +1,4 @@
-package com.example.desafiogabriela.webservice
+package com.example.desafiogabriela.network.webservice
 
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor

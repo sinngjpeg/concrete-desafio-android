@@ -1,4 +1,4 @@
-package com.example.desafiogabriela.activity
+package com.example.desafiogabriela.features.activity
 
 import android.content.Intent
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -8,12 +8,12 @@ import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
-import com.example.desafiogabriela.model.ItemRepository
-import com.example.desafiogabriela.adapter.RepositoryAdapter
-import com.example.desafiogabriela.webservice.InicializadorDeRetrofit.get
+import com.example.desafiogabriela.features.model.ItemRepository
+import com.example.desafiogabriela.features.adapter.RepositoryAdapter
+import com.example.desafiogabriela.network.webservice.InicializadorDeRetrofit.get
 import com.example.desafiogabriela.databinding.ActivityRepositoryBinding
 
-import com.example.desafiogabriela.model.Items
+import com.example.desafiogabriela.features.model.Items
 import com.example.desafiogabriela.utils.Constante
 
 import retrofit2.Call
