@@ -6,7 +6,7 @@
     tools:listitem="@layout/item_pullrequest"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".features.activity.PullrequestActivity">
+    tools:context=".pull.PullrequestActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/pull_toolbar"

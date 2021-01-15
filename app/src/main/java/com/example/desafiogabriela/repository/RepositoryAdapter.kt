@@ -1,4 +1,4 @@
-package com.example.desafiogabriela.features.adapter
+package com.example.desafiogabriela.repository
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,15 +6,15 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.desafiogabriela.features.model.ItemRepository
+import com.example.desafiogabriela.model.ItemRepository
 import com.example.desafiogabriela.R
-import com.example.desafiogabriela.features.activity.RepositoryActivity
 import com.squareup.picasso.Picasso
 
-
 class RepositoryAdapter(
-    var list: MutableList<ItemRepository>,
+
+    var list: List<ItemRepository>,
     private val listener: RepositoryActivity): RecyclerView.Adapter<RepositoryAdapter.ViewHolderclass>() {
+
 
     override fun onBindViewHolder(holder: ViewHolderclass, position: Int) {
         val item = list[position]

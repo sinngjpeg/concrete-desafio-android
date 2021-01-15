@@ -51,6 +51,7 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0"
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.2.0"
     implementation 'com.squareup.picasso:picasso:2.71828'
+    implementation 'androidx.fragment:fragment-ktx:1.2.5'
 
 
     testImplementation 'junit:junit:4.13.1'

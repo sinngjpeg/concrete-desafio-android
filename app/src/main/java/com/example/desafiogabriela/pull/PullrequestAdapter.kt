@@ -1,4 +1,4 @@
-package com.example.desafiogabriela.features.adapter
+package com.example.desafiogabriela.pull
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,14 +6,14 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.desafiogabriela.features.model.ItemPullrequest
+import com.example.desafiogabriela.model.ItemPullrequest
 import com.example.desafiogabriela.R
 
 import com.squareup.picasso.Picasso
 
 
 class PullrequestAdapter(
-    private var list: MutableList<ItemPullrequest>,
+    var list: List<ItemPullrequest>,
     private val repositoryListener: ClickListener
 ) :
     RecyclerView.Adapter<PullrequestAdapter.ViewHolderClass>() {
@@ -42,7 +42,7 @@ class PullrequestAdapter(
         holder.username.text = item.owner.username
         holder.createdat.text = item.createdAt
         holder.itemView.setOnClickListener {
-            repositoryListener.setOnClickListener(position)
+            repositoryListener.setOnClickListener ( item )
         }
 
     }
@@ -59,7 +59,7 @@ class PullrequestAdapter(
     }
 
     interface ClickListener {
-        fun setOnClickListener(position: Int)
+        fun setOnClickListener(itemClick: ItemPullrequest)
 
     }
 

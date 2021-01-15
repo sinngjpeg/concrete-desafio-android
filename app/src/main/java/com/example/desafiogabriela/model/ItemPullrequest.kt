@@ -1,4 +1,4 @@
-package com.example.desafiogabriela.features.model
+package com.example.desafiogabriela.model
 
 
 import com.google.gson.annotations.SerializedName
