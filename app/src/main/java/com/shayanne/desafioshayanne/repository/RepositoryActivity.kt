@@ -2,30 +2,30 @@ package com.shayanne.desafioshayanne.repository
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
-import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.observe
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.shayanne.desafioshayanne.R
+import com.shayanne.desafioshayanne.api.InicializadorRepositories
 import com.shayanne.desafioshayanne.pull.PullActivity
-import com.shayanne.desafioshayanne.api.InicializadorRepositories.webClientGithub
 import com.shayanne.desafioshayanne.databinding.ActivityRepositoryBinding
-import com.shayanne.desafioshayanne.model.ItemsRepositories
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import com.shayanne.desafioshayanne.viewmodel.RepositoryViewModel
+import com.shayanne.desafioshayanne.viewmodel.RepositoryViewModelFactory
+import com.shayanne.desafioshayanne.viewmodel.RepositoryViewState
 
 
 class RepositoryActivity() : AppCompatActivity(), RepositoryAdapter.ItemClickListener {
 
 
-    private val callGit by lazy { webClientGithub /*initRep()*/ }
+    private val repositoryViewModel: RepositoryViewModel by viewModels {
+        RepositoryViewModelFactory(InicializadorRepositories.webClientGithub)
+    }
 
 
     private lateinit var binding: ActivityRepositoryBinding
-    private val repositoryAdapter =
+    val repositoryAdapter =
         RepositoryAdapter(
             ArrayList(),
             this
@@ -51,18 +51,46 @@ class RepositoryActivity() : AppCompatActivity(), RepositoryAdapter.ItemClickLis
         }
 
 
+
+
+        observeViewModel()
+
+
+
         binding.recyclerviewId.addOnScrollListener(object : EndlessRecyclerViewScrollListener(
             viewManager as LinearLayoutManager
         ) {
             override fun onLoadMore(page: Int, totalItemsCount: Int, view: RecyclerView?) {
-                loadPage(page)
+                repositoryViewModel.loadpage(page)
             }
         })
 
-        loadPage(1)
+        repositoryViewModel.loadpage(1)
     }
 
-    private fun loadPage(page: Int) {
+    private fun observeViewModel() {
+        repositoryViewModel.getViewState().observe(
+            this
+            // screenState = it
+        ) { screenState ->
+            when (screenState) {
+
+                is RepositoryViewState.Sucesso -> {
+                    screenState.list /*tratar o estado de sucesso: adapter*/
+
+
+                }
+                is RepositoryViewState.Erro -> {
+                    screenState.messageError /*tratar erro, mostrar msg*/
+
+                }
+
+            }
+
+        }
+    }
+
+    /*private fun loadPage(page: Int) {
         Log.d("MainActivity-loadMore", "loading page $page")
 
         fun tryAgain() {
@@ -99,7 +127,7 @@ class RepositoryActivity() : AppCompatActivity(), RepositoryAdapter.ItemClickLis
                 Toast.makeText(this@RepositoryActivity, t.message, Toast.LENGTH_LONG).show()
             }
         })
-    }
+    }*/
 
     override fun CreateIntentClick(position: Int) {
         val intent = Intent(this, PullActivity::class.java)
@@ -112,6 +140,17 @@ class RepositoryActivity() : AppCompatActivity(), RepositoryAdapter.ItemClickLis
         startActivity(intent)
     }
 
+
+    /* override fun CreateIntentClick( item: RepositoryRequests) {
+         val intent = Intent(this, PullActivity::class.java)
+         intent.putExtra(PullActivity.OWNER, repositoryAdapter.minhalista.owner.login)
+         intent.putExtra(
+             PullActivity.PICTURE,
+            repositoryAdapter.minhalista.owner.avatarUrl
+         )
+         intent.putExtra(PullActivity.REPOSITORY, repositoryAdapter.minhalista.name)
+         startActivity(intent)
+     }*/
 
 }
 

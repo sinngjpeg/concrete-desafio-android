@@ -79,7 +79,7 @@ class RepositoryAdapter(
     }
 
     interface ItemClickListener {
-        fun CreateIntentClick(position: Int)
+        fun CreateIntentClick(/*item: RepositoryRequests*/position: Int)
     }
 
 

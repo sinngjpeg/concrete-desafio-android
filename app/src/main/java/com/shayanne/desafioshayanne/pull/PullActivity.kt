@@ -24,7 +24,7 @@ class PullActivity : AppCompatActivity(),
     var owner = ""
     var nome = ""
 
-    //  var picture = ""
+
     private val listurl = ArrayList<PullRequests>()
 
 
@@ -54,7 +54,6 @@ class PullActivity : AppCompatActivity(),
         repositorio = intent.getStringExtra(Companion.REPOSITORY).toString()
         owner = intent.getStringExtra(Companion.OWNER).toString()
         nome = intent.getStringExtra(Companion.NAME).toString()
-        //picture = intent.getStringExtra(Companion.PICTURE).toString()
 
 
         //BOTAO DE RETORNAR

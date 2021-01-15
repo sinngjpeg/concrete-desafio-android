@@ -35,9 +35,9 @@ class PullAdapter(
         holder.titulo_pull.text = posicaoItem.title
         holder.descricao_pull.text = posicaoItem.body
         Picasso.get()
-            .load(posicaoItem.owner.avatarUrl)
+            .load(posicaoItem.user.avatarUrl)
             .into(holder.user_pull)
-        holder.username_pull.text = posicaoItem.owner.login
+        holder.username_pull.text = posicaoItem.user.login
         holder.nome_completo_pull.text = posicaoItem.fullName
         holder.itemView.setOnClickListener { callUrl.CreateIntentClickPullUrl(posicaoItem/*position*/) }
 
