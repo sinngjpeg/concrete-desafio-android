@@ -22,7 +22,6 @@ class PullrequestAdapter(
         return ViewHolderClass(
             LayoutInflater.from(parent.context).inflate(R.layout.item_pullrequest, parent, false)
         )
-
     }
 
     override fun getItemCount(): Int {

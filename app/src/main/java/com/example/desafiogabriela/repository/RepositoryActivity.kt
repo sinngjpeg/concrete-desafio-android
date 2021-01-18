@@ -3,6 +3,7 @@ package com.example.desafiogabriela.repository
 import android.content.Intent
 import androidx.recyclerview.widget.LinearLayoutManager
 import android.os.Bundle
+import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
@@ -16,7 +17,7 @@ import com.example.desafiogabriela.utils.Constante
 
 class RepositoryActivity : AppCompatActivity(), RepositoryAdapter.OnItemClickListener {
 
-    private val viewModel : RepositoryViewModel by viewModels{
+    private val viewModel: RepositoryViewModel by viewModels {
         RepositoryViewModelFactory(InicializadorDeRetrofit.get())
     }
 
@@ -48,9 +49,14 @@ class RepositoryActivity : AppCompatActivity(), RepositoryAdapter.OnItemClickLis
                 val lastCompleteItem = layoutManager.findLastVisibleItemPosition()
 
                 if (!isLoading) {
+
+
                     if (lastCompleteItem == adapter.itemCount - 1) {
+                        isLoading = true
+
                         lastPosition = adapter.itemCount
-                        getPage()
+                        viewModel.getSearch()
+                        binding.progressBar.visibility = View.VISIBLE
                     }
                 }
             }
@@ -58,11 +64,15 @@ class RepositoryActivity : AppCompatActivity(), RepositoryAdapter.OnItemClickLis
         })
     }
 
-    fun getPage() {
+    private fun getPage() {
         viewModel.liveData.observe(this, Observer {
 
-                    adapter.list = it
-                    adapter.notifyDataSetChanged()
+            adapter.list = (it)
+            adapter.notifyDataSetChanged()
+            binding.progressBar.visibility = View.GONE
+
+            isLoading = false
+
 
         })
         viewModel.getSearch()

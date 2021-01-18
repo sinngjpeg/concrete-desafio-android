@@ -49,11 +49,11 @@ class PullrequestActivity : AppCompatActivity(), PullrequestAdapter.ClickListene
         bindingPull.pullrequest.setHasFixedSize(true)
         bindingPull.pullToolbar.title = repositorio
 
-        getPullPage()
+        pullView()
         pullViewModel.getPull(owner, repositorio)
     }
 
-    private fun getPullPage(){
+    private fun pullView(){
         pullViewModel.pullLiveData.observe(this, Observer {
 
             pullAdapter.list = it
@@ -63,8 +63,7 @@ class PullrequestActivity : AppCompatActivity(), PullrequestAdapter.ClickListene
     }
 
     override fun setOnClickListener(itemClick: ItemPullrequest) {
-        val url = itemClick.html
-        val intentPull= Intent(Intent.ACTION_VIEW, Uri.parse(url))
+        val intentPull= Intent(Intent.ACTION_VIEW, Uri.parse(itemClick.html))
         startActivity(intentPull)
     }
 }
