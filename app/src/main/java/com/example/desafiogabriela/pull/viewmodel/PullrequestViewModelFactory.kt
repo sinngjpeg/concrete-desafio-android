@@ -3,7 +3,6 @@ package com.example.desafiogabriela.pull.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.desafiogabriela.api.WebClient
-import com.example.desafiogabriela.repository.viewmodel.RepositoryViewModel
 
 class PullrequestViewModelFactory (private val getPull: WebClient) : ViewModelProvider.Factory{
 

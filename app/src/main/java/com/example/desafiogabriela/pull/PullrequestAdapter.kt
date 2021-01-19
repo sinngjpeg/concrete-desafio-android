@@ -39,7 +39,7 @@ class PullrequestAdapter(
         holder.title.text = item.name
         holder.description.text = item.description
         holder.username.text = item.owner.username
-        holder.createdat.text = item.createdAt
+        holder.createdAt.text = item.createdAt
         holder.itemView.setOnClickListener {
             repositoryListener.setOnClickListener ( item )
         }
@@ -53,7 +53,7 @@ class PullrequestAdapter(
         val title: TextView = itemView.findViewById(R.id.titulo_pullrequest)
         val description: TextView = itemView.findViewById(R.id.boby_pullrequest)
         val username: TextView = itemView.findViewById(R.id.username_pullrequest)
-        val createdat: TextView = itemView.findViewById(R.id.fullname_pullrequest)
+        val createdAt: TextView = itemView.findViewById(R.id.fullname_pullrequest)
 
     }
 

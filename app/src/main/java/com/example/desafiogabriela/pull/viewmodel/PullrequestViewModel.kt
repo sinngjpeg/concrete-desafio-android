@@ -6,7 +6,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.desafiogabriela.model.ItemPullrequest
-import com.example.desafiogabriela.api.InicializadorDeRetrofit
 import com.example.desafiogabriela.api.WebClient
 import com.example.desafiogabriela.pull.PullrequestActivity
 import retrofit2.Call
@@ -19,13 +18,13 @@ class PullrequestViewModel (private val getPull: WebClient) : ViewModel() {
     val pullLiveData: LiveData<List<ItemPullrequest>> = pullLiveDataSuccess
     private val pullLiveDataError = MutableLiveData<Any>()
 
-    fun getPull(owner: String, repositorio: String) {
-        getPull.buscaPull(owner, repositorio).enqueue(object : Callback<List<ItemPullrequest>> {
+    fun getPull(owner: String, repository: String) {
+        getPull.searchPull(owner, repository).enqueue(object : Callback<List<ItemPullrequest>> {
 
             override fun onFailure(
                 call: Call<List<ItemPullrequest>>, t: Throwable
             ) {
-                Log.d("Erro de chamada", t.message.toString())
+                Log.d("Error", t.message.toString())
                 Toast.makeText(PullrequestActivity(), t.message, Toast.LENGTH_LONG).show()
                 pullLiveDataError.postValue(t)
             }
@@ -38,6 +37,10 @@ class PullrequestViewModel (private val getPull: WebClient) : ViewModel() {
                     response.body()?.let {
                         pullLiveDataSuccess.postValue(it)
                     }
+                }
+                else{
+                    Throwable(response.errorBody()?.string())
+
                 }
             }
 

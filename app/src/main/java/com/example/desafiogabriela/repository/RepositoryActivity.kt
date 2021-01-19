@@ -9,16 +9,16 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.RecyclerView
 import com.example.desafiogabriela.repository.viewmodel.RepositoryViewModelFactory
-import com.example.desafiogabriela.api.InicializadorDeRetrofit
+import com.example.desafiogabriela.api.RetrofitLauncher
 import com.example.desafiogabriela.databinding.ActivityRepositoryBinding
 import com.example.desafiogabriela.pull.PullrequestActivity
 import com.example.desafiogabriela.repository.viewmodel.RepositoryViewModel
-import com.example.desafiogabriela.utils.Constante
+import com.example.desafiogabriela.utils.Constant
 
 class RepositoryActivity : AppCompatActivity(), RepositoryAdapter.OnItemClickListener {
 
     private val viewModel: RepositoryViewModel by viewModels {
-        RepositoryViewModelFactory(InicializadorDeRetrofit.get())
+        RepositoryViewModelFactory(RetrofitLauncher.get())
     }
 
     var lastPosition = 0
@@ -40,6 +40,7 @@ class RepositoryActivity : AppCompatActivity(), RepositoryAdapter.OnItemClickLis
         binding.repositorio.setHasFixedSize(true)
 
         getPage()
+        viewModel.getSearch()
 
         binding.repositorio.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
@@ -49,7 +50,6 @@ class RepositoryActivity : AppCompatActivity(), RepositoryAdapter.OnItemClickLis
                 val lastCompleteItem = layoutManager.findLastVisibleItemPosition()
 
                 if (!isLoading) {
-
 
                     if (lastCompleteItem == adapter.itemCount - 1) {
                         isLoading = true
@@ -73,16 +73,14 @@ class RepositoryActivity : AppCompatActivity(), RepositoryAdapter.OnItemClickLis
 
             isLoading = false
 
-
         })
-        viewModel.getSearch()
+
     }
 
     override fun onItemClick(position: Int) {
         val intent = Intent(this, PullrequestActivity::class.java)
-        intent.putExtra(Constante.owner, adapter.list[position].owner.username)
-        intent.putExtra(Constante.repositorio, adapter.list[position].nameRepository)
-        intent.putExtra(Constante.foto, adapter.list[position].owner.image)
+        intent.putExtra(Constant.owner, adapter.list[position].owner.username)
+        intent.putExtra(Constant.repository, adapter.list[position].nameRepository)
         startActivity(intent)
     }
 }
