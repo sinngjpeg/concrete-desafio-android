@@ -11,7 +11,6 @@ import com.example.desafiogabriela.R
 
 import com.squareup.picasso.Picasso
 
-
 class PullrequestAdapter(
     var list: List<ItemPullrequest>,
     private val repositoryListener: ClickListener
@@ -28,7 +27,6 @@ class PullrequestAdapter(
         return list.size
     }
 
-
     override fun onBindViewHolder(holder: ViewHolderClass, position: Int) {
 
         val item = list[position]
@@ -41,11 +39,9 @@ class PullrequestAdapter(
         holder.username.text = item.owner.username
         holder.createdAt.text = item.createdAt
         holder.itemView.setOnClickListener {
-            repositoryListener.setOnClickListener ( item )
+            repositoryListener.setOnClickListener(item)
         }
-
     }
-
 
     inner class ViewHolderClass(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
@@ -54,12 +50,9 @@ class PullrequestAdapter(
         val description: TextView = itemView.findViewById(R.id.boby_pullrequest)
         val username: TextView = itemView.findViewById(R.id.username_pullrequest)
         val createdAt: TextView = itemView.findViewById(R.id.fullname_pullrequest)
-
     }
 
     interface ClickListener {
         fun setOnClickListener(itemClick: ItemPullrequest)
-
     }
-
 }

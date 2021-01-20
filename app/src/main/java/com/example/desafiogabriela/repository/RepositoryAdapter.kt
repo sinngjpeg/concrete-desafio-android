@@ -6,17 +6,15 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.example.desafiogabriela.model.ItemRepository
 import com.example.desafiogabriela.R
-import com.example.desafiogabriela.databinding.ItemRepositoryBinding
 import com.squareup.picasso.Picasso
-import kotlin.contracts.contract
 
 class RepositoryAdapter(
 
     var list: List<ItemRepository>,
-    private val listener: RepositoryActivity): RecyclerView.Adapter<RepositoryAdapter.ViewHolderClass>() {
+    private val listener: RepositoryActivity
+) : RecyclerView.Adapter<RepositoryAdapter.ViewHolderClass>() {
 
     override fun onBindViewHolder(holder: ViewHolderClass, position: Int) {
         val item = list[position]
@@ -27,8 +25,8 @@ class RepositoryAdapter(
 
         holder.nameRepository.text = item.nameRepository
         holder.description.text = item.description
-        holder.forks.text = item.forks_count.toString()
-        holder.stars.text = item.stars_count.toString()
+        holder.forks.text = item.forksCount.toString()
+        holder.stars.text = item.starsCount.toString()
         holder.username.text = item.owner.username
         holder.fullName.text = item.fullname
     }
@@ -41,7 +39,6 @@ class RepositoryAdapter(
     }
 
     override fun getItemCount() = list.size
-
 
     inner class ViewHolderClass(itemView: View) : RecyclerView.ViewHolder(itemView),
         View.OnClickListener {

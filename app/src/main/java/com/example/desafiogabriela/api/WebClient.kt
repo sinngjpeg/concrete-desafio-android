@@ -14,6 +14,4 @@ interface WebClient {
 
     @GET("repos/{owner}/{repository}/pulls")
     fun searchPull(@Path("owner") owner: String, @Path("repository") repository: String): Call<List<ItemPullrequest>>
-
 }
-

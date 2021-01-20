@@ -12,7 +12,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class PullrequestViewModel (private val getPull: WebClient) : ViewModel() {
+class PullrequestViewModel(private val getPull: WebClient) : ViewModel() {
 
     private val pullLiveDataSuccess: MutableLiveData<List<ItemPullrequest>> = MutableLiveData()
     val pullLiveData: LiveData<List<ItemPullrequest>> = pullLiveDataSuccess
@@ -22,7 +22,8 @@ class PullrequestViewModel (private val getPull: WebClient) : ViewModel() {
         getPull.searchPull(owner, repository).enqueue(object : Callback<List<ItemPullrequest>> {
 
             override fun onFailure(
-                call: Call<List<ItemPullrequest>>, t: Throwable
+                call: Call<List<ItemPullrequest>>,
+                t: Throwable
             ) {
                 Log.d("Error", t.message.toString())
                 Toast.makeText(PullrequestActivity(), t.message, Toast.LENGTH_LONG).show()
@@ -37,13 +38,10 @@ class PullrequestViewModel (private val getPull: WebClient) : ViewModel() {
                     response.body()?.let {
                         pullLiveDataSuccess.postValue(it)
                     }
-                }
-                else{
+                } else {
                     Throwable(response.errorBody()?.string())
-
                 }
             }
-
         })
     }
 }

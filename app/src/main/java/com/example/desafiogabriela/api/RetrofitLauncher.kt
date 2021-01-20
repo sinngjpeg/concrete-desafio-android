@@ -9,7 +9,6 @@ object RetrofitLauncher {
 
     fun get(): WebClient {
 
-
         val interceptor = HttpLoggingInterceptor()
         interceptor.setLevel(HttpLoggingInterceptor.Level.HEADERS)
         val client = OkHttpClient.Builder().addInterceptor(interceptor).build()

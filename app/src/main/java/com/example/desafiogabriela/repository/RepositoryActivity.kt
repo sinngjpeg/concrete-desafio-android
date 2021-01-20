@@ -60,7 +60,6 @@ class RepositoryActivity : AppCompatActivity(), RepositoryAdapter.OnItemClickLis
                     }
                 }
             }
-
         })
     }
 
@@ -72,9 +71,7 @@ class RepositoryActivity : AppCompatActivity(), RepositoryAdapter.OnItemClickLis
             binding.progressBar.visibility = View.GONE
 
             isLoading = false
-
         })
-
     }
 
     override fun onItemClick(position: Int) {

@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.desafiogabriela.api.WebClient
 
-class PullrequestViewModelFactory (private val getPull: WebClient) : ViewModelProvider.Factory{
+class PullrequestViewModelFactory(private val getPull: WebClient) : ViewModelProvider.Factory {
 
     @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
@@ -13,5 +13,4 @@ class PullrequestViewModelFactory (private val getPull: WebClient) : ViewModelPr
         }
         throw IllegalArgumentException("Unknown ViewModel class")
     }
-
 }

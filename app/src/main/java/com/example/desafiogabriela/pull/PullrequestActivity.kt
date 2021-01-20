@@ -14,19 +14,18 @@ import com.example.desafiogabriela.databinding.ActivityPullrequestBinding
 import com.example.desafiogabriela.pull.viewmodel.PullrequestViewModel
 import com.example.desafiogabriela.pull.viewmodel.PullrequestViewModelFactory
 
-
 class PullrequestActivity : AppCompatActivity(), PullrequestAdapter.ClickListener {
 
     private var owner = ""
     private var repository = ""
 
-    private val pullViewModel : PullrequestViewModel by viewModels {
+    private val pullViewModel: PullrequestViewModel by viewModels {
         PullrequestViewModelFactory(RetrofitLauncher.get())
     }
 
     private val list = ArrayList<ItemPullrequest>()
-    private val pullAdapter = PullrequestAdapter(list,this)
-    private lateinit var bindingPull : ActivityPullrequestBinding
+    private val pullAdapter = PullrequestAdapter(list, this)
+    private lateinit var bindingPull: ActivityPullrequestBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -49,17 +48,16 @@ class PullrequestActivity : AppCompatActivity(), PullrequestAdapter.ClickListene
         pullViewModel.getPull(owner, repository)
     }
 
-    private fun pullView(){
+    private fun pullView() {
         pullViewModel.pullLiveData.observe(this, Observer {
 
             pullAdapter.list = it
             pullAdapter.notifyDataSetChanged()
-
         })
     }
 
     override fun setOnClickListener(itemClick: ItemPullrequest) {
-        val intentPull= Intent(Intent.ACTION_VIEW, Uri.parse(itemClick.html))
+        val intentPull = Intent(Intent.ACTION_VIEW, Uri.parse(itemClick.html))
         startActivity(intentPull)
     }
 }

@@ -11,21 +11,21 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class RepositoryViewModel (private val get: WebClient): ViewModel() {
+class RepositoryViewModel(private val get: WebClient) : ViewModel() {
 
     var page = 1
     private val list = mutableListOf<ItemRepository>()
 
     private val liveDataError = MutableLiveData<Any>()
-    private val liveDataListSuccess : MutableLiveData<List<ItemRepository>> = MutableLiveData()
-    val liveData : LiveData<List<ItemRepository>> = liveDataListSuccess
+    private val liveDataListSuccess: MutableLiveData<List<ItemRepository>> = MutableLiveData()
+    val liveData: LiveData<List<ItemRepository>> = liveDataListSuccess
 
-
-    fun getSearch()  {
+    fun getSearch() {
 
         get.search(page).enqueue(object : Callback<Items> {
             override fun onResponse(
-                call: Call<Items>, response: Response<Items>
+                call: Call<Items>,
+                response: Response<Items>
             ) {
                 if (response.isSuccessful) {
                     response.body()?.let {
@@ -34,13 +34,15 @@ class RepositoryViewModel (private val get: WebClient): ViewModel() {
                         liveDataListSuccess.value = list
                         page++
                     }
-                }
-                else {
+                } else {
                     Throwable(response.errorBody()?.string())
                 }
             }
 
-            override fun onFailure(call: Call<Items>, t: Throwable) {
+            override fun onFailure(
+                call: Call<Items>,
+                t: Throwable
+            ) {
                 Log.d("unexpected error", t.message.toString())
                 liveDataError.postValue(t)
             }
