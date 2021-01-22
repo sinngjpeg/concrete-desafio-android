@@ -2,15 +2,14 @@ package com.shayanne.desafioshayanne.viewmodel
 
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
+import com.shayanne.desafioshayanne.R
 import com.shayanne.desafioshayanne.api.ApiWebClientRequest
-import com.shayanne.desafioshayanne.makeRequest
 import com.shayanne.desafioshayanne.model.ItemsRepositories
 import com.shayanne.desafioshayanne.model.Owner
 import com.shayanne.desafioshayanne.model.RepositoryRequests
 import io.mockk.every
 import io.mockk.mockk
 import junit.framework.TestCase.assertEquals
-import okhttp3.mockwebserver.MockResponse
 import org.junit.Rule
 import org.junit.Test
 import retrofit2.mock.Calls
@@ -38,7 +37,7 @@ class RepositoryViewModelTest {
         viewModel.loadpage(1)
 
         // assert
-        assertEquals(resultList, viewModel.getViewState(RepositoryViewState.Sucesso(ItemsRepositories.items)).value)
+        assertEquals(RepositoryViewState.Sucesso(resultList), viewModel.getViewState().value)
     }
 
     @Test
@@ -48,9 +47,9 @@ class RepositoryViewModelTest {
             mockwebClient.getRepositories(any())
         } returns Calls.failure(exceptionThrown)
 
-        viewModel.loadpage(page:Int)
+        viewModel.loadpage(1)
 
-        assertEquals(exceptionThrown, viewModel.liveDataNetworkError.value)
+        assertEquals(RepositoryViewState.Erro(R.string.error_network_request_failed ), viewModel.getViewState().value)
     }
 
     private fun createFakeReposList(): List<RepositoryRequests> {
@@ -68,5 +67,5 @@ class RepositoryViewModelTest {
 }
 
 
-}
+
 

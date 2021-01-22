@@ -18,7 +18,7 @@ class PullViewModel(private val callGit: ApiWebClientRequest) : ViewModel() {
 
     // esta é apenas uma LiveData, nao é mutable, pois nao queremos que a activity a altere
     fun getViewState(): LiveData<PullViewState> = state
-
+    //owner e repository devem passar nesta ordem correta
     fun loadurl(owner: String, repository: String) {
         /* owner,repositorio*/
         callGit.getPullRequests(owner, repository)
