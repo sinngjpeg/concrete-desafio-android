@@ -104,7 +104,7 @@
             android:layout_height="64dp"
             android:layout_gravity="center"
             android:contentDescription="@string/content_description_no"
-            app:civ_border_color="@color/white" />
+             />
 
         <TextView
             android:id="@+id/username"

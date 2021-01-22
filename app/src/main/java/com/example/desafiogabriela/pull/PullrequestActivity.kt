@@ -45,11 +45,11 @@ class PullrequestActivity : AppCompatActivity(), PullrequestAdapter.ClickListene
         bindingPull.pullToolbar.title = repository
 
         pullView()
-        pullViewModel.getPull(owner, repository)
+        pullViewModel.getSearchPull(owner, repository)
     }
 
     private fun pullView() {
-        pullViewModel.pullLiveData.observe(this, Observer {
+        pullViewModel.pullLiveDataNetworkSuccess.observe(this, Observer {
 
             pullAdapter.list = it
             pullAdapter.notifyDataSetChanged()

@@ -8,6 +8,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.desafiogabriela.model.ItemRepository
 import com.example.desafiogabriela.R
+import com.example.desafiogabriela.utils.loadImageURL
 import com.squareup.picasso.Picasso
 
 class RepositoryAdapter(
@@ -22,6 +23,7 @@ class RepositoryAdapter(
         Picasso.get()
             .load(item.owner.image)
             .into(holder.icon)
+        holder.icon.loadImageURL(item.owner.image)
 
         holder.nameRepository.text = item.nameRepository
         holder.description.text = item.description

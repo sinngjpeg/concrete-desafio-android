@@ -64,7 +64,7 @@ class RepositoryActivity : AppCompatActivity(), RepositoryAdapter.OnItemClickLis
     }
 
     private fun getPage() {
-        viewModel.liveData.observe(this, Observer {
+        viewModel.liveDataNetworkSuccess.observe(this, Observer {
 
             adapter.list = (it)
             adapter.notifyDataSetChanged()
