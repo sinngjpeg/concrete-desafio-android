@@ -11,4 +11,3 @@ data class PullRequests(
     @SerializedName("full_name") val fullName: String
 
 )
-

@@ -8,10 +8,11 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.shayanne.desafioshayanne.R
 import com.shayanne.desafioshayanne.model.RepositoryRequests
+import com.shayanne.desafioshayanne.utils.loadImageUrl
 import com.squareup.picasso.Picasso
 
 class RepositoryAdapter(
-    val minhalista: MutableList<RepositoryRequests>,
+    val listrep: MutableList<RepositoryRequests>,
     private val listener: RepositoryActivity
 ) :
     RecyclerView.Adapter<RepositoryAdapter.List1ViewHolder>() {
@@ -30,41 +31,39 @@ class RepositoryAdapter(
         return List1ViewHolder(itemView)
     }
 
-    //repete a view varias vezes
+    // repete a view varias vezes
     // conecta os ids dos itens a posicao que devem ser exibidos
-    //por isso passe td na mesma ordem aqui
+    // por isso passe td na mesma ordem aqui
     override fun onBindViewHolder(holder: List1ViewHolder, position: Int) {
-        val posicaoItem = minhalista[position]
-        holder.nome_repositorio.text = posicaoItem.name
-        holder.descricao_rep.text = posicaoItem.description
-        Picasso.get()
-            .load(posicaoItem.owner.avatarUrl)
-            .into(holder.user_rep)
-        holder.username_rep.text = posicaoItem.owner.login
-        holder.nome_completo_rep.text = posicaoItem.fullName
-        holder.n_conexoes.text = posicaoItem.forksCount.toString()
-        holder.n_estrelas.text = posicaoItem.stargazersCount.toString()
+        val posicaoItem = listrep[position]
+        holder.repository.text = posicaoItem.name
+        holder.descriptionRep.text = posicaoItem.description
+
+        holder.userRep.loadImageUrl(posicaoItem.owner.avatarUrl)
+
+        holder.usernameRep.text = posicaoItem.owner.login
+        holder.nameRep.text = posicaoItem.fullName
+        holder.numberForks.text = posicaoItem.forksCount.toString()
+        holder.numberStars.text = posicaoItem.stargazersCount.toString()
     }
 
-
-    override fun getItemCount() = minhalista.size
+    override fun getItemCount() = listrep.size
 
     fun addRepositories(items: List<RepositoryRequests>) {
         val previousCount = itemCount
-        minhalista.addAll(items)
+        listrep.addAll(items)
         notifyItemRangeInserted(previousCount, items.size)
     }
 
-
     inner class List1ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView),
         View.OnClickListener {
-        val nome_repositorio: TextView = itemView.findViewById(R.id.nome_repositorio)
-        val descricao_rep: TextView = itemView.findViewById(R.id.descricao_rep)
-        val user_rep: ImageView = itemView.findViewById(R.id.user_rep)
-        val username_rep: TextView = itemView.findViewById(R.id.username_rep)
-        val nome_completo_rep: TextView = itemView.findViewById(R.id.nome_completo_rep)
-        val n_conexoes: TextView = itemView.findViewById(R.id.n_conexoes)
-        val n_estrelas: TextView = itemView.findViewById(R.id.n_estrelas)
+        val repository: TextView = itemView.findViewById(R.id.nome_repositorio)
+        val descriptionRep: TextView = itemView.findViewById(R.id.descricao_rep)
+        val userRep: ImageView = itemView.findViewById(R.id.user_rep)
+        val usernameRep: TextView = itemView.findViewById(R.id.username_rep)
+        val nameRep: TextView = itemView.findViewById(R.id.nome_completo_rep)
+        val numberForks: TextView = itemView.findViewById(R.id.n_conexoes)
+        val numberStars: TextView = itemView.findViewById(R.id.n_estrelas)
 
         init {
             itemView.setOnClickListener(this)
@@ -73,15 +72,12 @@ class RepositoryAdapter(
         override fun onClick(v: View?) {
             val position = adapterPosition
             if (position != RecyclerView.NO_POSITION) {
-                listener.CreateIntentClick(position)
+                listener.createIntentClick(position)
             }
         }
     }
 
     interface ItemClickListener {
-        fun CreateIntentClick(/*item: RepositoryRequests*/position: Int)
+        fun createIntentClick(position: Int)
     }
-
-
 }
-

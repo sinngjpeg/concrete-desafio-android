@@ -8,12 +8,13 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.shayanne.desafioshayanne.R
 import com.shayanne.desafioshayanne.model.PullRequests
+import com.shayanne.desafioshayanne.utils.loadImageUrl
 import com.squareup.picasso.Picasso
 
 class PullAdapter(
 
-
-    private val minhalistapull: List<PullRequests>,
+    // tornar private e criar uma val list para usar
+    val listpull: MutableList<PullRequests>,
 
     private val callUrl: ItemClickListener
 ) :
@@ -26,39 +27,35 @@ class PullAdapter(
         )
 
         return List2ViewHolder(itemView2)
-
     }
-
 
     override fun onBindViewHolder(holder: List2ViewHolder, position: Int) {
-        val posicaoItem = minhalistapull[position]
-        holder.titulo_pull.text = posicaoItem.title
-        holder.descricao_pull.text = posicaoItem.body
-        Picasso.get()
-            .load(posicaoItem.user.avatarUrl)
-            .into(holder.user_pull)
-        holder.username_pull.text = posicaoItem.user.login
-        holder.nome_completo_pull.text = posicaoItem.fullName
-        holder.itemView.setOnClickListener { callUrl.CreateIntentClickPullUrl(posicaoItem/*position*/) }
-
-
+        val posicaoItem = listpull[position]
+        holder.titlePull.text = posicaoItem.title
+        holder.descriptionPull.text = posicaoItem.body
+        holder.userPull.loadImageUrl(posicaoItem.user.avatarUrl)
+        holder.usernamePull.text = posicaoItem.user.login
+        holder.namePull.text = posicaoItem.fullName
+        holder.itemView.setOnClickListener { callUrl.createIntentClickPullUrl(posicaoItem/*position*/) }
     }
 
-    override fun getItemCount() = minhalistapull.size
+    override fun getItemCount() = listpull.size
 
+    fun addRepositories(items: List<PullRequests>) {
+        val previousCount = itemCount
+        listpull.addAll(items)
+        notifyItemRangeInserted(previousCount, items.size)
+    }
 
     inner class List2ViewHolder(itemView2: View) : RecyclerView.ViewHolder(itemView2) {
-        val titulo_pull: TextView = itemView2.findViewById(R.id.titulo_pull)
-        val descricao_pull: TextView = itemView2.findViewById(R.id.descricao_pull)
-        val user_pull: ImageView = itemView2.findViewById(R.id.user_pull)
-        val username_pull: TextView = itemView2.findViewById(R.id.username_pull)
-        val nome_completo_pull: TextView = itemView2.findViewById(R.id.nome_completo_pull)
-
+        val titlePull: TextView = itemView2.findViewById(R.id.titulo_pull)
+        val descriptionPull: TextView = itemView2.findViewById(R.id.descricao_pull)
+        val userPull: ImageView = itemView2.findViewById(R.id.user_pull)
+        val usernamePull: TextView = itemView2.findViewById(R.id.username_pull)
+        val namePull: TextView = itemView2.findViewById(R.id.nome_completo_pull)
     }
 
     interface ItemClickListener {
-        fun CreateIntentClickPullUrl(item: PullRequests/*position: Int*/)
+        fun createIntentClickPullUrl(item: PullRequests/*position: Int*/)
     }
-
-
 }

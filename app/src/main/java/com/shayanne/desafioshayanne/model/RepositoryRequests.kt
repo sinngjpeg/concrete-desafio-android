@@ -10,4 +10,3 @@ data class RepositoryRequests(
     @SerializedName("forks_count") var forksCount: Int,
     @SerializedName("stargazers_count") var stargazersCount: Int
 )
-

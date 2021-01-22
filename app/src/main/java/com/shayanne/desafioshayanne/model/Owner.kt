@@ -8,4 +8,3 @@ data class Owner(
     @SerializedName("avatar_url") val avatarUrl: String
 
 )
-

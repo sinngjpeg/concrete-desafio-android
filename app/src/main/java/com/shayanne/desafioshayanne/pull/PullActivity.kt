@@ -3,34 +3,31 @@ package com.shayanne.desafioshayanne.pull
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
-import android.widget.Toast
+import androidx.activity.viewModels
+import androidx.annotation.StringRes
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.observe
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.shayanne.desafioshayanne.R
-import com.shayanne.desafioshayanne.api.InicializadorRepositories
+import com.shayanne.desafioshayanne.api.InicializadorApi
 import com.shayanne.desafioshayanne.databinding.ActivityPullBinding
 import com.shayanne.desafioshayanne.model.PullRequests
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import com.shayanne.desafioshayanne.viewmodel.PullViewModel
+import com.shayanne.desafioshayanne.viewmodel.PullViewModelFactory
+import com.shayanne.desafioshayanne.viewmodel.PullViewState
 
+class PullActivity : AppCompatActivity(), PullAdapter.ItemClickListener {
 
-class PullActivity : AppCompatActivity(),
-    PullAdapter.ItemClickListener {
-
-    var repositorio = ""
+    private val pullViewModel: PullViewModel by viewModels {
+        PullViewModelFactory(InicializadorApi.webClientGithub)
+    }
+    val list = ArrayList<PullRequests>()
+    val pullAdapter = PullAdapter(list, this)
     var owner = ""
-    var nome = ""
-
-
-    private val listurl = ArrayList<PullRequests>()
-
-
-    private val callGit by lazy { InicializadorRepositories.webClientGithub/*initRep()*/ }
+    var repository = ""
     private lateinit var bindingpull: ActivityPullBinding
-    private lateinit var idDoRecycleViewPull: RecyclerView
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -43,69 +40,61 @@ class PullActivity : AppCompatActivity(),
 
         viewManager = LinearLayoutManager(this)
 
-        idDoRecycleViewPull = findViewById<RecyclerView>(R.id.recyclerview_id_pull).apply {
-            // use this setting to improve performance if you know that changes
-            // in content do not change the layout size of the RecyclerView
-            setHasFixedSize(true)
-            layoutManager = viewManager
-        }
+        bindingpull.recyclerviewIdPull.layoutManager = viewManager
+        bindingpull.recyclerviewIdPull.setHasFixedSize(true)
+        bindingpull.recyclerviewIdPull.adapter = pullAdapter
 
 
-        repositorio = intent.getStringExtra(Companion.REPOSITORY).toString()
-        owner = intent.getStringExtra(Companion.OWNER).toString()
-        nome = intent.getStringExtra(Companion.NAME).toString()
+        //intent pra chamar a pagina do pull
+        owner = intent.getStringExtra(OWNER).toString()
+        repository = intent.getStringExtra(REPOSITORY).toString()
 
 
-        //BOTAO DE RETORNAR
+        // BOTAO DE RETORNAR
         setSupportActionBar(findViewById(R.id.toolbar2))
-        supportActionBar!!.title = repositorio
+        supportActionBar!!.title = repository
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
 
+        // chamando o callGit do pull
+        pullViewModel.loadurl(owner, repository)
 
+        observeViewModel()
 
-        callGit.getPullRequests(owner, repositorio).enqueue(object : Callback<List<PullRequests>> {
-
-            override fun onFailure(call: Call<List<PullRequests>>, t: Throwable) {
-                Log.d("Erro", t.message.toString())
-                Toast.makeText(this@PullActivity, t.message, Toast.LENGTH_LONG).show()
-            }
-
-            override fun onResponse(
-                call: Call<List<PullRequests>>,
-                response: Response<List<PullRequests>>
-            ) {
-                if (response.isSuccessful) {
-                    response.body()?.let {
-                        bindingpull.recyclerviewIdPull.adapter =
-                            PullAdapter(
-                                listurl,
-                                this@PullActivity
-                            )
-                        listurl.addAll(it)
-                    }
-                }
-            }
-        })
     }
 
+    private fun observeViewModel() {
+        pullViewModel.getViewState().observe(
+            this
+        ) {
+            when (it) {
+                is PullViewState.Sucesso -> {
+
+                    pullAdapter.addRepositories(it.list)
+
+                }
+
+                is PullViewState.Erro -> {
+                    showError(it.messageError)
+                }
+            }
+        }
+    }
+
+    private fun showError(@StringRes errorRes: Int) {
+        AlertDialog.Builder(this)
+            .setMessage(errorRes)
+            .show()
+    }
 
     companion object {
         const val REPOSITORY = "repositorio"
         const val OWNER = "owner"
-        const val NAME = "nome"
         const val PICTURE = "picture"
     }
 
-
-    override fun CreateIntentClickPullUrl(item: PullRequests/*position: Int*/) {
+    override fun createIntentClickPullUrl(item: PullRequests) {
         val url = item.htmlUrl
-        /*val url = listurl[position].urlpull*/
         val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
         startActivity(intent)
     }
-
 }
-
-
-
-

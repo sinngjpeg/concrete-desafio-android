@@ -10,8 +10,6 @@ sealed class RepositoryViewState {
     // tela nova, empty space, toast, snackbar, ....
     // empty state
 
-    class Sucesso(val list: List<RepositoryRequests>) : RepositoryViewState()
-    class Erro(val messageError: Int) : RepositoryViewState()
-
-
+    data class Sucesso(val list: List<RepositoryRequests>) : RepositoryViewState()
+    data class Erro(val messageError: Int) : RepositoryViewState()
 }
