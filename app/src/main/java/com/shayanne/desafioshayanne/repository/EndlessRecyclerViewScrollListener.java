@@ -1,11 +1,14 @@
-package com.shayanne.desafioshayanne;
+package com.shayanne.desafioshayanne.repository;
 
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
+
 public abstract class EndlessRecyclerViewScrollListener extends RecyclerView.OnScrollListener {
+
+
     // The minimum amount of items to have below your current scroll position
     // before loading more.
     private int visibleThreshold = 5;
@@ -29,8 +32,7 @@ public abstract class EndlessRecyclerViewScrollListener extends RecyclerView.OnS
         for (int i = 0; i < lastVisibleItemPositions.length; i++) {
             if (i == 0) {
                 maxSize = lastVisibleItemPositions[i];
-            }
-            else if (lastVisibleItemPositions[i] > maxSize) {
+            } else if (lastVisibleItemPositions[i] > maxSize) {
                 maxSize = lastVisibleItemPositions[i];
             }
         }
@@ -53,7 +55,7 @@ public abstract class EndlessRecyclerViewScrollListener extends RecyclerView.OnS
             lastVisibleItemPosition = ((GridLayoutManager) mLayoutManager).findLastVisibleItemPosition();
         } else if (mLayoutManager instanceof LinearLayoutManager) {
             lastVisibleItemPosition = ((LinearLayoutManager) mLayoutManager).findLastVisibleItemPosition();
-        } 
+        }
 
         // If the total item count is zero and the previous isn't, assume the
         // list is invalidated and should be reset back to initial state
@@ -62,6 +64,7 @@ public abstract class EndlessRecyclerViewScrollListener extends RecyclerView.OnS
             this.previousTotalItemCount = totalItemCount;
             if (totalItemCount == 0) {
                 this.loading = true;
+
             }
         }
         // If it’s still loading, we check to see if the dataset count has
@@ -80,9 +83,10 @@ public abstract class EndlessRecyclerViewScrollListener extends RecyclerView.OnS
             currentPage++;
             onLoadMore(currentPage, totalItemCount, view);
             loading = true;
+
         }
     }
-    
+
     // Call this method whenever performing new searches
     public void resetState() {
         this.currentPage = this.startingPageIndex;

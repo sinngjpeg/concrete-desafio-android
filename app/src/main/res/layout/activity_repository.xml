@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/scroll_view"
-    tools:context=".activity.MainActivity">
+    tools:context=".repository.RepositoryActivity">
 
 
     <LinearLayout
@@ -35,12 +35,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:nestedScrollingEnabled="false"
-            tools:listitem="@layout/conteudo_scroll_rep" />
+            tools:listitem="@layout/scroll_rep" />
 
         <ProgressBar
             android:id="@+id/progressBar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center"
+            />
 
     </LinearLayout>
 </RelativeLayout>

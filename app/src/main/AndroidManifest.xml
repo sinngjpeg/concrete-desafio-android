@@ -12,7 +12,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.DesafioShayanne">
-        <activity android:name=".activity.MainActivity"
+        <activity android:name=".repository.RepositoryActivity"
             android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -21,7 +21,7 @@
             </intent-filter>
 
         </activity>
-        <activity android:name=".activity.PullActivity"    android:parentActivityName=".activity.MainActivity">
+        <activity android:name=".pull.PullActivity"    android:parentActivityName=".repository.RepositoryActivity">
 <!--            é o intent filter que seleciona a activity que ele esta dentro para ser exibida primeiro-->
 <!--            <intent-filter>-->
 <!--                <action android:name="android.intent.action.MAIN" />-->
