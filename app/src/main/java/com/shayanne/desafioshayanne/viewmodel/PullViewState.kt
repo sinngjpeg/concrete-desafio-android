@@ -4,6 +4,6 @@ import com.shayanne.desafioshayanne.model.PullRequests
 
 sealed class PullViewState {
 
-    class Sucesso(val list: List<PullRequests>) : PullViewState()
-    class Erro(val messageError: Int) : PullViewState()
+    data class Sucesso(val list: List<PullRequests>) : PullViewState()
+    data class Erro(val messageError: Int) : PullViewState()
 }

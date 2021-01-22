@@ -38,7 +38,7 @@ class PullViewModel(private val callGit: ApiWebClientRequest,
                 ) {
                     if (response.isSuccessful) {
                         response.body()?.let {
-                            state.value =PullViewState.Sucesso(it)
+                            state.postValue(PullViewState.Sucesso(it))
                         }
                     }else{
                         state.postValue(PullViewState.Erro(R.string.error_unknown))
