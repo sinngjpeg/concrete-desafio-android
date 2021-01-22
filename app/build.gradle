@@ -68,10 +68,13 @@ dependencies {
     //teste
     testImplementation "com.squareup.retrofit2:retrofit-mock:$retrofit_version"
 
-    // local test dependencies
+    //  Unit local test dependencies
     testImplementation 'junit:junit:4.13.1'
     testImplementation "androidx.arch.core:core-testing:2.1.0"
     testImplementation "io.mockk:mockk:1.10.5"
+
+    //toResponseBody
+    implementation "com.squareup.okhttp3:logging-interceptor:4.9.0"
 
     // instrumented tests dependencies
     androidTestImplementation 'androidx.test.espresso:espresso-intents:3.3.0'

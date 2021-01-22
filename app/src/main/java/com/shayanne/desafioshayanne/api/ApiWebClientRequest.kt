@@ -15,6 +15,6 @@ interface ApiWebClientRequest {
     @GET("repos/{owner}/{repositorio}/pulls")
     fun getPullRequests(
         @Path("owner") owner: String,
-        @Path("repositorio") repositorio: String
+        @Path("repositorio") repository: String
     ): Call<List<PullRequests>>
 }

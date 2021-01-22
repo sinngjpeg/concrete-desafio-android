@@ -8,11 +8,14 @@ import com.shayanne.desafioshayanne.R
 import com.shayanne.desafioshayanne.api.ApiWebClientRequest
 import com.shayanne.desafioshayanne.model.Owner
 import com.shayanne.desafioshayanne.model.PullRequests
+import com.shayanne.desafioshayanne.utils.Logger
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class PullViewModel(private val callGit: ApiWebClientRequest) : ViewModel() {
+class PullViewModel(private val callGit: ApiWebClientRequest,
+                    private val logger: Logger
+) : ViewModel() {
 
     private val state = MutableLiveData<PullViewState>()
 
@@ -25,7 +28,7 @@ class PullViewModel(private val callGit: ApiWebClientRequest) : ViewModel() {
             .enqueue(object : Callback<List<PullRequests>> {
 
                 override fun onFailure(call: Call<List<PullRequests>>, t: Throwable) {
-                    Log.d("Erro", t.message.toString())
+                    logger.logMessage("Erro", t.message.toString())
                     state.postValue(PullViewState.Erro(R.string.error_network_request_failed))
                 }
 
@@ -35,8 +38,10 @@ class PullViewModel(private val callGit: ApiWebClientRequest) : ViewModel() {
                 ) {
                     if (response.isSuccessful) {
                         response.body()?.let {
-                            state.postValue(PullViewState.Sucesso(it))
+                            state.value =PullViewState.Sucesso(it)
                         }
+                    }else{
+                        state.postValue(PullViewState.Erro(R.string.error_unknown))
                     }
                 }
             })
