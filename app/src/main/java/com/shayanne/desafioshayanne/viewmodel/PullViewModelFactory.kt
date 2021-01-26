@@ -10,7 +10,7 @@ class PullViewModelFactory(private val callGit: ApiWebClientRequest) : ViewModel
     @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(PullViewModel::class.java)) {
-            return RepositoryViewModel(callGit, LoggerAndroid()) as T
+            return PullViewModel(callGit, LoggerAndroid()) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")
     }
