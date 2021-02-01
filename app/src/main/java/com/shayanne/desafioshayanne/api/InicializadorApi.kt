@@ -12,10 +12,13 @@ object InicializadorApi {
     @VisibleForTesting
     var baseUrl = "https://api.github.com/"
 
-    val webClientGithub = Retrofit.Builder()
+    //for iniciar o webclient só quando necessitamos
+    // o delegate by lazy faz com que o webClient nao seja inicializado, para podermos fazer os testes
+    //o by lazy nos permite inicializar somente os onjetos que necessitamos
+    val webClientGithub by lazy { Retrofit.Builder()
         .client(okHttpClient)
         .baseUrl(baseUrl)
         .addConverterFactory(GsonConverterFactory.create())
         .build()
-        .create(ApiWebClientRequest::class.java)
+        .create(ApiWebClientRequest::class.java)}
 }

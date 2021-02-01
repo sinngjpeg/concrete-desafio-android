@@ -49,20 +49,23 @@ class RepositoryInstrumentedTestActivityTest {
         }
     }
 
-    // Erro de conexão:
+    //Erro de Servidor
     @Test
     fun givenRequestFail_should() {
+        // ao usar o mock em teste instrumentado vc nao testa o parse, por isso nao é recomendado
         repositoryArrange(mockWebServer) {
-            enqueueResponse(" ")
+            //estamos dizendo o que queremos que o servidor responda
+            enqueueMockServerError()
             //inicie o servidor:
             startServer()
             //inicie a tela da activity:
             startRepositoryScreen()
         }
         Assert{
-            checkTextVisible(" ")
+            checkTextVisible("Cleitinho")
         }
     }
-    //Erro de Servidor
+
+    // Erro de conexão:
 
 }

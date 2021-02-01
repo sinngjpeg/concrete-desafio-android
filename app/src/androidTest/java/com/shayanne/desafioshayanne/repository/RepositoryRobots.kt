@@ -8,6 +8,7 @@ import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
 import androidx.test.espresso.matcher.ViewMatchers.withText
 import com.jakewharton.espresso.OkHttp3IdlingResource
+import com.shayanne.desafioshayanne.HttpStatus
 import com.shayanne.desafioshayanne.api.InicializadorApi
 import com.shayanne.desafioshayanne.loadAsFixture
 
@@ -37,13 +38,21 @@ class repositoryArrange( val mockWebServer: MockWebServer, action: repositoryArr
         mockWebServer.shutdown()
     }
     // pega o arquivo json que criamos
+    //retorna uma resposta de sucesso
     fun enqueueResponse(responseFileName:String){
         mockWebServer.enqueue(MockResponse().setBody(responseFileName.loadAsFixture()))
     }
+
+    fun enqueueMockServerError(){
+        mockWebServer.enqueue(MockResponse().setResponseCode(HttpStatus.STATUS_400))
+    }
+
     // inicia a tela da activity
     fun startRepositoryScreen(){
         ActivityScenario.launch(RepositoryActivity::class.java)
     }
+
+
 
 }
 
@@ -61,7 +70,7 @@ class Assert(action: Assert.() -> Unit){
     }
     fun checkTextVisible(text :String){
         //o retryer tenta chamar o servidor e contém  o delay, vide com command +b
-        retryer {
+       retryer {
             onView(withText(text)).check(matches(isDisplayed()))
         }
     }
