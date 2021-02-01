@@ -50,7 +50,7 @@ class RepositoryInstrumentedTestActivityTest {
     }
 
     // Erro de conexão:
- /*   @Test
+    @Test
     fun givenRequestFail_should() {
         repositoryArrange(mockWebServer) {
             enqueueResponse(" ")
@@ -63,7 +63,6 @@ class RepositoryInstrumentedTestActivityTest {
             checkTextVisible(" ")
         }
     }
-*/
     //Erro de Servidor
 
 }
