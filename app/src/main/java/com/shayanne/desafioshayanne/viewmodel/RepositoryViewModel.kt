@@ -33,12 +33,18 @@ class RepositoryViewModel(
                 response: Response<ItemsRepositories>
             ) {
                 if (response.isSuccessful) {
-                    /* logger.logMessage("MainActivity-loadMore", "isSucessfull, page : $page")*/
-                    Log.d("MainActivity-loadMore", "isSucessfull, page : $page")
+                     logger.logMessage("MainActivity-loadMore", "isSucessfull, page : $page")
+                    /*Log.d("MainActivity-loadMore", "isSucessfull, page : $page")*/
                     response.body()?.let {
                         state.postValue(RepositoryViewState.Sucesso(it.items))
                     }
                 } else {
+                    logger.logMessage(
+                        "MainActivity-loadMore",
+                        "is NOT sucessful - ${response.code()} + ${response.errorBody()?.string()}"
+                    )
+                    state.postValue(RepositoryViewState.Erro(R.string.error_unknown))
+
                     /*Log.d(
                         "MainActivity-loadMore",
                         "is NOT sucessful - ${response.code()} + ${response.errorBody()?.string()}"

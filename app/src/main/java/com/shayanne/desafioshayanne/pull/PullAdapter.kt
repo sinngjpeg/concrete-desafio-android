@@ -36,7 +36,7 @@ class PullAdapter(
         holder.userPull.loadImageUrl(posicaoItem.user.avatarUrl)
         holder.usernamePull.text = posicaoItem.user.login
         holder.namePull.text = posicaoItem.fullName
-        holder.itemView.setOnClickListener { callUrl.createIntentClickPullUrl(posicaoItem/*position*/) }
+        holder.itemView.setOnClickListener { callUrl.createIntentClickPullUrl(posicaoItem) }
     }
 
     override fun getItemCount() = listpull.size
