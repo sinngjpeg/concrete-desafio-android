@@ -1,13 +1,7 @@
 package com.example.desafiogabriela.pull
 
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import com.example.desafiogabriela.MockServerRule
-import com.example.desafiogabriela.R
-import com.example.desafiogabriela.repository.repositoryArrange
-import com.example.desafiogabriela.repository.repositoryAssert
-import okhttp3.mockwebserver.MockWebServer
-import org.junit.After
-import org.junit.Before
+import com.example.desafiogabriela.utils.MockServerRule
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -33,11 +27,22 @@ class PullrequestActivityTest {
     @Test
     fun givenNetworkError_shouldReturnErrorAlertDialog() {
         pullrequestArrange(mockWebServerRule) {
-            enqueueResponseError()
+            enqueueNetworkError()
             startPullScreen()
         }
         pullrequestAssert {
             checkTextVisible("Erro no servidor")
+        }
+    }
+
+    @Test
+    fun givenFailureResponse_shouldReturnErrorAlertDialog(){
+        pullrequestArrange(mockWebServerRule){
+            enqueueResponseError(Throwable())
+            startPullScreen()
+        }
+        pullrequestAssert{
+            checkTextVisible("Erro desconhecido")
         }
     }
 }

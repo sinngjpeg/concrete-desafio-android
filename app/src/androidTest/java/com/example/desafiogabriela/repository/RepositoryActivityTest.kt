@@ -27,11 +27,21 @@ class RepositoryActivityTest {
     @Test
     fun givenNetworkError_shouldReturnErrorAlertDialog() {
         repositoryArrange(mockWebServerRule) {
-            enqueueResponseError()
+            enqueueNetworkError()
             startRepositoriesScreen()
         }
         repositoryAssert {
             checkTextVisible("Erro no servidor")
+        }
+    }
+    @Test
+    fun givenFailureResponse_shouldReturnErrorAlertDialog(){
+        repositoryArrange(mockWebServerRule){
+            enqueueResponseError(Throwable())
+            startRepositoriesScreen()
+        }
+        repositoryAssert{
+            checkTextVisible("Erro desconhecido")
         }
     }
 }

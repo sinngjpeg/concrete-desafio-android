@@ -24,8 +24,12 @@ class pullrequestArrange(
             .setBody(fileName.loadAsFixture()))
     }
 
-    fun enqueueResponseError() {
+    fun enqueueNetworkError() {
         mockWebServerRule.mockWebServer.enqueue(MockResponse().setResponseCode(HttpStatus.statusError))
+    }
+
+    fun enqueueResponseError(t: Throwable) {
+        mockWebServerRule.mockWebServer.enqueue(MockResponse())
     }
 
     fun startPullScreen() {
