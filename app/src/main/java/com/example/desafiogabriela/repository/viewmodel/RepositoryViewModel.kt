@@ -7,7 +7,7 @@ import com.example.desafiogabriela.R
 import com.example.desafiogabriela.model.ItemRepository
 import com.example.desafiogabriela.model.Items
 import com.example.desafiogabriela.api.WebClient
-import com.example.desafiogabriela.utils.Logger
+import com.example.desafiogabriela.utils.log.Logger
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

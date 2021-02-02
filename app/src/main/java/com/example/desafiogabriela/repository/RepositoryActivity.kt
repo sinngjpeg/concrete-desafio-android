@@ -5,6 +5,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import android.os.Bundle
 import android.view.View
 import androidx.activity.viewModels
+import androidx.annotation.StringRes
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.RecyclerView
@@ -23,6 +25,7 @@ class RepositoryActivity : AppCompatActivity(), RepositoryAdapter.OnItemClickLis
 
     var lastPosition = 0
     var isLoading = false
+    val messageError = Int
 
     private val adapter = RepositoryAdapter(ArrayList(), this)
     private lateinit var binding: ActivityRepositoryBinding
@@ -65,13 +68,23 @@ class RepositoryActivity : AppCompatActivity(), RepositoryAdapter.OnItemClickLis
 
     private fun getPage() {
         viewModel.liveDataNetworkSuccess.observe(this, Observer {
-
             adapter.list = (it)
             adapter.notifyDataSetChanged()
             binding.progressBar.visibility = View.GONE
 
             isLoading = false
         })
+
+        viewModel.liveDataNetworkError.observe(this, Observer {
+           showError(it)
+        })
+
+    }
+
+    private fun showError(@StringRes errorRes: Int) {
+        AlertDialog.Builder(this)
+            .setMessage(errorRes)
+            .show()
     }
 
     override fun onItemClick(position: Int) {

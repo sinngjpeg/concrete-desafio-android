@@ -3,7 +3,7 @@ package com.example.desafiogabriela.pull.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.desafiogabriela.api.WebClient
-import com.example.desafiogabriela.utils.LoggerAndroid
+import com.example.desafiogabriela.utils.log.LoggerAndroid
 
 class PullrequestViewModelFactory(private val getPull: WebClient) : ViewModelProvider.Factory {
 

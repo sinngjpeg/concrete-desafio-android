@@ -41,7 +41,6 @@ class RepositoryViewModelTest {
 
     @Test
     fun givenFailureResponse_whenAPILauncherIsWrong_shouldReturnError() {
-        val throwable = Throwable()
 
         // arrange
         every {

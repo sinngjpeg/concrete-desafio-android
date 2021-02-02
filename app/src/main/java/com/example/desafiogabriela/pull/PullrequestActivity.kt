@@ -4,9 +4,12 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import androidx.activity.viewModels
+import androidx.annotation.StringRes
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.desafiogabriela.R
 import com.example.desafiogabriela.api.RetrofitLauncher
 import com.example.desafiogabriela.utils.Constant
 import com.example.desafiogabriela.model.ItemPullrequest
@@ -54,6 +57,17 @@ class PullrequestActivity : AppCompatActivity(), PullrequestAdapter.ClickListene
             pullAdapter.list = it
             pullAdapter.notifyDataSetChanged()
         })
+
+        pullViewModel.pullLiveDataNetworkError.observe(this, Observer {
+            showError(it)
+
+        })
+
+    }
+    fun showError (@StringRes errorRes: Int){
+        AlertDialog.Builder(this)
+            .setMessage(errorRes)
+            .show()
     }
 
     override fun setOnClickListener(itemClick: ItemPullrequest) {
