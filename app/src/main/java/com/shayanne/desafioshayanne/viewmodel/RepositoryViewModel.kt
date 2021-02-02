@@ -44,11 +44,6 @@ class RepositoryViewModel(
                         "is NOT sucessful - ${response.code()} + ${response.errorBody()?.string()}"
                     )
                     state.postValue(RepositoryViewState.Erro(R.string.error_unknown))
-
-                    /*Log.d(
-                        "MainActivity-loadMore",
-                        "is NOT sucessful - ${response.code()} + ${response.errorBody()?.string()}"
-                    )*/
                 }
             }
 

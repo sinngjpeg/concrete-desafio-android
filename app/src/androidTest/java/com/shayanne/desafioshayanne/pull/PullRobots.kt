@@ -1,51 +1,44 @@
-package com.shayanne.desafioshayanne.repository
+package com.shayanne.desafioshayanne.pull
 
-
+import android.content.Intent
+import androidx.core.os.bundleOf
 import androidx.test.core.app.ActivityScenario
-import androidx.test.espresso.Espresso.onView
-import androidx.test.espresso.assertion.ViewAssertions.matches
-import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
-import androidx.test.espresso.matcher.ViewMatchers.withText
-import com.shayanne.desafioshayanne.util.HttpStatus
-import com.shayanne.desafioshayanne.api.InicializadorApi
-import com.shayanne.desafioshayanne.util.MockWebServerRule
+import androidx.test.core.app.ApplicationProvider
+import androidx.test.espresso.Espresso
+import androidx.test.espresso.assertion.ViewAssertions
+import androidx.test.espresso.matcher.ViewMatchers
 import com.shayanne.desafioshayanne.util.loadAsFixture
-
+import com.shayanne.desafioshayanne.pull.PullActivity.Companion.OWNER
+import com.shayanne.desafioshayanne.pull.PullActivity.Companion.REPOSITORY
+import com.shayanne.desafioshayanne.util.HttpStatus
+import com.shayanne.desafioshayanne.util.MockWebServerRule
 import com.shayanne.desafioshayanne.util.retryer
 import okhttp3.mockwebserver.MockResponse
-import okhttp3.mockwebserver.MockWebServer
 
-
-class repositoryArrange(
-    val mockWebServerRule: MockWebServerRule,
-    action: repositoryArrange.() -> Unit) {
-
+class pullArrange(val mockWebServerRule: MockWebServerRule, action: pullArrange.() -> Unit){
     init {
         action.invoke(this)
     }
-    // chama o idling
-   /* fun registerIdlingResource(){
+
+    /*fun registerIdlingResource(){
         IdlingRegistry.getInstance().register(
             OkHttp3IdlingResource.create("okhttp", InicializadorApi.okHttpClient)
         )
-    }*/
-    /*// inica o servidor
+    }
+    // inica o servidor
     fun startServer() {
         mockWebServer.start(8080)
         InicializadorApi.baseUrl = mockWebServer.url("/").toString()
-    }*/
+    }
     // desliga o servidor
-    /*fun  shutdownServer(){
+    fun  shutdownServer(){
         mockWebServer.shutdown()
     }*/
-
     // pega o arquivo json que criamos
-    //retorna uma resposta de sucesso
     fun enqueueResponse(responseFileName:String){
         mockWebServerRule.mockWebServer.enqueue(MockResponse().setBody(responseFileName.loadAsFixture()))
     }
 
-    //retorna resposta de erro do servidor
     fun enqueueMockServerError(){
         mockWebServerRule.mockWebServer.enqueue(MockResponse().setResponseCode(HttpStatus.STATUS_400))
     }
@@ -55,9 +48,17 @@ class repositoryArrange(
     }
 
     // inicia a tela da activity
-    fun startRepositoryScreen(){
-        ActivityScenario.launch(RepositoryActivity::class.java)
+    fun startPullScreen(){
+        val bundle = bundleOf(OWNER to "CyC2018", REPOSITORY to "CS-Notes")
+        val intent = Intent(ApplicationProvider.getApplicationContext(),
+            PullActivity::class.java).apply {
+            //
+            putExtras(bundle)
+        }
+        ActivityScenario.launch<PullActivity>(intent)
     }
+
+
 }
 
 //o nosso act nao faz nada pois só estamos checando info
@@ -75,7 +76,8 @@ class Assert(action: Assert.() -> Unit){
     fun checkTextVisible(text :String){
         //o retryer tenta chamar o servidor e contém  o delay, vide com command +b
         retryer {
-            onView(withText(text)).check(matches(isDisplayed()))
+            Espresso.onView(ViewMatchers.withText(text))
+                .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
         }
     }
 

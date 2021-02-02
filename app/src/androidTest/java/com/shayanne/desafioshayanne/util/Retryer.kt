@@ -1,4 +1,4 @@
-package com.shayanne.desafioshayanne
+package com.shayanne.desafioshayanne.util
 
 fun retryer(times: Int = 3,action: () -> Unit){
     //da delay de 3segundos, tenta 3 loopings, tenta chamar 1 vez ou no catch pega as excecoes,
@@ -9,7 +9,7 @@ fun retryer(times: Int = 3,action: () -> Unit){
             action.invoke()
             return
         }catch (ex: Throwable){
-            if(i == times){
+            if(i == times -1){
                 throw ex
             }
             Thread.sleep(300)

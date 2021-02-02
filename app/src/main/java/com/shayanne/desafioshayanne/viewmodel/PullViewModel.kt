@@ -26,7 +26,7 @@ class PullViewModel(private val callGit: ApiWebClientRequest,
         /* owner,repositorio*/
         callGit.getPullRequests(owner, repository)
             .enqueue(object : Callback<List<PullRequests>> {
-
+                // ERRO DE CONEXÃO
                 override fun onFailure(call: Call<List<PullRequests>>, t: Throwable) {
                     logger.logMessage("Erro", t.message.toString())
                     state.postValue(PullViewState.Erro(R.string.error_network_request_failed))
@@ -35,12 +35,12 @@ class PullViewModel(private val callGit: ApiWebClientRequest,
                 override fun onResponse(
                     call: Call<List<PullRequests>>,
                     response: Response<List<PullRequests>>
-                ) {
+                ) { // RESPOSTA DE SUCESSO
                     if (response.isSuccessful) {
                         response.body()?.let {
                             state.postValue(PullViewState.Sucesso(it))
                         }
-                    }else{
+                    }else{//ERRO DE SERVIDOR
                         state.postValue(PullViewState.Erro(R.string.error_unknown))
                     }
                 }
