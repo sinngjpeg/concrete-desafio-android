@@ -1,10 +1,7 @@
 package com.example.desafiogabriela.repository
 
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import com.example.desafiogabriela.MockServerRule
-import com.example.desafiogabriela.R
-import okhttp3.mockwebserver.MockWebServer
-import org.junit.After
+import com.example.desafiogabriela.utils.MockServerRule
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith

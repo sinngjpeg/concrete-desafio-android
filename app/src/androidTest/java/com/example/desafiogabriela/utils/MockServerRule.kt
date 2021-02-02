@@ -1,4 +1,4 @@
-package com.example.desafiogabriela
+package com.example.desafiogabriela.utils
 
 import com.example.desafiogabriela.api.RetrofitLauncher
 import okhttp3.mockwebserver.MockWebServer

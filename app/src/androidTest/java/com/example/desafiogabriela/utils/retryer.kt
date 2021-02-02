@@ -1,4 +1,4 @@
-package com.example.desafiogabriela
+package com.example.desafiogabriela.utils
 
 fun retryer(times: Int = 3, action: () -> Unit){
     Thread.sleep(300)
