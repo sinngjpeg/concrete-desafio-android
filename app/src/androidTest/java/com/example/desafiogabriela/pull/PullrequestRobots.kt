@@ -1,10 +1,15 @@
 package com.example.desafiogabriela.pull
 
+import android.content.Intent
+import androidx.core.os.bundleOf
 import androidx.test.core.app.ActivityScenario
+import androidx.test.core.app.ApplicationProvider
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
 import androidx.test.espresso.matcher.ViewMatchers.withText
+import com.example.desafiogabriela.utils.Constant.owner
+import com.example.desafiogabriela.utils.Constant.repository
 import com.example.desafiogabriela.utils.HttpStatus
 import com.example.desafiogabriela.utils.MockServerRule
 import com.example.desafiogabriela.utils.loadAsFixture
@@ -33,7 +38,12 @@ class pullrequestArrange(
     }
 
     fun startPullScreen() {
-        ActivityScenario.launch(PullrequestActivity::class.java)
+        val bundle = bundleOf(owner to "elastic", repository to "elasticsearch")
+        val intent = Intent(ApplicationProvider.getApplicationContext(), PullrequestActivity::class.java).apply {
+            putExtras(bundle)
+        }
+
+        ActivityScenario.launch<PullrequestActivity>(intent)
     }
 }
 

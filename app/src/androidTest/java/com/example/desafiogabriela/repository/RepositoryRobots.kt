@@ -1,14 +1,15 @@
 package com.example.desafiogabriela.repository
 
+import android.content.Intent
+import androidx.core.os.bundleOf
 import androidx.test.core.app.ActivityScenario
+import androidx.test.core.app.ApplicationProvider
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.matcher.ViewMatchers.withText
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
-import com.example.desafiogabriela.utils.HttpStatus
-import com.example.desafiogabriela.utils.MockServerRule
-import com.example.desafiogabriela.utils.loadAsFixture
-import com.example.desafiogabriela.utils.retryer
+import com.example.desafiogabriela.pull.PullrequestActivity
+import com.example.desafiogabriela.utils.*
 import okhttp3.mockwebserver.MockResponse
 import java.lang.Exception
 
@@ -36,7 +37,11 @@ class repositoryArrange(
     }
 
     fun startRepositoriesScreen() {
-        ActivityScenario.launch(RepositoryActivity::class.java)
+        val bundle = bundleOf(Constant.owner to "elastic", Constant.repository to "elasticsearch")
+        val intent = Intent(ApplicationProvider.getApplicationContext(), RepositoryActivity::class.java).apply {
+            putExtras(bundle)
+        }
+        ActivityScenario.launch<RepositoryActivity>(intent)
     }
 }
 
