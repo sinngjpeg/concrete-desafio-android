@@ -25,7 +25,6 @@ class RepositoryActivity : AppCompatActivity(), RepositoryAdapter.OnItemClickLis
 
     var lastPosition = 0
     var isLoading = false
-    val messageError = Int
 
     private val adapter = RepositoryAdapter(ArrayList(), this)
     private lateinit var binding: ActivityRepositoryBinding
