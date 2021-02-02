@@ -78,7 +78,6 @@ class RepositoryActivity : AppCompatActivity(), RepositoryAdapter.OnItemClickLis
         viewModel.liveDataNetworkError.observe(this, Observer {
            showError(it)
         })
-
     }
 
     private fun showError(@StringRes errorRes: Int) {

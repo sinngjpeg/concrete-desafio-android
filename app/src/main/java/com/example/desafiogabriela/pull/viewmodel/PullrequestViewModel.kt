@@ -11,7 +11,6 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-
 class PullrequestViewModel(
     private val getPull: WebClient,
     private val logger: Logger

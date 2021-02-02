@@ -16,7 +16,6 @@ object RetrofitLauncher {
     @VisibleForTesting
     var baseurl = "https://api.github.com/"
 
-
     fun get(): WebClient {
 
         return Retrofit.Builder()
