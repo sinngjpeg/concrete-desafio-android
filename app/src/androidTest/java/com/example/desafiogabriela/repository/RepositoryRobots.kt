@@ -26,12 +26,13 @@ class repositoryArrange(
             .setBody(responseFileName.loadAsFixture())
         )
     }
-    fun enqueueNetworkError(){
+
+    fun enqueueNetworkError() {
         mockWebServerRule.mockWebServer.enqueue(MockResponse().setResponseCode(HttpStatus.statusError))
     }
 
-    fun enqueueResponseError(t: Throwable){
-       mockWebServerRule.mockWebServer.enqueue(MockResponse())
+    fun enqueueResponseError(t: Throwable) {
+        mockWebServerRule.mockWebServer.enqueue(MockResponse())
     }
 
     fun startRepositoriesScreen() {
@@ -44,11 +45,13 @@ class repositoryAct(action: repositoryAct.() -> Unit) {
         action.invoke(this)
     }
 }
+
 class repositoryAssert(action: repositoryAssert.() -> Unit) {
     init {
         action.invoke(this)
     }
-    fun checkTextVisible(text: String){
+
+    fun checkTextVisible(text: String) {
         retryer {
             onView(withText(text)).check(matches(isDisplayed()))
         }

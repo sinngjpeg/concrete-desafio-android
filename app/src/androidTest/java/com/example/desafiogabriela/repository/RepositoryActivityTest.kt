@@ -20,7 +20,6 @@ class RepositoryActivityTest {
         }
         repositoryAssert {
             checkTextVisible("CS-Notes")
-
         }
     }
 
@@ -34,13 +33,14 @@ class RepositoryActivityTest {
             checkTextVisible("Erro no servidor")
         }
     }
+
     @Test
-    fun givenFailureResponse_shouldReturnErrorAlertDialog(){
-        repositoryArrange(mockWebServerRule){
+    fun givenFailureResponse_shouldReturnErrorAlertDialog() {
+        repositoryArrange(mockWebServerRule) {
             enqueueResponseError(Throwable())
             startRepositoriesScreen()
         }
-        repositoryAssert{
+        repositoryAssert {
             checkTextVisible("Erro desconhecido")
         }
     }

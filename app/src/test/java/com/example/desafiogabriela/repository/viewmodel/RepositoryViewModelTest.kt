@@ -1,7 +1,7 @@
 package com.example.desafiogabriela.repository.viewmodel
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import com.example.desafiogabriela.FakeLogger
+import com.example.desafiogabriela.utils.FakeLogger
 import com.example.desafiogabriela.R
 import io.mockk.mockk
 import org.junit.Test

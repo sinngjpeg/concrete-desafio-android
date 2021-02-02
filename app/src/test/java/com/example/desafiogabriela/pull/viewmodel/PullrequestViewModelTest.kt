@@ -1,7 +1,7 @@
 package com.example.desafiogabriela.pull.viewmodel
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import com.example.desafiogabriela.FakeLogger
+import com.example.desafiogabriela.utils.FakeLogger
 import com.example.desafiogabriela.R
 import com.example.desafiogabriela.api.WebClient
 import com.example.desafiogabriela.model.ItemPullrequest

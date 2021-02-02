@@ -12,14 +12,13 @@ class PullrequestActivityTest {
     @get:Rule
     val mockWebServerRule = MockServerRule()
 
-
     @Test
     fun givenRequestSuccessful_shouldRenderPullRequestList() {
-        pullrequestArrange(mockWebServerRule){
+        pullrequestArrange(mockWebServerRule) {
             enqueueResponse("pull_request.json")
             startPullScreen()
         }
-        pullrequestAssert{
+        pullrequestAssert {
             checkTextVisible("Gabriel-18")
         }
     }
@@ -36,12 +35,12 @@ class PullrequestActivityTest {
     }
 
     @Test
-    fun givenFailureResponse_shouldReturnErrorAlertDialog(){
-        pullrequestArrange(mockWebServerRule){
+    fun givenFailureResponse_shouldReturnErrorAlertDialog() {
+        pullrequestArrange(mockWebServerRule) {
             enqueueResponseError(Throwable())
             startPullScreen()
         }
-        pullrequestAssert{
+        pullrequestAssert {
             checkTextVisible("Erro desconhecido")
         }
     }

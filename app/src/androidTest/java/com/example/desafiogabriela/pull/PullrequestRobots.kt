@@ -33,9 +33,7 @@ class pullrequestArrange(
     }
 
     fun startPullScreen() {
-
         ActivityScenario.launch(PullrequestActivity::class.java)
-
     }
 }
 
@@ -56,14 +54,3 @@ class pullrequestAssert(action: pullrequestAssert.() -> Unit) {
         }
     }
 }
-
-
-
-
-
-
-
-
-
-
-
