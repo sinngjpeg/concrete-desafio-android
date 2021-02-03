@@ -38,7 +38,7 @@ class pullrequestArrange(
     }
 
     fun startPullScreen() {
-        val bundle = bundleOf(owner to "elastic", repository to "elasticsearch")
+        val bundle = bundleOf(owner to "", repository to "")
         val intent = Intent(ApplicationProvider.getApplicationContext(), PullrequestActivity::class.java).apply {
             putExtras(bundle)
         }
@@ -59,8 +59,6 @@ class pullrequestAssert(action: pullrequestAssert.() -> Unit) {
     }
 
     fun checkTextVisible(text: String) {
-        retryer {
             onView(withText(text)).check(matches(isDisplayed()))
-        }
     }
 }

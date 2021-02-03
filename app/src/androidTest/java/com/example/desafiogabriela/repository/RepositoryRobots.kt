@@ -57,8 +57,6 @@ class repositoryAssert(action: repositoryAssert.() -> Unit) {
     }
 
     fun checkTextVisible(text: String) {
-        retryer {
             onView(withText(text)).check(matches(isDisplayed()))
-        }
     }
 }
