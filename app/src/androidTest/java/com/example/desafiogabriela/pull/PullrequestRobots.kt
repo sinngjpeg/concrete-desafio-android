@@ -13,12 +13,11 @@ import com.example.desafiogabriela.utils.Constant.repository
 import com.example.desafiogabriela.utils.HttpStatus
 import com.example.desafiogabriela.utils.MockServerRule
 import com.example.desafiogabriela.utils.loadAsFixture
-import com.example.desafiogabriela.utils.retryer
 import okhttp3.mockwebserver.MockResponse
 
 class pullrequestArrange(
     private val mockWebServerRule: MockServerRule,
-    action: pullrequestArrange.() -> Unit
+    action: pullrequestArrange.() -> Unit,
 ) {
     init {
         action.invoke(this)
@@ -30,7 +29,7 @@ class pullrequestArrange(
     }
 
     fun enqueueNetworkError() {
-        mockWebServerRule.mockWebServer.enqueue(MockResponse().setResponseCode(HttpStatus.statusError))
+        mockWebServerRule.mockWebServer.enqueue(MockResponse().setResponseCode(HttpStatus.HTTP_STATUS_BAD_REQUEST))
     }
 
     fun enqueueResponseError(t: Throwable) {
@@ -39,7 +38,8 @@ class pullrequestArrange(
 
     fun startPullScreen() {
         val bundle = bundleOf(owner to "", repository to "")
-        val intent = Intent(ApplicationProvider.getApplicationContext(), PullrequestActivity::class.java).apply {
+        val intent = Intent(ApplicationProvider.getApplicationContext(),
+            PullrequestActivity::class.java).apply {
             putExtras(bundle)
         }
 
@@ -59,6 +59,6 @@ class pullrequestAssert(action: pullrequestAssert.() -> Unit) {
     }
 
     fun checkTextVisible(text: String) {
-            onView(withText(text)).check(matches(isDisplayed()))
+        onView(withText(text)).check(matches(isDisplayed()))
     }
 }

@@ -9,5 +9,5 @@ data class ItemRepository(
     @SerializedName("forks_count") var forksCount: Int,
     @SerializedName("stargazers_count") var starsCount: Int,
     @SerializedName("owner") val owner: Owner,
-    @SerializedName("full_name") var fullname: String
+    @SerializedName("full_name") var fullname: String,
 )

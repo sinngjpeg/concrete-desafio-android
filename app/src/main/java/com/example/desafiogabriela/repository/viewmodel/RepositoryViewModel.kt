@@ -14,7 +14,7 @@ import retrofit2.Response
 
 class RepositoryViewModel(
     private val get: WebClient,
-    private val logger: Logger
+    private val logger: Logger,
 ) : ViewModel() {
 
     var page = 1
@@ -31,7 +31,7 @@ class RepositoryViewModel(
 
             override fun onFailure(
                 call: Call<Items>,
-                t: Throwable
+                t: Throwable,
             ) {
                 logger.logMessage("unexpected error", t.message.toString())
                 liveDataError.postValue(R.string.network_error)
@@ -39,7 +39,7 @@ class RepositoryViewModel(
 
             override fun onResponse(
                 call: Call<Items>,
-                response: Response<Items>
+                response: Response<Items>,
             ) {
                 if (response.isSuccessful) {
                     response.body()?.let {

@@ -13,7 +13,7 @@ import retrofit2.Response
 
 class PullrequestViewModel(
     private val getPull: WebClient,
-    private val logger: Logger
+    private val logger: Logger,
 ) : ViewModel() {
 
     private val pullLiveDataSuccess: MutableLiveData<List<ItemPullrequest>> = MutableLiveData()
@@ -26,7 +26,7 @@ class PullrequestViewModel(
 
             override fun onFailure(
                 call: Call<List<ItemPullrequest>>,
-                t: Throwable
+                t: Throwable,
             ) {
                 logger.logMessage("Error", t.message.toString())
                 pullLiveDataError.postValue(R.string.network_error)
@@ -34,14 +34,14 @@ class PullrequestViewModel(
 
             override fun onResponse(
                 call: Call<List<ItemPullrequest>>,
-                response: Response<List<ItemPullrequest>>
+                response: Response<List<ItemPullrequest>>,
             ) {
                 if (response.isSuccessful) {
                     response.body()?.let {
                         pullLiveDataSuccess.postValue(it)
                     }
                 } else {
-                   pullLiveDataError.postValue(R.string.error_message)
+                    pullLiveDataError.postValue(R.string.error_message)
                 }
             }
         })

@@ -6,10 +6,9 @@ import androidx.test.espresso.IdlingResource.ResourceCallback
 import okhttp3.Dispatcher
 import okhttp3.OkHttpClient
 
-
 class OkHttp3IdlingResourceAndroidX private constructor(
     private val name: String,
-    private val dispatcher: Dispatcher
+    private val dispatcher: Dispatcher,
 ) : IdlingResource {
     @Volatile
     var callback: ResourceCallback? = null
@@ -19,9 +18,11 @@ class OkHttp3IdlingResourceAndroidX private constructor(
         if (idle && callback != null) callback?.onTransitionToIdle()
         return idle
     }
+
     override fun registerIdleTransitionCallback(callback: ResourceCallback) {
         this.callback = callback
     }
+
     companion object {
         /**
          * Create a new [IdlingResource] from `client` as `name`. You must register
@@ -31,6 +32,7 @@ class OkHttp3IdlingResourceAndroidX private constructor(
             return OkHttp3IdlingResourceAndroidX(name, client.dispatcher)
         }
     }
+
     init {
         dispatcher.idleCallback = Runnable {
             val callback = callback

@@ -14,7 +14,7 @@ import com.squareup.picasso.Picasso
 class RepositoryAdapter(
 
     var list: List<ItemRepository>,
-    private val listener: RepositoryActivity
+    private val listener: RepositoryActivity,
 ) : RecyclerView.Adapter<RepositoryAdapter.ViewHolderClass>() {
 
     override fun onBindViewHolder(holder: ViewHolderClass, position: Int) {

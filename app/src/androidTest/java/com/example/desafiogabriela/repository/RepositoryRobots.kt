@@ -1,21 +1,16 @@
 package com.example.desafiogabriela.repository
 
-import android.content.Intent
-import androidx.core.os.bundleOf
 import androidx.test.core.app.ActivityScenario
-import androidx.test.core.app.ApplicationProvider
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.matcher.ViewMatchers.withText
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
-import com.example.desafiogabriela.pull.PullrequestActivity
 import com.example.desafiogabriela.utils.*
 import okhttp3.mockwebserver.MockResponse
-import java.lang.Exception
 
 class repositoryArrange(
     private val mockWebServerRule: MockServerRule,
-    action: repositoryArrange.() -> Unit
+    action: repositoryArrange.() -> Unit,
 ) {
 
     init {
@@ -29,7 +24,7 @@ class repositoryArrange(
     }
 
     fun enqueueNetworkError() {
-        mockWebServerRule.mockWebServer.enqueue(MockResponse().setResponseCode(HttpStatus.statusError))
+        mockWebServerRule.mockWebServer.enqueue(MockResponse().setResponseCode(HttpStatus.HTTP_STATUS_BAD_REQUEST))
     }
 
     fun enqueueResponseError(t: Throwable) {
@@ -37,11 +32,7 @@ class repositoryArrange(
     }
 
     fun startRepositoriesScreen() {
-        val bundle = bundleOf(Constant.owner to "elastic", Constant.repository to "elasticsearch")
-        val intent = Intent(ApplicationProvider.getApplicationContext(), RepositoryActivity::class.java).apply {
-            putExtras(bundle)
-        }
-        ActivityScenario.launch<RepositoryActivity>(intent)
+        ActivityScenario.launch(RepositoryActivity::class.java)
     }
 }
 
@@ -57,6 +48,6 @@ class repositoryAssert(action: repositoryAssert.() -> Unit) {
     }
 
     fun checkTextVisible(text: String) {
-            onView(withText(text)).check(matches(isDisplayed()))
+        onView(withText(text)).check(matches(isDisplayed()))
     }
 }

@@ -8,5 +8,5 @@ data class ItemPullrequest(
     @SerializedName("title") val name: String,
     @SerializedName("body") val description: String,
     @SerializedName("created_at") val createdAt: String,
-    @SerializedName("html_url") val html: String
+    @SerializedName("html_url") val html: String,
 )

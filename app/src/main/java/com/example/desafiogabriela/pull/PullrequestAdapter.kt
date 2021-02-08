@@ -12,7 +12,7 @@ import com.squareup.picasso.Picasso
 
 class PullrequestAdapter(
     var list: List<ItemPullrequest>,
-    private val repositoryListener: ClickListener
+    private val repositoryListener: ClickListener,
 ) :
     RecyclerView.Adapter<PullrequestAdapter.ViewHolderClass>() {
 

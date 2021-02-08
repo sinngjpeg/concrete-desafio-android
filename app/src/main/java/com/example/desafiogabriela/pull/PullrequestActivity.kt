@@ -61,6 +61,7 @@ class PullrequestActivity : AppCompatActivity(), PullrequestAdapter.ClickListene
             showError(it)
         })
     }
+
     fun showError(@StringRes errorRes: Int) {
         AlertDialog.Builder(this)
             .setMessage(errorRes)
