@@ -32,7 +32,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:text="@string/descricao"
-        android:textColor="@color/black"
+        style="@style/Widget.MaterialComponents.TextView"
         android:textSize="12sp" />
 
     <de.hdodenhof.circleimageview.CircleImageView
@@ -41,7 +41,7 @@
         android:layout_height="35dp"
         android:layout_marginTop="10dp"
         android:contentDescription="@string/content_description_no"
-        android:src="@drawable/ic_pessoa" />
+        tools:src="@drawable/ic_pessoa" />
 
     <TextView
         android:id="@+id/username_pullrequest"
@@ -61,6 +61,7 @@
         android:layout_marginStart="45dp"
         android:layout_marginTop="1dp"
         android:text="@string/nome_sobrenome_pull"
-        android:textSize="12sp" />
+        android:textSize="12sp"
+        style="@style/Widget.MaterialComponents.TextView"/>
 
 </LinearLayout>
