@@ -30,7 +30,7 @@ class RepositoryActivityTest {
             startRepositoriesScreen()
         }
         repositoryAssert {
-            checkTextVisible("cleitinho")
+            checkTextVisible("Erro no servidor")
         }
     }
 
