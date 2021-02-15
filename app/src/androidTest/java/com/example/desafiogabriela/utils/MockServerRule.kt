@@ -7,6 +7,7 @@ import org.junit.rules.TestWatcher
 import org.junit.runner.Description
 
 class MockServerRule : TestWatcher() {
+    
     val mockWebServer = MockWebServer()
 
     override fun starting(description: Description?) {
