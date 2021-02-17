@@ -36,12 +36,12 @@ class PullrequestViewModelTest {
         // act
         viewModelPull.getSearchPull(owner, repository)
 
-        // arrange
+        // assert
         assertEquals(emptyList<ItemPullrequest>(), viewModelPull.pullLiveDataNetworkSuccess.value)
     }
 
     @Test
-    fun givenFailureResponse_whenAPILauncherIsWrong_shouldFillResultError() {
+    fun givenFailureResponse_whenAPILauncherCrash_shouldFillResultError() {
         // arrange
         every {
             mockWebClient.searchPull(owner, repository)
@@ -50,7 +50,7 @@ class PullrequestViewModelTest {
         // act
         viewModelPull.getSearchPull(owner, repository)
 
-        // arrange
+        // assert
         assertEquals(R.string.error_message, viewModelPull.pullLiveDataNetworkError.value)
     }
 
@@ -66,7 +66,7 @@ class PullrequestViewModelTest {
         // act
         viewModelPull.getSearchPull(owner, repository)
 
-        // arrange
+        // assert
         assertEquals(R.string.network_error, viewModelPull.pullLiveDataNetworkError.value)
     }
 }

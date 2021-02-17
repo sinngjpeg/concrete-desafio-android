@@ -14,6 +14,7 @@ import com.example.desafiogabriela.utils.HttpStatus
 import com.example.desafiogabriela.utils.MockServerRule
 import com.example.desafiogabriela.utils.loadAsFixture
 import okhttp3.mockwebserver.MockResponse
+import java.io.IOException
 
 class pullrequestArrange(
     private val mockWebServerRule: MockServerRule,
@@ -32,7 +33,7 @@ class pullrequestArrange(
         mockWebServerRule.mockWebServer.enqueue(MockResponse().setResponseCode(HttpStatus.HTTP_STATUS_BAD_REQUEST))
     }
 
-    fun enqueueResponseError(t: Throwable) {
+    fun enqueueResponseError(t: IOException) {
         mockWebServerRule.mockWebServer.enqueue(MockResponse())
     }
 
