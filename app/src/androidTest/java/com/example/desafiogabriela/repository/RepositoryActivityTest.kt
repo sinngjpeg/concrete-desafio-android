@@ -5,6 +5,7 @@ import com.example.desafiogabriela.utils.MockServerRule
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
+import java.io.IOException
 
 @RunWith(AndroidJUnit4::class)
 class RepositoryActivityTest {
@@ -37,7 +38,7 @@ class RepositoryActivityTest {
     @Test
     fun givenFailureResponse_shouldReturnErrorAlertDialog() {
         repositoryArrange(mockWebServerRule) {
-            enqueueResponseError(Throwable())
+            enqueueResponseError(IOException())
             startRepositoriesScreen()
         }
         repositoryAssert {
