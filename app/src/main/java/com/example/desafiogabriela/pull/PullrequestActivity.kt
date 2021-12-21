@@ -7,7 +7,6 @@ import androidx.activity.viewModels
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.desafiogabriela.api.RetrofitLauncher
 import com.example.desafiogabriela.utils.Constant
@@ -51,18 +50,18 @@ class PullrequestActivity : AppCompatActivity(), PullrequestAdapter.ClickListene
     }
 
     private fun pullView() {
-        pullViewModel.pullLiveDataNetworkSuccess.observe(this, Observer {
+        pullViewModel.pullLiveDataNetworkSuccess.observe(this, {
 
             pullAdapter.list = it
             pullAdapter.notifyDataSetChanged()
         })
 
-        pullViewModel.pullLiveDataNetworkError.observe(this, Observer {
+        pullViewModel.pullLiveDataNetworkError.observe(this, {
             showError(it)
         })
     }
 
-    fun showError(@StringRes errorRes: Int) {
+    private fun showError(@StringRes errorRes: Int) {
         AlertDialog.Builder(this)
             .setMessage(errorRes)
             .show()
