@@ -23,7 +23,6 @@ class RepositoryViewModel(
     val liveDataNetworkError: LiveData<Int> = liveDataError
 
     fun getSearch() {
-
         getRepositoryUseCase.execute(page,
             onResultListener = object : RepositoryResultListener {
                 override fun onSuccess(items: Items) {
@@ -32,6 +31,10 @@ class RepositoryViewModel(
                 }
 
                 override fun onError() {
+                    liveDataError.postValue(R.string.error_message)
+                }
+
+                override fun onNetworkError() {
                     liveDataError.postValue(R.string.network_error)
                 }
             })

@@ -5,7 +5,7 @@ import com.example.desafiogabriela.utils.FakeLogger
 import com.example.desafiogabriela.R
 import io.mockk.mockk
 import org.junit.Test
-import com.example.desafiogabriela.api.WebClient
+import com.example.desafiogabriela.api.GitHubAPIService
 import com.example.desafiogabriela.model.ItemRepository
 import com.example.desafiogabriela.model.Items
 import io.mockk.every
@@ -22,7 +22,7 @@ class RepositoryViewModelTest {
     val instantTaskExecutorRule = InstantTaskExecutorRule()
 
     private val fakeLogger = FakeLogger()
-    private val mockWebClient = mockk<WebClient>()
+    private val mockWebClient = mockk<GitHubAPIService>()
     private val viewModel = RepositoryViewModel(mockWebClient, fakeLogger)
 
     @Test

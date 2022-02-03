@@ -7,7 +7,7 @@ import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
 
-interface WebClient {
+interface GitHubAPIService {
 
     @GET("search/repositories?q=language:Java&sort=stars")
     fun search(@Query("page") page: Int): Call<Items>
