@@ -1,4 +1,4 @@
-package com.example.desafiogabriela.useCase.listener
+package com.example.desafiogabriela.repository.useCase.listener
 
 import com.example.desafiogabriela.model.Items
 

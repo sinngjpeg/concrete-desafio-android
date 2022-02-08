@@ -10,7 +10,7 @@ import retrofit2.http.Query
 interface GitHubAPIService {
 
     @GET("search/repositories?q=language:Java&sort=stars")
-    fun search(@Query("page") page: Int): Call<Items>
+    suspend fun search(@Query("page") page: Int): Items
 
     @GET("repos/{owner}/{repository}/pulls")
     fun searchPull(
