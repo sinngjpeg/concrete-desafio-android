@@ -14,7 +14,7 @@ import com.example.desafiogabriela.model.ItemPullrequest
 import com.example.desafiogabriela.databinding.ActivityPullrequestBinding
 import com.example.desafiogabriela.pull.viewmodel.PullrequestViewModel
 import com.example.desafiogabriela.pull.viewmodel.PullrequestViewModelFactory
-import com.example.desafiogabriela.useCase.GetPullUseCase
+import com.example.desafiogabriela.pull.useCase.GetPullUseCase
 
 class PullrequestActivity : AppCompatActivity(), PullrequestAdapter.ClickListener {
 

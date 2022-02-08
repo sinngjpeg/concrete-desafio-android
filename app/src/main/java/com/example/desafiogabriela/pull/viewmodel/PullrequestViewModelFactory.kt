@@ -2,7 +2,7 @@ package com.example.desafiogabriela.pull.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.example.desafiogabriela.useCase.GetPullUseCase
+import com.example.desafiogabriela.pull.useCase.GetPullUseCase
 
 class PullrequestViewModelFactory(private val getPullUseCase: GetPullUseCase) : ViewModelProvider.Factory {
 

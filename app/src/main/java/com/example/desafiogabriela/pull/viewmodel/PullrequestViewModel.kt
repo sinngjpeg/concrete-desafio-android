@@ -3,10 +3,15 @@ package com.example.desafiogabriela.pull.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.desafiogabriela.R
 import com.example.desafiogabriela.model.ItemPullrequest
-import com.example.desafiogabriela.useCase.GetPullUseCase
-import com.example.desafiogabriela.useCase.listener.PullResultListener
+import com.example.desafiogabriela.model.ItemRepository
+import com.example.desafiogabriela.pull.useCase.GetPullUseCase
+import com.example.desafiogabriela.pull.useCase.listener.PullResultListener
+import kotlinx.coroutines.launch
+import java.io.IOException
+import java.lang.Exception
 
 class PullrequestViewModel(
     private val getPullUseCase: GetPullUseCase,
@@ -18,21 +23,19 @@ class PullrequestViewModel(
     val liveDataNetworkError: LiveData<Int> = liveDataError
     private var owner = ""
     private var repository = ""
+    private val list = mutableListOf<ItemPullrequest>()
 
     fun getSearchPull() {
-        getPullUseCase.execute(owner, repository,
-            onResultListener = object : PullResultListener {
-                override fun onSuccess(items: List<ItemPullrequest>) {
-                    liveDataSuccess.value
-                }
+        viewModelScope.launch {
+            try {
+                val result = getPullUseCase.execute(owner, repository)
+                liveDataSuccess.value = list
 
-                override fun onError() {
-                    liveDataError.postValue(R.string.error_message)
-                }
-
-                override fun onNetworkError() {
-                    liveDataError.postValue(R.string.network_error)
-                }
-            })
+            } catch (ex: IOException) {
+                liveDataError.postValue(R.string.network_error)
+            } catch (ex: Exception) {
+                liveDataError.postValue(R.string.error_message)
+            }
+        }
     }
 }
