@@ -7,7 +7,6 @@ import androidx.activity.viewModels
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.desafiogabriela.api.RetrofitLauncher
 import com.example.desafiogabriela.utils.Constant
@@ -15,6 +14,7 @@ import com.example.desafiogabriela.model.ItemPullrequest
 import com.example.desafiogabriela.databinding.ActivityPullrequestBinding
 import com.example.desafiogabriela.pull.viewmodel.PullrequestViewModel
 import com.example.desafiogabriela.pull.viewmodel.PullrequestViewModelFactory
+import com.example.desafiogabriela.useCase.GetPullUseCase
 
 class PullrequestActivity : AppCompatActivity(), PullrequestAdapter.ClickListener {
 
@@ -22,7 +22,7 @@ class PullrequestActivity : AppCompatActivity(), PullrequestAdapter.ClickListene
     private var repository = ""
 
     private val pullViewModel: PullrequestViewModel by viewModels {
-        PullrequestViewModelFactory(RetrofitLauncher.get())
+        PullrequestViewModelFactory(GetPullUseCase(RetrofitLauncher.get()))
     }
 
     private val list = ArrayList<ItemPullrequest>()
@@ -47,22 +47,22 @@ class PullrequestActivity : AppCompatActivity(), PullrequestAdapter.ClickListene
         bindingPull.pullToolbar.title = repository
 
         pullView()
-        pullViewModel.getSearchPull(owner, repository)
+        pullViewModel.getSearchPull()
     }
 
     private fun pullView() {
-        pullViewModel.pullLiveDataNetworkSuccess.observe(this, Observer {
+        pullViewModel.liveDataNetworkSuccess.observe(this) {
 
             pullAdapter.list = it
             pullAdapter.notifyDataSetChanged()
-        })
+        }
 
-        pullViewModel.pullLiveDataNetworkError.observe(this, Observer {
+        pullViewModel.liveDataNetworkError.observe(this) {
             showError(it)
-        })
+        }
     }
 
-    fun showError(@StringRes errorRes: Int) {
+    private fun showError(@StringRes errorRes: Int) {
         AlertDialog.Builder(this)
             .setMessage(errorRes)
             .show()

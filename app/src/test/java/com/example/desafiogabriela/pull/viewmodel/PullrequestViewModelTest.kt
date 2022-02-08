@@ -3,7 +3,7 @@ package com.example.desafiogabriela.pull.viewmodel
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.example.desafiogabriela.utils.FakeLogger
 import com.example.desafiogabriela.R
-import com.example.desafiogabriela.api.WebClient
+import com.example.desafiogabriela.api.GitHubAPIService
 import com.example.desafiogabriela.model.ItemPullrequest
 import io.mockk.every
 import io.mockk.mockk
@@ -23,7 +23,7 @@ class PullrequestViewModelTest {
     private var owner = ""
     private var repository = ""
     private val fakeLoggerPullTest = FakeLogger()
-    private val mockWebClient = mockk<WebClient>()
+    private val mockWebClient = mockk<GitHubAPIService>()
     private val viewModelPull = PullrequestViewModel(mockWebClient, fakeLoggerPullTest)
 
     @Test

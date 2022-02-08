@@ -6,19 +6,16 @@ import androidx.lifecycle.ViewModel
 import com.example.desafiogabriela.R
 import com.example.desafiogabriela.model.ItemRepository
 import com.example.desafiogabriela.model.Items
-import com.example.desafiogabriela.api.WebClient
-import com.example.desafiogabriela.utils.log.Logger
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import com.example.desafiogabriela.useCase.GetRepositoryUseCase
+import com.example.desafiogabriela.useCase.listener.RepositoryResultListener
 
 class RepositoryViewModel(
-    private val get: WebClient,
-    private val logger: Logger,
+    private val getRepositoryUseCase: GetRepositoryUseCase,
 ) : ViewModel() {
 
-    var page = 1
+    private var page = 1
     private val list = mutableListOf<ItemRepository>()
+
 
     private val liveDataListSuccess: MutableLiveData<List<ItemRepository>> = MutableLiveData()
     val liveDataNetworkSuccess: LiveData<List<ItemRepository>> = liveDataListSuccess
@@ -26,32 +23,21 @@ class RepositoryViewModel(
     val liveDataNetworkError: LiveData<Int> = liveDataError
 
     fun getSearch() {
+        getRepositoryUseCase.execute(page,
+            onResultListener = object : RepositoryResultListener {
+                override fun onSuccess(items: Items) {
+                    liveDataListSuccess.value = list
+                    list.addAll(items.items)
+                }
 
-        get.search(page).enqueue(object : Callback<Items> {
-
-            override fun onFailure(
-                call: Call<Items>,
-                t: Throwable,
-            ) {
-                logger.logMessage("unexpected error", t.message.toString())
-                liveDataError.postValue(R.string.network_error)
-            }
-
-            override fun onResponse(
-                call: Call<Items>,
-                response: Response<Items>,
-            ) {
-                if (response.isSuccessful) {
-                    response.body()?.let {
-
-                        list.addAll(it.items)
-                        liveDataListSuccess.value = list
-                        page++
-                    }
-                } else {
+                override fun onError() {
                     liveDataError.postValue(R.string.error_message)
                 }
-            }
-        })
+
+                override fun onNetworkError() {
+                    liveDataError.postValue(R.string.network_error)
+                }
+            })
     }
 }
+

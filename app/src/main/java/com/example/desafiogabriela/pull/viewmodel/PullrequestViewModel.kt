@@ -5,45 +5,34 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.desafiogabriela.R
 import com.example.desafiogabriela.model.ItemPullrequest
-import com.example.desafiogabriela.api.WebClient
-import com.example.desafiogabriela.utils.log.Logger
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import com.example.desafiogabriela.useCase.GetPullUseCase
+import com.example.desafiogabriela.useCase.listener.PullResultListener
 
 class PullrequestViewModel(
-    private val getPull: WebClient,
-    private val logger: Logger,
+    private val getPullUseCase: GetPullUseCase,
 ) : ViewModel() {
 
-    private val pullLiveDataSuccess: MutableLiveData<List<ItemPullrequest>> = MutableLiveData()
-    val pullLiveDataNetworkSuccess: LiveData<List<ItemPullrequest>> = pullLiveDataSuccess
-    private val pullLiveDataError = MutableLiveData<Int>()
-    val pullLiveDataNetworkError: LiveData<Int> = pullLiveDataError
+    private val liveDataSuccess: MutableLiveData<List<ItemPullrequest>> = MutableLiveData()
+    val liveDataNetworkSuccess: LiveData<List<ItemPullrequest>> = liveDataSuccess
+    private val liveDataError = MutableLiveData<Int>()
+    val liveDataNetworkError: LiveData<Int> = liveDataError
+    private var owner = ""
+    private var repository = ""
 
-    fun getSearchPull(owner: String, repository: String) {
-        getPull.searchPull(owner, repository).enqueue(object : Callback<List<ItemPullrequest>> {
-
-            override fun onFailure(
-                call: Call<List<ItemPullrequest>>,
-                t: Throwable,
-            ) {
-                logger.logMessage("Error", t.message.toString())
-                pullLiveDataError.postValue(R.string.network_error)
-            }
-
-            override fun onResponse(
-                call: Call<List<ItemPullrequest>>,
-                response: Response<List<ItemPullrequest>>,
-            ) {
-                if (response.isSuccessful) {
-                    response.body()?.let {
-                        pullLiveDataSuccess.postValue(it)
-                    }
-                } else {
-                    pullLiveDataError.postValue(R.string.error_message)
+    fun getSearchPull() {
+        getPullUseCase.execute(owner, repository,
+            onResultListener = object : PullResultListener {
+                override fun onSuccess(items: List<ItemPullrequest>) {
+                    liveDataSuccess.value
                 }
-            }
-        })
+
+                override fun onError() {
+                    liveDataError.postValue(R.string.error_message)
+                }
+
+                override fun onNetworkError() {
+                    liveDataError.postValue(R.string.network_error)
+                }
+            })
     }
 }

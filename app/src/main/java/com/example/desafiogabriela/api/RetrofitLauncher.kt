@@ -16,13 +16,13 @@ object RetrofitLauncher {
     @VisibleForTesting
     var baseurl = "https://api.github.com/"
 
-    fun get(): WebClient {
+    fun get(): GitHubAPIService {
 
         return Retrofit.Builder()
             .baseUrl(baseurl)
             .client(client)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
-            .create(WebClient::class.java)
+            .create(GitHubAPIService::class.java)
     }
 }

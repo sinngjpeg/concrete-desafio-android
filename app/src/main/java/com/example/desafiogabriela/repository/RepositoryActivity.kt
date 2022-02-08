@@ -15,12 +15,13 @@ import com.example.desafiogabriela.api.RetrofitLauncher
 import com.example.desafiogabriela.databinding.ActivityRepositoryBinding
 import com.example.desafiogabriela.pull.PullrequestActivity
 import com.example.desafiogabriela.repository.viewmodel.RepositoryViewModel
+import com.example.desafiogabriela.useCase.GetRepositoryUseCase
 import com.example.desafiogabriela.utils.Constant
 
 class RepositoryActivity : AppCompatActivity(), RepositoryAdapter.OnItemClickListener {
 
     private val viewModel: RepositoryViewModel by viewModels {
-        RepositoryViewModelFactory(RetrofitLauncher.get())
+        RepositoryViewModelFactory(GetRepositoryUseCase(RetrofitLauncher.get()))
     }
 
     var lastPosition = 0
