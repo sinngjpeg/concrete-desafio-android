@@ -12,7 +12,7 @@ interface GitHubAPIService {
     suspend fun search(@Query("page") page: Int): Items
 
     @GET("repos/{owner}/{repository}/pulls")
-    fun searchPull(
+    suspend fun searchPull(
         @Path("owner") owner: String,
         @Path("repository") repository: String,
     ): List<ItemPullrequest>

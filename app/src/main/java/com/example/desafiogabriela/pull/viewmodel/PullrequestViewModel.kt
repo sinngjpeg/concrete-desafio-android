@@ -6,9 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.desafiogabriela.R
 import com.example.desafiogabriela.model.ItemPullrequest
-import com.example.desafiogabriela.model.ItemRepository
 import com.example.desafiogabriela.pull.useCase.GetPullUseCase
-import com.example.desafiogabriela.pull.useCase.listener.PullResultListener
 import kotlinx.coroutines.launch
 import java.io.IOException
 import java.lang.Exception
@@ -21,15 +19,14 @@ class PullrequestViewModel(
     val liveDataNetworkSuccess: LiveData<List<ItemPullrequest>> = liveDataSuccess
     private val liveDataError = MutableLiveData<Int>()
     val liveDataNetworkError: LiveData<Int> = liveDataError
-    private var owner = ""
-    private var repository = ""
     private val list = mutableListOf<ItemPullrequest>()
 
-    fun getSearchPull() {
+    fun getSearchPull(owner: String, repository: String) {
         viewModelScope.launch {
             try {
                 val result = getPullUseCase.execute(owner, repository)
                 liveDataSuccess.value = list
+                list.addAll(result)
 
             } catch (ex: IOException) {
                 liveDataError.postValue(R.string.network_error)

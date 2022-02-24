@@ -18,9 +18,6 @@ import com.example.desafiogabriela.pull.useCase.GetPullUseCase
 
 class PullrequestActivity : AppCompatActivity(), PullrequestAdapter.ClickListener {
 
-    private var owner = ""
-    private var repository = ""
-
     private val pullViewModel: PullrequestViewModel by viewModels {
         PullrequestViewModelFactory(GetPullUseCase(RetrofitLauncher.get()))
     }
@@ -30,10 +27,6 @@ class PullrequestActivity : AppCompatActivity(), PullrequestAdapter.ClickListene
     private lateinit var bindingPull: ActivityPullrequestBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
-
-        owner = intent.getStringExtra(Constant.owner).toString()
-        repository = intent.getStringExtra(Constant.repository).toString()
-
         super.onCreate(savedInstanceState)
         bindingPull = ActivityPullrequestBinding.inflate(layoutInflater)
         setContentView(bindingPull.root)
@@ -41,18 +34,20 @@ class PullrequestActivity : AppCompatActivity(), PullrequestAdapter.ClickListene
         setSupportActionBar(bindingPull.pullToolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
+        val owner = intent.getStringExtra(Constant.owner).toString()
+        val repository = intent.getStringExtra(Constant.repository).toString()
+
         bindingPull.pullrequest.adapter = pullAdapter
         bindingPull.pullrequest.layoutManager = LinearLayoutManager(this)
         bindingPull.pullrequest.setHasFixedSize(true)
         bindingPull.pullToolbar.title = repository
 
         pullView()
-        pullViewModel.getSearchPull()
+        pullViewModel.getSearchPull(owner, repository)
     }
 
     private fun pullView() {
         pullViewModel.liveDataNetworkSuccess.observe(this) {
-
             pullAdapter.list = it
             pullAdapter.notifyDataSetChanged()
         }
