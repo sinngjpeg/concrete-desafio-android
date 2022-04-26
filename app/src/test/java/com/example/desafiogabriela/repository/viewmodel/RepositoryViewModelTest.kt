@@ -6,8 +6,8 @@ import com.example.desafiogabriela.R
 import io.mockk.mockk
 import org.junit.Test
 import com.example.desafiogabriela.api.GitHubAPIService
-import com.example.desafiogabriela.model.ItemRepository
-import com.example.desafiogabriela.model.Items
+import com.example.desafiogabriela.domain.model.ItemRepository
+import com.example.desafiogabriela.domain.model.Items
 import io.mockk.every
 import okhttp3.ResponseBody.Companion.toResponseBody
 import retrofit2.mock.Calls

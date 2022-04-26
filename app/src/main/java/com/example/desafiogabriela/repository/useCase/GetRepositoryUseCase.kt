@@ -1,7 +1,7 @@
 package com.example.desafiogabriela.repository.useCase
 
 import com.example.desafiogabriela.api.GitHubAPIService
-import com.example.desafiogabriela.model.Items
+import com.example.desafiogabriela.domain.model.Items
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 

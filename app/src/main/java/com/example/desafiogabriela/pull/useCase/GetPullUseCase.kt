@@ -1,7 +1,7 @@
 package com.example.desafiogabriela.pull.useCase
 
 import com.example.desafiogabriela.api.GitHubAPIService
-import com.example.desafiogabriela.model.ItemPullrequest
+import com.example.desafiogabriela.domain.model.ItemPullrequest
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 

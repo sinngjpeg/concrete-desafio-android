@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.desafiogabriela.model.ItemPullrequest
+import com.example.desafiogabriela.domain.model.ItemPullrequest
 import com.example.desafiogabriela.R
 import com.squareup.picasso.Picasso
 

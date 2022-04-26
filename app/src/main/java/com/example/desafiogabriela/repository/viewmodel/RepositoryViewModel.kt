@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.desafiogabriela.R
-import com.example.desafiogabriela.model.ItemRepository
+import com.example.desafiogabriela.domain.model.ItemRepository
 import com.example.desafiogabriela.repository.useCase.GetRepositoryUseCase
 import com.example.desafiogabriela.utils.log.Logger
 import kotlinx.coroutines.launch

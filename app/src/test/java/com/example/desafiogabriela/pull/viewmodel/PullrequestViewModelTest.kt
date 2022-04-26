@@ -4,7 +4,7 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.example.desafiogabriela.utils.FakeLogger
 import com.example.desafiogabriela.R
 import com.example.desafiogabriela.api.GitHubAPIService
-import com.example.desafiogabriela.model.ItemPullrequest
+import com.example.desafiogabriela.domain.model.ItemPullrequest
 import io.mockk.every
 import io.mockk.mockk
 import okhttp3.ResponseBody.Companion.toResponseBody

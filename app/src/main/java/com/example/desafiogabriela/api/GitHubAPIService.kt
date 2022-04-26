@@ -1,7 +1,7 @@
 package com.example.desafiogabriela.api
 
-import com.example.desafiogabriela.model.ItemPullrequest
-import com.example.desafiogabriela.model.Items
+import com.example.desafiogabriela.domain.model.ItemPullrequest
+import com.example.desafiogabriela.domain.model.Items
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query

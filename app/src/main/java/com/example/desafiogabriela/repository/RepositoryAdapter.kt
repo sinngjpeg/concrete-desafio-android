@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.desafiogabriela.model.ItemRepository
+import com.example.desafiogabriela.domain.model.ItemRepository
 import com.example.desafiogabriela.R
 import com.example.desafiogabriela.utils.loadImageURL
 

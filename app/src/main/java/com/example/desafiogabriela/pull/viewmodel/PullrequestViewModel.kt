@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.desafiogabriela.R
-import com.example.desafiogabriela.model.ItemPullrequest
+import com.example.desafiogabriela.domain.model.ItemPullrequest
 import com.example.desafiogabriela.pull.useCase.GetPullUseCase
 import kotlinx.coroutines.launch
 import java.io.IOException

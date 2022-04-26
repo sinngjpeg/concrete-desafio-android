@@ -10,7 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.desafiogabriela.api.RetrofitLauncher
 import com.example.desafiogabriela.utils.Constant
-import com.example.desafiogabriela.model.ItemPullrequest
+import com.example.desafiogabriela.domain.model.ItemPullrequest
 import com.example.desafiogabriela.databinding.ActivityPullrequestBinding
 import com.example.desafiogabriela.pull.viewmodel.PullrequestViewModel
 import com.example.desafiogabriela.pull.viewmodel.PullrequestViewModelFactory
